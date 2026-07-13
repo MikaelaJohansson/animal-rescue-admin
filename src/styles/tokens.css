@@ -1,0 +1,140 @@
+/* =========================================================
+   Animal Rescue Design System
+   Version 1.0
+========================================================= */
+
+:root {
+
+  /* ======================================
+     COLORS
+  ====================================== */
+
+  --color-primary: rgb(63, 118, 82);
+  --color-primary-hover: rgb(53, 102, 70);
+  --color-primary-light: rgb(231, 241, 234);
+
+  --color-sidebar: rgb(37, 56, 47);
+  --color-sidebar-hover: rgb(49, 74, 61);
+  --color-sidebar-active: rgb(66, 107, 81);
+
+  --color-background: rgb(248, 247, 243);
+  --color-surface: rgb(255, 255, 255);
+  --color-surface-muted: rgb(241, 244, 239);
+
+  --color-text: rgb(31, 41, 35);
+  --color-text-muted: rgb(111, 123, 115);
+  --color-text-white: rgb(255, 255, 255);
+
+  --color-border: rgb(223, 229, 220);
+
+  --color-success: rgb(63, 143, 92);
+  --color-warning: rgb(201, 137, 43);
+  --color-danger: rgb(201, 77, 77);
+  --color-info: rgb(63, 127, 186);
+
+  /* ======================================
+     TYPOGRAPHY
+  ====================================== */
+
+  --font-family: "Inter", sans-serif;
+
+  --font-size-caption: 12px;
+  --font-size-small: 13px;
+  --font-size-body: 14px;
+  --font-size-section: 16px;
+  --font-size-card-title: 20px;
+  --font-size-page-title: 24px;
+  --font-size-dashboard-title: 28px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height: 1.5;
+
+  /* ======================================
+     SPACING
+  ====================================== */
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  --space-5xl: 48px;
+  --space-6xl: 64px;
+
+  /* ======================================
+     BORDER RADIUS
+  ====================================== */
+
+  --radius-small: 6px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-pill: 999px;
+
+  /* ======================================
+     BORDERS
+  ====================================== */
+
+  --border-width: 1px;
+  --border: 1px solid var(--color-border);
+
+  /* ======================================
+     SHADOWS
+  ====================================== */
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.05);
+  --shadow-dropdown: 0 10px 30px rgba(0, 0, 0, 0.10);
+
+  /* ======================================
+     LAYOUT
+  ====================================== */
+
+  --layout-max-width: 1280px;
+  --layout-page-padding: 32px;
+
+  --sidebar-width: 240px;
+  --topbar-height: 64px;
+
+  /* ======================================
+     COMPONENTS
+  ====================================== */
+
+  --button-height: 40px;
+  --button-padding-x: 16px;
+
+  --input-height: 40px;
+  --input-padding-x: 12px;
+
+  --card-padding: 24px;
+
+  --table-row-height: 56px;
+
+  --badge-height: 24px;
+
+  /* ======================================
+     IMAGES
+  ====================================== */
+
+  --animal-thumbnail-size: 40px;
+  --animal-gallery-size: 72px;
+  --animal-detail-image-size: 320px;
+
+  --avatar-small: 28px;
+  --avatar-medium: 32px;
+  --avatar-large: 40px;
+
+  /* ======================================
+     ICONS
+  ====================================== */
+
+  --icon-small: 16px;
+  --icon-medium: 18px;
+  --icon-large: 20px;
+
+}
