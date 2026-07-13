@@ -1,4 +1,7 @@
+@import "./../../styles/tokens.css";
+
 /* main */
+
 
 .WraperLogin{
   min-height: 100vh;
@@ -16,6 +19,10 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.imgLogo{
+    width: var(--logo-L);
 }
 
 .dogImg{
@@ -38,13 +45,35 @@
 .loginForm{
     flex-direction: column;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .loginForm input{
    display: flex;
-   margin: 0.2rem;
+   margin: 0.5rem;
    padding: 0.4rem;
-   
-  
+   padding: var(--input-padding-L);
+   width: clamp(150px, 30vw,320px);
+   font-size: clamp(10px, 4vw, 18px);
+}
 
+.loginForm button{
+    margin-top: 0.5rem;
+    display: flex;
+    margin: 0.5rem;
+    justify-content: center;
+    padding: var(--button-padding-L);
+    width: clamp(150px, 30vw, 320px);
+    background-color: var(--color-button);
+    border-radius: var(--radius-S);
+    border-color: var(--color-border);
+    font-size: clamp(10px, 4vw, 18px);
+    font-weight: var(--font-weight-M);
+    color: var(--color-font-light);
+}
+
+.loginForm img{
+    width: clamp(140px, 20vw, 250px);
+    display: flex;
 }
