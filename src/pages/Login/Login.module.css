@@ -1,0 +1,50 @@
+/* main */
+
+.WraperLogin{
+  min-height: 100vh;
+}
+.mainContainerLogin{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+/* left side og login page */
+
+.loginLeftSideImage{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.dogImg{
+    width: 100%;
+    flex: 1;
+    object-fit: cover;
+    min-height: 0;
+}
+
+/* right side of login page */
+
+.loginRightSide{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+    flex: 1;
+}
+
+.loginForm{
+    flex-direction: column;
+    display: flex;
+}
+
+.loginForm input{
+   display: flex;
+   margin: 0.2rem;
+   padding: 0.4rem;
+   
+  
+
+}
