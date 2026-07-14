@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { Form, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../firebase'
 import appLogo from "../../assets/appLogo.png"
 import loginPicDog from "../../assets/loginPicDog.jpg"
-import { useNavigate } from 'react-router-dom'
 import styles from "./Login.module.css";
 
 
@@ -10,21 +11,39 @@ export default function Login({ setIsLoggedIn}) {
 
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage,setErrorMessage] = useState("")
+    const [isLoading,setIsLoading] = useState(false)
 
     const navigate = useNavigate()
 
-    function handleLogin(event){
+    async function handleLogin(event){
 
         event.preventDefault()
 
-        setIsLoggedIn(true)
-        navigate("/dashboard")
+        try{
+
+            setIsLoading(true)
+
+            await signInWithEmailAndPassword(auth,email,password);
+
+            setErrorMessage("")
+            setEmail("")
+            setPassword("")
+            setIsLoggedIn(true)
+            navigate("/dashboard")
+
+        }catch(error){
+            console.log(error)
+            setErrorMessage("Incorrect email or password")
+        }finally{
+            setIsLoading(false)
+        }
 
     }
 
     function handleDemoAccount(){
-        setEmail("demo@rescuedog.se")
-        setPassword("demo123")
+        setEmail("demo@animalrescue.se")
+        setPassword("demo4581235563768")
     }
 
 
@@ -44,14 +63,15 @@ export default function Login({ setIsLoggedIn}) {
 
                 <section className={styles.loginDemoInfo}>
                     <h3>Demo Account</h3>
-                    <button className={styles.loginDemoButton} type='button' onClick={handleDemoAccount}>Use demo account</button>
+                    <button className={styles.loginDemoButton} type='button' onClick={handleDemoAccount} disabled={isLoading}>Use demo account</button>
                 </section>
                 
                 <form onSubmit={handleLogin} className={styles.loginForm}>
                     <img src={appLogo} alt="logo" />
-                    <input type="email" placeholder='Email' value={email} onChange={(event) => setEmail(event.target.value)}/> 
-                    <input type="password" placeholder='Password' value={password} onChange={(event) => setPassword(event.target.value)}/>
-                    <button type='submit'className={styles.loginButton}>Loggin</button>
+                    <input type="email" placeholder='Email' value={email} required onChange={(event) => setEmail(event.target.value)}/> 
+                    <input type="password" placeholder='Password' value={password} required onChange={(event) => setPassword(event.target.value)}/>
+                    {errorMessage && <p>{errorMessage}</p>}
+                    <button type='submit'className={styles.loginButton}>{isLoading ? "Logging in...." : "Log in"}</button>
                 </form>
 
             </section>

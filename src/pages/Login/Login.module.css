@@ -56,7 +56,8 @@
    width: clamp(150px, 30vw,320px);
    font-size: clamp(8px, 4vw, 16px);
    border-radius: var(--radius-S);
-   border-color: var(--color-border);
+   border: none;
+   box-shadow: 0 0 2px rgb(15, 15, 15);
    transition: transform 0.2s ease;
 }
 .loginForm input:hover{
@@ -72,7 +73,8 @@
     width: clamp(150px, 30vw, 320px);
     background-color: var(--color-button);
     border-radius: var(--radius-S);
-    border-color: var(--color-border);
+    border: none;
+    box-shadow: 0 0 2px rgb(28, 89, 40);
     font-size: clamp(8px, 4vw, 16px);
     font-weight: var(--font-weight-M);
     color: var(--color-font-light);
@@ -88,6 +90,8 @@
     width: clamp(140px, 20vw, 250px);
     display: flex;
 }
+
+/* Demo Section */
 
 .loginDemoInfo{
     position: absolute;
