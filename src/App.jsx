@@ -29,6 +29,7 @@ export default function App() {
 
       <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
 
+      {/* Protected routes */}
       <Route element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
         <Route path="/dashboard" element={<Dashboard />} />
       </Route>

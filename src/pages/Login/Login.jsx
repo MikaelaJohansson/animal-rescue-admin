@@ -16,6 +16,7 @@ export default function Login({ setIsLoggedIn}) {
 
     const navigate = useNavigate()
 
+    // Log in the user
     async function handleLogin(event){
 
         event.preventDefault()
@@ -41,6 +42,7 @@ export default function Login({ setIsLoggedIn}) {
 
     }
 
+    // Demo account credentials
     function handleDemoAccount(){
         setEmail("demo@animalrescue.se")
         setPassword("demo4581235563768")
@@ -66,6 +68,7 @@ export default function Login({ setIsLoggedIn}) {
                     <button className={styles.loginDemoButton} type='button' onClick={handleDemoAccount} disabled={isLoading}>Use demo account</button>
                 </section>
                 
+                {/* Form fields */}
                 <form onSubmit={handleLogin} className={styles.loginForm}>
                     <img src={appLogo} alt="logo" />
                     <input type="email" placeholder='Email' value={email} required onChange={(event) => setEmail(event.target.value)}/> 

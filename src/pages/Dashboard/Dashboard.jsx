@@ -4,6 +4,7 @@ import {auth} from "../../firebase"
 
 export default function Dashboard() {
 
+  // Sign out the user
   async function handleSignOut(){
 
     try{

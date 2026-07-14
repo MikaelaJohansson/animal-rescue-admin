@@ -51,9 +51,8 @@
 .loginForm input{
    display: flex;
    margin: 0.5rem;
-   padding: 0.4rem;
    padding: var(--input-padding-S);
-   width: clamp(150px, 30vw,320px);
+   width: clamp(140px, 30vw,320px);
    font-size: clamp(8px, 4vw, 16px);
    border-radius: var(--radius-S);
    border: none;
@@ -69,8 +68,8 @@
     display: flex;
     margin: 0.5rem;
     justify-content: center;
-    padding: var(--button-padding-M);
-    width: clamp(150px, 30vw, 320px);
+    padding: var(--button-padding-S);
+    width: clamp(140px, 30vw, 320px);
     background-color: var(--color-button);
     border-radius: var(--radius-S);
     border: none;
