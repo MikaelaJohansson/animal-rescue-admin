@@ -9,11 +9,11 @@
   ====================================== */
 
   --color-primary: rgb(63, 118, 82);
-  --color-primary-hover: rgb(53, 102, 70);
+  --color-primary-hover: rgb(49, 74, 61);
   --color-primary-light: rgb(231, 241, 234);
-
+  
+  --color-sidebar-hover: rgb(53, 102, 70);
   --color-sidebar: rgb(37, 56, 47);
-  --color-sidebar-hover: rgb(49, 74, 61);
   --color-sidebar-active: rgb(66, 107, 81);
 
   --color-background: rgb(248, 247, 243);
@@ -28,12 +28,13 @@
 
   --color-success: rgb(63, 143, 92);
   --color-warning: rgb(201, 137, 43);
-  --color-danger: rgb(201, 77, 77);
+  --color-danger: rgb(239, 68, 68);
   --color-info: rgb(63, 127, 186);
 
   --color-button: rgb(71, 105, 81);
   --color-border: rgb(99, 140, 96);
   --color-font-light: rgb(245, 245, 245);
+  --color-font-black: rgb(15, 15, 15);
 
   /* ======================================
      TYPOGRAPHY
@@ -41,8 +42,9 @@
 
   --font-family: "Inter", sans-serif;
 
-  --font-size-S: 13px;
-  --font-size-M: 16px;
+  --font-size-S: 8px;
+  --font-size-M: 13px;
+  --font-size-L: 19px;
 
   --font-weight-regular: 400;
   --font-weight-M: 600;
@@ -136,7 +138,7 @@
      ICONS
   ====================================== */
 
-  --icon-S: 16px;
+  --icon-S: 14px;
   --icon-M: 18px;
   --icon-L: 20px;
 
