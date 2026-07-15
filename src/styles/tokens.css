@@ -41,6 +41,7 @@
   ====================================== */
 
   --font-family: "Inter", sans-serif;
+  --font-family-Cormorant-Garamond: "Cormorant Garamond", serif;
 
   --font-size-S: 8px;
   --font-size-M: 13px;
@@ -48,8 +49,7 @@
 
   --font-weight-regular: 400;
   --font-weight-M: 600;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --font-weight-L: 900;
 
   --line-height: 1.5;
 

@@ -5,6 +5,7 @@ import { auth } from "./firebase";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AppLayout from "./components/AppLayout/AppLayout";
 
 export default function App() {
 
@@ -31,7 +32,10 @@ export default function App() {
 
       {/* Protected routes */}
       <Route element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* AppLayout, responsible for the layout */}
+        <Route element={<AppLayout/>}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Route>
 
     </Routes>

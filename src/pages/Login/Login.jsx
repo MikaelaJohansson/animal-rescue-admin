@@ -55,18 +55,18 @@ export default function Login({ setIsLoggedIn}) {
         <div className={styles.mainContainerLogin}>
 
             {/* left side og login page */}
-            <section className={styles.loginLeftSideImage}>
+            <aside className={styles.loginLeftSideImage}>
                 <img className={styles.imgLogo} src={appLogo} alt="logo" />
                 <img className={styles.dogImg} src={loginPicDog} alt="Dog's best friend" />
-            </section>
+            </aside>
 
             {/* right side of login page */}
             <section className={styles.loginRightSide}>
 
-                <section className={styles.loginDemoInfo}>
+                <aside className={styles.loginDemoInfo}>
                     <h3>Demo Account</h3>
                     <button className={styles.loginDemoButton} type='button' onClick={handleDemoAccount} disabled={isLoading}>Use demo account</button>
-                </section>
+                </aside>
                 
                 {/* Form fields */}
                 <form onSubmit={handleLogin} className={styles.loginForm}>

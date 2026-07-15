@@ -55,6 +55,8 @@
    width: clamp(140px, 30vw,320px);
    font-size: clamp(8px, 4vw, 16px);
    border-radius: var(--radius-S);
+   font-family: var(--font-family-Cormorant-Garamond);
+   font-weight: var(--font-weight-M);
    border: none;
    box-shadow: 0 0 2px rgb(15, 15, 15);
    transition: transform 0.2s ease;
@@ -75,7 +77,8 @@
     border: none;
     box-shadow: 0 0 2px rgb(28, 89, 40);
     font-size: clamp(8px, 4vw, 16px);
-    font-weight: var(--font-weight-M);
+    font-family: var(--font-family-Cormorant-Garamond);
+    font-weight: var(--font-weight-L);
     color: var(--color-font-light);
     cursor: pointer;
     transition: transform 0.2s ease;
