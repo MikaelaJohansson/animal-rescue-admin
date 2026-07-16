@@ -6,6 +6,7 @@ import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AppLayout from "./components/AppLayout/AppLayout";
+import Animals from "./pages/Animals/Animals";
 
 export default function App() {
 
@@ -35,6 +36,7 @@ export default function App() {
         {/* AppLayout, responsible for the layout */}
         <Route element={<AppLayout/>}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/animals" element={<Animals/>}/>
         </Route>
       </Route>
 

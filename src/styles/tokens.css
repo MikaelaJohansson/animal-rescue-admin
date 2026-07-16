@@ -35,6 +35,7 @@
   --color-border: rgb(99, 140, 96);
   --color-font-light: rgb(245, 245, 245);
   --color-font-black: rgb(15, 15, 15);
+  
 
   /* ======================================
      TYPOGRAPHY
@@ -74,7 +75,7 @@
 
   --radius-S: 3px;
   --radius-M: 6px;
-  --radius-L: 10px;
+  --radius-L: 50%;
 
   /* ======================================
      BORDERS / COLORS
@@ -97,7 +98,7 @@
   --layout-max-width: 1280px;
   --layout-page-padding: 32px;
 
-  --sidebar-width: 240px;
+  --sidebar-width: 250px;
   --topbar-height: 64px;
 
   /* ======================================
@@ -140,13 +141,13 @@
 
   --icon-S: 14px;
   --icon-M: 18px;
-  --icon-L: 20px;
+  --icon-L: 25px;
 
   /* ======================================
      LOGO
   ====================================== */
 
-  --logo-S: 200px;
+  --logo-S: 100px;
   --logo-M: 300px;
   --logo-L: 400px;
 }
