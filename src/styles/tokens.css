@@ -13,6 +13,7 @@
   --color-primary-light: rgb(231, 241, 234);
   
   --color-sidebar-hover: rgb(53, 102, 70);
+  --color-sidebar-hover-light: rgb(104, 187, 98);
   --color-sidebar: rgb(37, 56, 47);
   --color-sidebar-active: rgb(66, 107, 81);
 
@@ -44,9 +45,9 @@
   --font-family: "Inter", sans-serif;
   --font-family-Cormorant-Garamond: "Cormorant Garamond", serif;
 
-  --font-size-S: 8px;
-  --font-size-M: 13px;
-  --font-size-L: 19px;
+  --font-size-S: 10px;
+  --font-size-M: 21px;
+  --font-size-L: 30px;
 
   --font-weight-regular: 400;
   --font-weight-M: 600;

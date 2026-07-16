@@ -1,17 +1,17 @@
-import AppLogo from "../../assets/appLogo.png"
 import { Link } from "react-router-dom"
 import { FaDog } from "react-icons/fa";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
-import styles from "../Sidebar/Sidebar.module.css"
 import { useState } from "react";
-import PawLogo from "../../assets/sideBarPawLogo.png"
+import styles from "../Sidebar/Sidebar.module.css"
+import sideBarAppLogoWhite from "../../assets/sideBarAppLogoWhite.png"
+import sideBarPawLogoWhite from "../../assets/sideBarPawLogoWhite.png"
 
 
 export default function Sidebar() {
 
   const [isExpanded, setIsExpanded] = useState(true)
 
-
+  // Sets the sidebar expanded state
   function handleArrowChange(){
     setIsExpanded(!isExpanded)
   }
@@ -22,15 +22,18 @@ export default function Sidebar() {
 
       <div className={styles.sidebarHeader}>
 
-        <img className={styles.sidebarLogo} src={isExpanded ? AppLogo : PawLogo} alt="logo"/>
+        <img className={styles.sidebarLogo} src={isExpanded ? sideBarAppLogoWhite : sideBarPawLogoWhite} alt="logo"/>
 
-        <button onClick={handleArrowChange} className={styles.sidebarArrow}>
-        {isExpanded ? <LuChevronLeft/> : <LuChevronRight/>}
+        <div className={isExpanded ? styles.sideBarLineBig : styles.sideBarLineSmall}></div>
+
+        {/*  Toggles the sidebar expanded state */}
+        <button onClick={handleArrowChange} className={styles.sidebarButton}>
+          {isExpanded ? <LuChevronLeft/> : <LuChevronRight/>}
         </button>
 
       </div>
      
-
+      {/* sidebar Links to other pages */}
       <nav className={styles.sideBarNav}>
         <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
         <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
@@ -45,8 +48,6 @@ export default function Sidebar() {
         <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
         <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
       </nav>
-
-    
 
     </div>
   )

@@ -1,3 +1,4 @@
+/* Sidebar header */
 .sidebarMain{
     display: flex;
     flex-direction: column;
@@ -5,59 +6,102 @@
     height: 100vh;
     font-weight: var(--font-weight-L);
 }
-
 .sidebarLogo{
    width: 100%;
    max-width: 220px;
    height: auto;
    align-self: center;
-   border-bottom: 1px solid black;
 }
-
-.sidebarLink {
-  display: flex;
-  align-items: center;
-}
-.sidebarLinkExpanded{
-    justify-content: flex-start;
-    gap: 0.75rem;
+.sideBarLineBig{
+    border-bottom: 1px solid var(--color-text-white);
+    width: 210px;
     margin-left: 10px;
 }
-.sidebarLinkCollapsed{
-    justify-content: center;
-    margin-top: 1rem;
+.sideBarLineSmall{
+    border-bottom: 1px solid var(--color-text-white);
+    width: 50px;
+    margin-left: 8px;
 }
 
 
-.sidebarExpanded {
-    width: var(--sidebar-width);
-}
-
-.sidebarCollapsed {
-    width: 80px;
-}
-
-.sideBarNav{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.sidebarArrow {
+/* sidebar button */
+.sidebarButton {
   margin-left: auto;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   width: 2.0rem;
   height: 2.0rem;
   padding: 0;
-  position: relative;
+  border: 2px solid var(--color-sidebar-hover-light);
   border-radius: 50%;
   color: var(--color-button);
-  top: -22px;
-  transform: translateY(-50%);
-  transform: translatex(40%);
+  background-color: var(--color-text-white);
+  top: -15px;
+  left: 15px;
+  transition: transform 0.2s ease;
 }
+.sidebarButton:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+/* sidebar Links */
+.sideBarNav{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    font-size: var(--font-size-M);
+}
+.sidebarLink {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-white);
+    gap: 1rem;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Expanded sidebar */
+.sidebarLinkExpanded {
+    justify-content: flex-start;
+    margin-left: 40px;
+    margin-right: 30px;
+    padding: 8px;
+    border-radius: 30px;
+}
+.sidebarLinkExpanded:hover {
+    background-color: var(--color-sidebar-hover);
+    transform: scale(1.05);
+}
+.sidebarExpanded {
+    width: var(--sidebar-width);
+}
+
+
+/* Collapsed sidebar  */
+.sidebarLinkCollapsed {
+    width: 2.75rem;
+    height: 2.75rem;
+    justify-content: center;
+    align-self: center;
+    margin-top: 1rem;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+.sidebarLinkCollapsed:hover {
+    background-color: var(--color-sidebar-hover);
+    transform: scale(1.05);
+}
+.sidebarCollapsed {
+    width: 80px;
+}
+
+
 
