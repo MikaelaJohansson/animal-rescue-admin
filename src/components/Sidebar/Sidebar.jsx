@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { FaDog } from "react-icons/fa";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { useState } from "react";
@@ -27,7 +27,7 @@ export default function Sidebar() {
         <div className={isExpanded ? styles.sideBarLineBig : styles.sideBarLineSmall}></div>
 
         {/*  Toggles the sidebar expanded state */}
-        <button onClick={handleArrowChange} className={styles.sidebarButton}>
+        <button type="button" onClick={handleArrowChange} className={styles.sidebarButton} aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"} aria-expanded={isExpanded}>
           {isExpanded ? <LuChevronLeft/> : <LuChevronRight/>}
         </button>
 
@@ -35,18 +35,18 @@ export default function Sidebar() {
      
       {/* sidebar Links to other pages */}
       <nav className={styles.sideBarNav}>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
-        <Link className={`${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</Link>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
       </nav>
 
     </div>
