@@ -68,23 +68,23 @@ export default function App() {
 
   return (
     <Routes>
+
       <Route
-        path="/"
-        element={
-          isLoggedIn
-            ? <Navigate to="/dashboard" replace />
-            : <Login setIsLoggedIn={setIsLoggedIn} />
-        }
+        path="/" 
+        element={isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login setIsLoggedIn={setIsLoggedIn} />}
       />
 
       {/* Protected routes */}
       <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
+
         {/* AppLayout is responsible for the shared layout */}
         <Route element={<AppLayout userProfile={userProfile} />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/animals" element={<Animals />} />
         </Route>
+
       </Route>
+      
     </Routes>
   );
 }

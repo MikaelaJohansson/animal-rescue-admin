@@ -1,1 +1,24 @@
+.mainAppLayout{
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
 
+.sideBarAppLayout{
+    flex-shrink: 0
+}
+
+.RightSideAppLayout{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.topBarAppLayout{
+    width: 100%;
+}
+
+.outletAppLayout{
+    padding-left: 2rem;
+}

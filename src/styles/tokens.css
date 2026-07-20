@@ -13,11 +13,12 @@
   --color-primary-light: rgb(231, 241, 234);
   
   --color-sidebar-hover: rgb(53, 102, 70);
-  --color-sidebar-hover-light: rgb(104, 187, 98);
+  --color-sidebar-hover-light: rgb(126, 183, 122);
   --color-sidebar: rgb(37, 56, 47);
   --color-sidebar-active: rgb(66, 107, 81);
 
   --color-background: rgb(248, 247, 243);
+  --color-background-topbar: rgb(241, 243, 239);
   --color-surface: rgb(255, 255, 255);
   --color-surface-muted: rgb(241, 244, 239);
 
@@ -26,6 +27,8 @@
   --color-text-white: rgb(255, 255, 255);
 
   --color-border: rgb(223, 229, 220);
+  --color-border-dark-gray: rgb(116, 144, 116);
+  --color-border-green: rgb(99, 140, 96);
 
   --color-success: rgb(63, 143, 92);
   --color-warning: rgb(201, 137, 43);
@@ -33,7 +36,6 @@
   --color-info: rgb(63, 127, 186);
 
   --color-button: rgb(71, 105, 81);
-  --color-border: rgb(99, 140, 96);
   --color-font-light: rgb(245, 245, 245);
   --color-font-black: rgb(15, 15, 15);
   
@@ -45,30 +47,19 @@
   --font-family: "Inter", sans-serif;
   --font-family-Cormorant-Garamond: "Cormorant Garamond", serif;
 
-  --font-size-S: 10px;
-  --font-size-M: 21px;
-  --font-size-L: 30px;
+  --font-size-XS: 8px;
+  --font-size-S: 12px;
+  --font-size-M: 18px;
+  --font-size-L: 20px;
 
   --font-weight-regular: 400;
   --font-weight-M: 600;
-  --font-weight-L: 900;
+  --font-weight-L: 800;
 
   --line-height: 1.5;
+  --line-height-S: 0.5;
 
-  /* ======================================
-     SPACING
-  ====================================== */
 
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 12px;
-  --space-lg: 16px;
-  --space-xl: 20px;
-  --space-2xl: 24px;
-  --space-3xl: 32px;
-  --space-4xl: 40px;
-  --space-5xl: 48px;
-  --space-6xl: 64px;
 
   /* ======================================
      BORDER RADIUS
@@ -78,26 +69,10 @@
   --radius-M: 6px;
   --radius-L: 50%;
 
-  /* ======================================
-     BORDERS / COLORS
-  ====================================== */
-
-  --border-width: 1px;
-  --border: 1px solid var(--color-border);
-
-  /* ======================================
-     SHADOWS
-  ====================================== */
-
-  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.05);
-  --shadow-dropdown: 0 10px 30px rgba(0, 0, 0, 0.1);
 
   /* ======================================
      LAYOUT
   ====================================== */
-
-  --layout-max-width: 1280px;
-  --layout-page-padding: 32px;
 
   --sidebar-width: 250px;
   --topbar-height: 64px;
@@ -148,7 +123,7 @@
      LOGO
   ====================================== */
 
-  --logo-S: 100px;
-  --logo-M: 300px;
-  --logo-L: 400px;
+  --logo-S: 140px;
+  --logo-M: 250px;
+  --logo-L: 300px;
 }

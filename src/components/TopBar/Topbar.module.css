@@ -1,30 +1,70 @@
 .topbar {
   min-height: 64px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  background-color: white;
-  border-bottom: 1px solid #dddddd;
+  background-color: var(--color-background-topbar);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.appLayout {
-  min-height: 100vh;
-  display: flex;
+.topBarLogo{
+  width: var(--logo-S);
 }
 
-.sidebarArea {
-  flex-shrink: 0;
-}
-
-.mainArea {
-  flex: 1;
-  min-width: 0;
+.topBarUserInfoCointainer{
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-.pageContent {
-  flex: 1;
-  padding: 2rem;
+.topBarprofileAvatar{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 1px 2px 3px rgb(147, 147, 147);
+  object-fit: cover;
+}
+
+.topbarUsername{
+  font-weight: var(--font-weight-L);
+  font-size: var(--font-size-S);
+}
+.topbarUserTitle{
+  font-weight: var(--font-weight-M);
+  color: var(--color-sidebar);
+  font-size: var(--font-size-S);
+}
+
+.topBarButton{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: none;
+  line-height: var(--line-height-S);
+}
+
+.topBarProfileDropdown{
+  position: absolute;
+  top: 100%;
+  right: 0%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.topBarProfileDropdown button{
+  background-color: var(--color-background-topbar);
+  border: none;
+  padding: 0.6rem;
+  padding-right: 3rem;
+  box-shadow: 2px 4px 4px gray;
+  font-weight: var(--font-weight-M);
+  color: var(--color-sidebar);
+  font-size: var(--font-size-S);
+}
+
+.topBarProfileDropdown button:hover{
+  background-color: var(--color-sidebar-hover-light) ;
+  transform: scale(1.04);
 }

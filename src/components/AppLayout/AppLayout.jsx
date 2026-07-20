@@ -2,6 +2,7 @@
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../Sidebar/Sidebar'
 import Topbar from "../Topbar/Topbar";
+import styles from "../AppLayout/AppLayout.module.css"
 
 
 export default function AppLayout({userProfile }) {
@@ -10,20 +11,24 @@ export default function AppLayout({userProfile }) {
 
 
   return (
-    <main>
-      <aside>
+    <main className={styles.mainAppLayout}>
+      
+
+      <aside className={styles.sideBarAppLayout}>
         <Sidebar></Sidebar>
       </aside>
 
-      <div>
-
-        <Topbar userProfile={userProfile} />
-
-        <section>
+      <section className={styles.RightSideAppLayout}>
+        <div className={styles.topBarAppLayout}>
+          <Topbar userProfile={userProfile} />
+        </div>
+        
+        <div className={styles.outletAppLayout}>
           <Outlet/>
-        </section>
+        </div>
+      </section>
 
-      </div>
+      
     </main>
   )
 }
