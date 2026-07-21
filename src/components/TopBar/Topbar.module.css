@@ -8,8 +8,21 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-.topBarLogo{
-  width: var(--logo-S);
+.topBarMessage{
+  white-space: none;
+  display: flex;
+  line-height: var(--line-height-XS);
+  margin: 0.7rem;
+}
+.topBarMessageName{
+  color:var(--color-sidebar);
+  line-height: var(--line-height-XS);
+}
+.topBarMessageTitle{
+  line-height: var(--line-height-XS);
+  margin: 1rem;
+  margin-top: -0.5rem;
+  
 }
 
 .topBarUserInfoCointainer{

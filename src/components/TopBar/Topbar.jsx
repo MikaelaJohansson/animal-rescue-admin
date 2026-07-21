@@ -51,8 +51,12 @@ export default function Topbar({ userProfile }) {
     <header className={styles.topbar}>
 
       {/* logo */}
-      <div className={styles.topBarLogo}>
-        <img src={appLogo} alt="logo paw" aria-label="App logo"/>
+      <div >
+        <span className={styles.topBarMessage}>
+           <h2>Welcome back,</h2>
+           <h2 className={styles.topBarMessageName}>{userProfile ?  userProfile.firstName : "Loading..."}</h2>
+        </span>
+        <h3 className={styles.topBarMessageTitle}>{userProfile ? userProfile.jobTitle : ""}</h3>
       </div>
 
 
