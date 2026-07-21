@@ -38,6 +38,21 @@
   --color-button: rgb(71, 105, 81);
   --color-font-light: rgb(245, 245, 245);
   --color-font-black: rgb(15, 15, 15);
+
+  --color-cards-darkGreen: rgb(37, 56, 47);
+  --color-cards-lightGreen:  rgb(231, 241, 234);
+
+  --color-cards-darkRed: #b70b22;
+  --color-cards-lightRed:  #faeded;
+
+  --color-cards-darkBlue: #2473ea;
+  --color-cards-lightBlue:   #eaf2fa;
+
+  --color-cards-darkOrange:  #e2991b;
+  --color-cards-lightOrange:    #fde5c5;
+
+  --color-cards-darkYellow:   #c3c010;
+  --color-cards-lightYellow:    #fdfdd6;
   
 
   /* ======================================
@@ -50,7 +65,8 @@
   --font-size-XS: 8px;
   --font-size-S: 12px;
   --font-size-M: 18px;
-  --font-size-L: 20px;
+  --font-size-L: 23px;
+  --font-size-XL: 30px;
 
   --font-weight-regular: 400;
   --font-weight-M: 600;
@@ -65,9 +81,9 @@
   /* ======================================
      BORDER RADIUS
   ====================================== */
-
-  --radius-S: 3px;
-  --radius-M: 6px;
+  --radius-XS: 2px;
+  --radius-S: 4px;
+  --radius-M: 7px;
   --radius-L: 50%;
 
 

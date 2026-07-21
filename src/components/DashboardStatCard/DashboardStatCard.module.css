@@ -1,0 +1,73 @@
+.dashboardStatCardContainer{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0px 0px 10px rgb(222, 221, 221);
+    border-radius: var(--radius-XS);
+    margin-top: 1.5rem;
+}
+
+.dashboardStatCardIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    width: 55px;
+    border-radius: var(--radius-L);
+    margin-left: 1rem;
+}
+
+.dashboardStatCardData h1{
+    font-size: var(--font-size-M);
+    font-weight: var(--font-weight-L);
+}
+.dashboardStatCardData h2{
+    font-size: var(--font-size-XL);
+    line-height: var(--line-height-XS);
+}
+
+.dashboardStatCardStatus{
+    font-weight: var(--font-weight-M);
+}
+
+
+/* cards color */
+.greenBackground {
+  background-color: var(--color-cards-lightGreen);
+  color: var(--color-cards-darkGreen);
+}
+.greenText {
+   color: var(--color-cards-darkGreen);
+}
+
+.blueBackground {
+  background-color: var(--color-cards-lightBlue);
+  color: var(--color-cards-darkBlue);
+}
+.blueText {
+  color: var(--color-cards-darkBlue);
+}
+
+.redBackground {
+  background-color: var(--color-cards-lightRed);
+  color: var(--color-cards-darkRed);
+}
+.redText {
+  color: var(--color-cards-darkRed);
+}
+
+.yellowBackground {
+  background-color: var(--color-cards-lightYellow);
+  color: var(--color-cards-darkYellow);
+}
+.yellowText {
+  color: var(--color-cards-darkYellow);
+}
+
+.orangeBackground {
+  background-color: var(--color-cards-lightOrange);
+  color: var(--color-cards-darkOrange);
+}
+.orangeText {
+  color:var(--color-cards-darkOrange);
+}

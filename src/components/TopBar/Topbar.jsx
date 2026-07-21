@@ -53,8 +53,8 @@ export default function Topbar({ userProfile }) {
       {/* logo */}
       <div >
         <span className={styles.topBarMessage}>
-           <h2>Welcome back,</h2>
-           <h2 className={styles.topBarMessageName}>{userProfile ?  userProfile.firstName : "Loading..."}</h2>
+           <h1>Welcome back,</h1>
+           <h1 className={styles.topBarMessageName}>{userProfile ?  userProfile.firstName : "Loading..."}</h1>
         </span>
         <h3 className={styles.topBarMessageTitle}>{userProfile ? userProfile.jobTitle : ""}</h3>
       </div>
