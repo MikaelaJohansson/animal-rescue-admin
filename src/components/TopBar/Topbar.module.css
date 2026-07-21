@@ -44,6 +44,10 @@
   align-items: center;
   border: none;
   line-height: var(--line-height-S);
+  cursor: pointer;
+}
+.topBarButton:hover{
+  transform: scale(1.02);
 }
 
 .topBarProfileDropdown{
@@ -60,7 +64,7 @@
   border: none;
   padding: 0.6rem;
   padding-right: 3rem;
-  box-shadow: 2px 4px 4px gray;
+  box-shadow: -2px 4px 4px rgb(207, 207, 207);
   font-weight: var(--font-weight-M);
   color: var(--color-sidebar);
   font-size: var(--font-size-S);

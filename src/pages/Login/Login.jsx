@@ -7,10 +7,48 @@ import loginPicDog from "../../assets/loginPicDog.jpg"
 import styles from "./Login.module.css";
 
 
+// Demo accounts available for testing the application
+const demoAccounts = [
+
+    {
+        name: "Bella",
+        title:"Volunteer",
+        email: "bella@animalrescue.se",
+        password: "1234opå"
+    },
+    {
+        name: "Mikaela",
+        title:"Administrator",
+        email: "demo@animalrescue.se",
+        password: "demo4581235563768"
+    },
+    {
+        name: "Stig",
+        title:"Manager",
+        email: "Stig@animalrescue.se",
+        password: "1234asd"
+    },
+    {
+        name: "Karin",
+        title:"Staff",
+        email: "karin@animalrescue.se",
+        password: "1234zxc"
+    },
+    {
+        name: "Tommy",
+        title:"Veterinarian",
+        email: "tommy@animalrescue.se",
+        password: "1234qwe"
+    },
+    
+]
+
+
 export default function Login({ setIsLoggedIn}) {
 
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isDemoMenuOpen,setIsDemoMenuOpen] = useState(false)
     const [errorMessage,setErrorMessage] = useState("")
     const [isLoading,setIsLoading] = useState(false)
 
@@ -42,10 +80,15 @@ export default function Login({ setIsLoggedIn}) {
 
     }
 
-    // Demo account credentials
-    function handleDemoAccount(){
-        setEmail("demo@animalrescue.se")
-        setPassword("demo4581235563768")
+    // Demo button menu
+    function handleDemoMenu(){
+        setIsDemoMenuOpen(!isDemoMenuOpen)
+    }
+
+    // Fills the login form with the selected demo account credentials
+    function handleSelectDemoAccount(user){
+        setEmail(user.email)
+        setPassword(user.password)
     }
 
 
@@ -64,8 +107,18 @@ export default function Login({ setIsLoggedIn}) {
             <section className={styles.loginRightSide}>
 
                 <aside className={styles.loginDemoInfo}>
-                    <h3>Demo Account</h3>
-                    <button className={styles.loginDemoButton} type='button' onClick={handleDemoAccount} disabled={isLoading}>Use demo account</button>
+
+                    <h2>Demo Account</h2>
+                    <button className={styles.loginDemoButton} type='button' onClick={handleDemoMenu} disabled={isLoading}>Use demo account for</button>
+
+                    {/* Demo account menu with selectable test users */}
+                    {isDemoMenuOpen && 
+                    <div className={styles.loginDemoDropdown}>
+                        {demoAccounts.map((user)=>{
+                            return (<button className={styles.loginDemoDropdownFileds} key={user.email} type='button' onClick={() => handleSelectDemoAccount(user)} >{user.name}: {user.title}</button>)
+                        })}
+                    </div>}
+
                 </aside>
                 
                 {/* Form fields */}
