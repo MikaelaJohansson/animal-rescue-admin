@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: min(90%, 260px);
+  width: min(90%, 300px);
   padding-left: 1rem;
   box-shadow: 0 0 5px rgb(232, 230, 230);
   border-radius: var(--radius-XS);
