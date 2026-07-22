@@ -1,5 +1,6 @@
 .topbar {
   min-height: 64px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -86,4 +87,41 @@
 .topBarProfileDropdown button:hover{
   background-color: var(--color-sidebar-hover-light) ;
   transform: scale(1.04);
+}
+
+
+@media (max-width: 767px) {
+  .topbar {
+    min-height: 64px;
+    padding: 0 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .topBarMessage {
+    margin-left: 1rem;
+  }
+
+  .topBarMessage h1 {
+    font-size: var(--font-size-M);
+  }
+
+  .topBarMessageTitle {
+    display: none;
+  }
+
+  .topBarNotification {
+    display: none;
+  }
+
+  .topBarButton {
+    gap: 0.4rem;
+  }
+
+  .topBarButton div {
+    display: none;
+  }
+
+  .topBarprofileAvatar {
+    top: 0;
+  }
 }

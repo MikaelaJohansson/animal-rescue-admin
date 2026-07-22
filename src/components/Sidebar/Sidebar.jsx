@@ -9,7 +9,14 @@ import sideBarPawLogoWhite from "../../assets/sideBarPawLogoWhite.png"
 
 export default function Sidebar() {
 
-  const [isExpanded, setIsExpanded] = useState(true)
+  const [isExpanded, setIsExpanded] = useState(() => {const isDesktopScreen = window.matchMedia("(min-width: 768px)").matches;
+
+    if (isDesktopScreen) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
   // Sets the sidebar expanded state
   function handleArrowChange(){

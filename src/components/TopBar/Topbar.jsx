@@ -61,7 +61,7 @@ export default function Topbar({ userProfile }) {
 
 
       {/* Notifications */}
-      <div>
+      <div className={styles.topBarNotification}>
 
         <button type="button" aria-label="Notifications">
           <LuBell />

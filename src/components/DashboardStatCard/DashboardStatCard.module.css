@@ -1,33 +1,36 @@
-.dashboardStatCardContainer{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0px 0px 10px rgb(222, 221, 221);
-    border-radius: var(--radius-XS);
-    margin-top: 1.5rem;
+.dashboardStatCardContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: min(90%, 260px);
+  padding-left: 1rem;
+  box-shadow: 0 0 5px rgb(232, 230, 230);
+  border-radius: var(--radius-XS);
 }
 
 .dashboardStatCardIcon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 55px;
-    width: 55px;
-    border-radius: var(--radius-L);
-    margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  width: 55px;
+  border-radius: var(--radius-L);
+  flex-shrink: 0;
+   
 }
 
 .dashboardStatCardData h1{
-    font-size: var(--font-size-M);
-    font-weight: var(--font-weight-L);
+  font-size: var(--font-size-M);
+  font-weight: var(--font-weight-L);
 }
+
 .dashboardStatCardData h2{
-    font-size: var(--font-size-XL);
-    line-height: var(--line-height-XS);
+  font-size: var(--font-size-XL);
+  line-height: var(--line-height-XS);
 }
 
 .dashboardStatCardStatus{
-    font-weight: var(--font-weight-M);
+  font-weight: var(--font-weight-M);
 }
 
 
