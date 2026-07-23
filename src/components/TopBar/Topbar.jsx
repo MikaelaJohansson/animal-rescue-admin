@@ -50,7 +50,7 @@ export default function Topbar({ userProfile }) {
 
     <header className={styles.topbar}>
 
-      {/* logo */}
+      {/* welcome message */}
       <div >
         <span className={styles.topBarMessage}>
            <h1>Welcome back,</h1>

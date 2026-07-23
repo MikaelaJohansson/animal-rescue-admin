@@ -5,6 +5,7 @@ import { useState } from "react";
 import styles from "../Sidebar/Sidebar.module.css"
 import sideBarAppLogoWhite from "../../assets/sideBarAppLogoWhite.png"
 import sideBarPawLogoWhite from "../../assets/sideBarPawLogoWhite.png"
+import { Dog,Heart,CalendarDays,Users,FileText } from "lucide-react";
 
 
 export default function Sidebar() {
@@ -42,7 +43,7 @@ export default function Sidebar() {
      
       {/* sidebar Links to other pages */}
       <nav className={styles.sideBarNav}>
-        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
+        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><Dog/>{isExpanded && <span>Animals</span>}</NavLink>
         <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
         <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>
         <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animal</span>}</NavLink>

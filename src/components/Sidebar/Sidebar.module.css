@@ -86,7 +86,6 @@
     transform: scale(1.05);
 }
 .sidebarExpanded {
-    width: var(--sidebar-width);
     width: clamp(200px, 15vw, 240px);
 }
 
@@ -106,7 +105,6 @@
     transform: scale(1.05);
 }
 .sidebarCollapsed {
-    width: 80px;
     width: clamp(60px, 5vw, 80px);
 }
 

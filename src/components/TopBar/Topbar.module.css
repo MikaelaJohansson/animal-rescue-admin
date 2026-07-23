@@ -10,7 +10,7 @@
 }
 
 .topBarMessage{
-  white-space: none;
+  white-space: nowrap;
   display: flex;
   line-height: var(--line-height-XS);
   margin: 0.7rem;
