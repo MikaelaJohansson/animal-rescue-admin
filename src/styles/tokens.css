@@ -24,6 +24,7 @@
 
   --color-text: rgb(31, 41, 35);
   --color-text-muted: rgb(111, 123, 115);
+  --color-text-muted-dark: rgb(88, 99, 92);
   --color-text-white: rgb(255, 255, 255);
 
   --color-border: rgb(223, 229, 220);
@@ -71,6 +72,7 @@
   --font-weight-regular: 400;
   --font-weight-M: 600;
   --font-weight-L: 800;
+  --font-weight-XL: 900;
 
   --line-height: 1.5;
   --line-height-S: 0.5;

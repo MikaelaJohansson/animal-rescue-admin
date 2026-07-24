@@ -4,6 +4,8 @@ import AnimalsTable from "../../components/Table/AnimalsTable/AnimalsTable"
 import {collection, getDocs} from "firebase/firestore"
 import {db} from "../../firebase"
 import { useEffect, useState } from "react"
+import AnimalsFilters from "../../components/Filters/AnimalsFilters/AnimalsFilters"
+import Pagination from "../../components/Pagination/Pagination"
 
 export default function Animals() {
 
@@ -54,7 +56,9 @@ export default function Animals() {
 
   return (
     <div className={styles.animalsMainContainer}>
+      <AnimalsFilters animals={animals}></AnimalsFilters>
       <AnimalsTable animals ={animals}></AnimalsTable>
+      <Pagination></Pagination>
     </div>
   )
 }

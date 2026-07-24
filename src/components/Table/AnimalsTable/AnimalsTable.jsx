@@ -1,4 +1,6 @@
 import animalImages from "../../../Data/animalImages";
+import styles from "./AnimalsTable.module.css"
+
 
 
 export default function AnimalsTable({animals}) {
@@ -7,15 +9,13 @@ export default function AnimalsTable({animals}) {
 
 
   return (
-    <div>
+    <div className={styles.tableMainCointainer }>
 
-        <h1>AnimalsTable</h1>
-
-        <table>
+        <table className={styles.tableContainer}>
 
             <thead>
 
-                <tr>
+                <tr className={styles.tableHeadRow}>
                     <th>Photo</th>
                     <th>Name</th>
                     <th>Breed</th>
@@ -35,13 +35,13 @@ export default function AnimalsTable({animals}) {
 
                     return(
 
-                        <tr key={animal.id}>
-                            
+                        <tr key={animal.id} className={styles.tableBodyRow}>
+
                             <td>
-                                <img
+                                <img  className={styles.tableBodyRowImg}
                                 src={animalImage}
                                 alt={`${animal.name}, ${animal.breed}`}
-                                width={100}
+                                width={90}
                                 loading="lazy"
                                 />
                             </td>
@@ -55,6 +55,7 @@ export default function AnimalsTable({animals}) {
                             <td>
                                 <button type="button">View</button>
                             </td>
+
                         </tr>
 
                     )
@@ -66,5 +67,6 @@ export default function AnimalsTable({animals}) {
         </table>
 
     </div>
+
   )
 }

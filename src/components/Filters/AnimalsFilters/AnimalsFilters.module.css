@@ -1,0 +1,13 @@
+.filterContainerMain{
+    display: flex;
+    margin: 3rem;
+    justify-content: center;
+    
+}
+
+.filterContainer{
+    display: flex;
+    gap: 1rem;
+   
+
+}
