@@ -1,49 +1,60 @@
 
 import styles from "../Animals/Animals.module.css"
+import AnimalsTable from "../../components/Table/AnimalsTable/AnimalsTable"
+import {collection, getDocs} from "firebase/firestore"
+import {db} from "../../firebase"
+import { useEffect, useState } from "react"
 
 export default function Animals() {
 
+  const [animals, setAnimals] = useState([])
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  
+
+  // Fetches animals and their IDs from the database.
+  useEffect(()=>{
+
+    async function getAnimals(){
+
+      try{
+
+        setIsLoading(true)
+
+        const animalCollection = collection(db,"animals")
+
+        const snapshot = await getDocs(animalCollection)
+
+        const animalData = snapshot.docs.map((doc)=>{
+
+          return {
+            id: doc.id, ...doc.data()
+          }
+
+        })
+
+        setAnimals(animalData)
+
+
+      }catch(error){
+        setErrorMessage("Failed to load animals.");
+      }finally{
+        setIsLoading(false);
+      }
+
+    }
+
+    getAnimals();
+
+  },[])
+
+  
 
 
 
   return (
     <div className={styles.animalsMainContainer}>
-      <div className={styles.animalsContainer}>
-
-        <div>
-           <h1>Animals</h1>
-            <p>View and manage all animals in our care</p>
-        </div>
-
-        <div className={styles.animalsSearch}>
-          <input type="text" />
-          <select name="" id=""></select>
-          <select name="" id=""></select>
-          <select name="" id=""></select>
-          <select name="" id=""></select>
-          <button>add animals</button>
-        </div>
-
-        <div className={styles.animalsGridLabels}>
-          <label>photo</label>
-          <label>Name</label>
-          <label>Species</label>
-          <label>Breed</label>
-          <label>Age</label>
-          <label>Grender</label>
-          <label>Status</label>
-          <label>Actions</label>
-        </div>
-
-        <div className={styles.animalsApiAcctions}>
-          api
-        </div>
-
-        <div className={styles.animalsPageNummers}>
-          sid nummer
-        </div>
-        
-      </div>
+      <AnimalsTable animals ={animals}></AnimalsTable>
     </div>
   )
 }
