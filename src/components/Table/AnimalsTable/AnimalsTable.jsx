@@ -2,10 +2,7 @@ import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalsTable.module.css"
 
 
-
 export default function AnimalsTable({animals}) {
-
-
 
 
   return (

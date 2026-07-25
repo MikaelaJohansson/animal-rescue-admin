@@ -8,6 +8,7 @@ export default function AnimalsFilters(
     setSelectedStatus,
     selectedGender, 
     setSelectedGender,
+    onOpenAddModal
   }
   ){
 
@@ -38,7 +39,7 @@ export default function AnimalsFilters(
             </select>
 
             {/* button add animal */}
-            <button>+ Add animal</button>
+            <button type='button' onClick={onOpenAddModal}>+ Add animal</button>
         </div>
 
     </div>

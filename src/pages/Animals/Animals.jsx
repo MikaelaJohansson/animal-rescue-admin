@@ -1,10 +1,11 @@
 
-import styles from "../Animals/Animals.module.css"
-import AnimalsTable from "../../components/Table/AnimalsTable/AnimalsTable"
+import { useEffect, useState } from "react"
 import {collection, getDocs} from "firebase/firestore"
 import {db} from "../../firebase"
-import { useEffect, useState } from "react"
+import styles from "../Animals/Animals.module.css"
+import AnimalsTable from "../../components/Table/AnimalsTable/AnimalsTable"
 import AnimalsFilters from "../../components/Filters/AnimalsFilters/AnimalsFilters"
+import AddAnimalModal from "../../components/Modals/AddAnimalModal/AddAnimalModal"
 
 export default function Animals() {
 
@@ -14,6 +15,7 @@ export default function Animals() {
   const [searchText,setSearchText] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("")
   const [selectedGender, setSelectedGender] = useState("")
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   
 
   // Fetches animals and their IDs from the database.
@@ -51,7 +53,15 @@ export default function Animals() {
     getAnimals();
 
   },[])
-  
+
+  function handleOpenAddModal() {
+    setIsAddModalOpen(true);
+  }
+
+  function handleCloseAddModal() {
+    setIsAddModalOpen(false);
+  }
+
 
   // Filters animals based on the selected criteria.
   const filteredAnimals = animals.filter((animal)=>{
@@ -81,11 +91,17 @@ export default function Animals() {
         setSelectedStatus = {setSelectedStatus}
         selectedGender = {selectedGender}
         setSelectedGender = {setSelectedGender}
+        onOpenAddModal={handleOpenAddModal}
         >
         
       </AnimalsFilters>
+      
+    
+      {isAddModalOpen && (<AddAnimalModal onClose={handleCloseAddModal} />)}
 
       <AnimalsTable animals ={filteredAnimals}></AnimalsTable>
+
+      
     </div>
   )
 }
