@@ -53,8 +53,7 @@ export default function Topbar({ userProfile }) {
       {/* welcome message */}
       <div >
         <span className={styles.topBarMessage}>
-           <h1>Welcome back,</h1>
-           <h1 className={styles.topBarMessageName}>{userProfile ?  userProfile.firstName : "Loading..."}</h1>
+           <h1>{`Welcome back, ${userProfile ? userProfile.firstName : "Loading..."}`}</h1>
         </span>
         <h3 className={styles.topBarMessageTitle}>{userProfile ? userProfile.jobTitle : ""}</h3>
       </div>
