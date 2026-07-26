@@ -27,6 +27,7 @@
    font-size: var(--font-size-L);
    font-weight: var(--font-weight-XL);
    text-align: left;
+   padding-left: 1rem;
 }
 .tableBodyRowImg{
     border-radius: var(--radius-M);

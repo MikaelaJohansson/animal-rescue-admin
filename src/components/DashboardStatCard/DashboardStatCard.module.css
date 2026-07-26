@@ -6,6 +6,7 @@
   padding-left: 1rem;
   box-shadow: 0 0 5px rgb(232, 230, 230);
   border-radius: var(--radius-XS);
+  background-color: white;
 }
 
 .dashboardStatCardIcon{

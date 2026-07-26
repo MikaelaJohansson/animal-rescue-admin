@@ -1,0 +1,25 @@
+.addAnimalMainContainer{
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.addAnimalContainer{
+   background: white;
+   width: 600px;
+   max-width: 90%;
+   padding: 2rem;
+   border-radius: var(--radius-S);
+   height: fit-content;
+}
+
+.addAnimalForm{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+}
