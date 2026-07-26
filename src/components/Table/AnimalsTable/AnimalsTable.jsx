@@ -38,7 +38,7 @@ export default function AnimalsTable({animals}) {
                                 <img  className={styles.tableBodyRowImg}
                                 src={animalImage}
                                 alt={`${animal.name}, ${animal.breed}`}
-                                width={90}
+                                width={80}
                                 loading="lazy"
                                 />
                             </td>

@@ -8,7 +8,7 @@
 .sideBarAppLayout {
     display: flex;
     flex-shrink: 0;
-    background-color: var(--color-sidebar);
+    background-color: var(--color-sidebar);    
 }
 
 .RightSideAppLayout {
@@ -29,4 +29,5 @@
     min-height: 0;
     overflow-y: auto;
     padding-left: 2rem;
+    background-color: var(--color-background-topbar);
 }

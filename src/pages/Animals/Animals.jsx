@@ -54,10 +54,11 @@ export default function Animals() {
 
   },[])
 
+
+  // close/open modal
   function handleOpenAddModal() {
     setIsAddModalOpen(true);
   }
-
   function handleCloseAddModal() {
     setIsAddModalOpen(false);
   }
@@ -78,12 +79,13 @@ export default function Animals() {
     return(
      ( matchesName || matchesBreed) && matchesStatus && matchesGender
     )
-  })
 
+  })
 
 
   return (
     <div className={styles.animalsMainContainer}>
+
       <AnimalsFilters  
         searchText={searchText}  
         setSearchText={setSearchText}  
@@ -92,11 +94,10 @@ export default function Animals() {
         selectedGender = {selectedGender}
         setSelectedGender = {setSelectedGender}
         onOpenAddModal={handleOpenAddModal}
-        >
-        
+        >       
       </AnimalsFilters>
       
-    
+      {/* modal add animal */}
       {isAddModalOpen && (<AddAnimalModal onClose={handleCloseAddModal} />)}
 
       <AnimalsTable animals ={filteredAnimals}></AnimalsTable>
@@ -104,4 +105,5 @@ export default function Animals() {
       
     </div>
   )
+  
 }

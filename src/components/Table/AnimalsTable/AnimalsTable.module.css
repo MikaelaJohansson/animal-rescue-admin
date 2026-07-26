@@ -6,37 +6,30 @@
    width: 90%;
    border-collapse: collapse; 
    margin: 0 auto;
+   margin-bottom: 1rem;
 }
 
 
-.tableHeadRow{
-  
-     
-}
 .tableHeadRow th {
-    padding: 0.8rem;
     text-align: left;
     font-size: var(--font-size-L);
     color: var( --color-text-muted-dark);
     font-weight: var(--font-weight-XL);
-    padding: 0.4rem 0.8rem;
+    padding: 1rem;
+    border-top: 1px solid var(--color-border);
 }
-
-
-
 .tableBodyRow{
     border-bottom: 1.5px solid var(--color-border);
     border-top: 1.5px solid var(--color-border); 
 }
 
 .tableBodyRow td{
-   font-size: var(--font-size-M);
+   font-size: var(--font-size-L);
    font-weight: var(--font-weight-XL);
    text-align: left;
-   padding: 1rem;
 }
 .tableBodyRowImg{
     border-radius: var(--radius-M);
     display: block;
-   
+    margin: 0.2rem;
 }

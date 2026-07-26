@@ -2,12 +2,82 @@
     display: flex;
     margin: 3rem;
     justify-content: center;
-    
+}
+.filterContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
-.filterContainer{
-    display: flex;
-    gap: 1rem;
-   
+.filterContainer input {
+    flex: 1;     
+    min-width: 140px;      
+    padding: 0.75rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-M);
+    font-family: var(--font-family-Cormorant-Garamond);
+    font-size: var(--font-size-M);
+    font-weight: var(--font-weight-L);
+    outline: none;
+}
+.filterContainer input:focus {
+    border-color: var(--color-border-green) 
+}
+.filterContainer input:hover{
+    scale: calc(1.02);
+    cursor: pointer;
+}
 
+
+.filterContainer select {
+    width: 160px;      
+    padding: 0.75rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-M);
+    font-family: var(--font-family-Cormorant-Garamond);
+    font-size: var(--font-size-M);
+    font-weight: var(--font-weight-L);
+    outline: none;
+}
+.filterContainer select:focus{
+    border-color: var(--color-border-green);
+}
+.filterContainer select:hover{
+    scale: calc(1.02);
+    cursor: pointer;
+}
+
+
+.filterContainer button {
+    width: 180px;      
+    padding: 0.75rem;
+    border: 2px solid var( --color-border-green);
+    border-radius: var(--radius-M);
+    background-color: var(--color-button);
+    font-family: var(--font-family-Cormorant-Garamond);
+    font-size: var(--font-size-M);
+    font-weight: var(--font-weight-L);
+    color: var(--color-font-light);
+}
+.filterContainer button:hover{
+    scale: calc(1.02);
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .filterContainer input {
+       position: relative;
+       right: 20px;
+    }
+
+     .filterContainer select {
+       position: relative;
+       right: 20px;
+    }
+     .filterContainer button {
+       position: relative;
+       right: 20px;
+    }
 }
