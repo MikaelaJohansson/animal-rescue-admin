@@ -11,8 +11,8 @@
 .addAnimalContainer{
    background: white;
    width: 600px;
-   max-width: 90%;
-   padding: 2rem;
+   max-width: 80%;
+   padding: clamp(1rem, 3vw, 2rem);
    border-radius: var(--radius-S);
    height: fit-content;
 }
@@ -23,3 +23,8 @@
     padding: 1rem;
     gap: 0.5rem;
 }
+
+.addAnimalFormCheckbox{
+    margin: 1rem;
+}
+

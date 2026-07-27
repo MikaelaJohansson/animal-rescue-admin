@@ -40,6 +40,8 @@
   --color-font-light: rgb(245, 245, 245);
   --color-font-black: rgb(15, 15, 15);
 
+  /* cards color */
+
   --color-cards-darkGreen: rgb(37, 56, 47);
   --color-cards-lightGreen:  rgb(231, 241, 234);
 
@@ -54,6 +56,23 @@
 
   --color-cards-darkYellow:   #c3c010;
   --color-cards-lightYellow:    #fdfdd6;
+
+  /* statusBadge color */
+
+  --color-statusBadge-green-font: #2e7d32;
+  --color-statusBadge-green-background: #dff6dd;
+
+  --color-statusBadge-gray-font: #555;
+  --color-statusBadge-gray-background: #ececec;
+
+   --color-statusBadge-brown-font: #b7791f;
+   --color-statusBadge-brown-background: #fff4d6;
+
+   --color-statusBadge-red-font: #c62828;
+   --color-statusBadge-red-background: #fde2e2;
+
+   --color-statusBadge-blue-font: #1565c0;
+   --color-statusBadge-blue-background: #ddeeff;
   
 
   /* ======================================

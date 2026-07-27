@@ -3,6 +3,11 @@ import styles from "./AddAnimalModal.module.css"
 
 
 export default function AddAnimalModal({ onClose }) {
+
+
+
+
+
   return (
     <div className={styles.addAnimalMainContainer}>
 
@@ -34,26 +39,21 @@ export default function AddAnimalModal({ onClose }) {
           <label htmlFor="color">Color</label>
           <input type="text" id="color" />
 
-          <label htmlFor="vaccinated">Vaccinated</label>
-          <input type="checkbox" id="vaccinated" />
-
-          <label htmlFor="neutered">Neutered</label>
-          <input type="checkbox" id="neutered" />
-
           <label htmlFor="date">Date added</label>
           <input type="date" id="date" />
-
-
-
-
-
+            
+          <div className={styles.addAnimalFormCheckbox}>
+            <label htmlFor="vaccinated">Vaccinated</label>
+            <input type="checkbox" id="vaccinated" />
+            &nbsp;&nbsp;&nbsp;
+            <label htmlFor="neutered">Neutered</label>
+            <input type="checkbox" id="neutered" />
+          </div>
 
           <button onClick={onClose}>Cancel</button>
           <button type="submit" >Save animal</button>
 
-        </form>
-
-        
+        </form>        
 
       </div>
 

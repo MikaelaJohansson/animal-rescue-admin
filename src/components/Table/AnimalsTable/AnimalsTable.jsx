@@ -1,5 +1,6 @@
 import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalsTable.module.css"
+import StatusBadge from "../../StatusBadge/StatusBadge";
 
 
 export default function AnimalsTable({animals}) {
@@ -47,7 +48,7 @@ export default function AnimalsTable({animals}) {
                             <td>{animal.breed}</td>
                             <td>{animal.age}</td>
                             <td>{animal.gender}</td>
-                            <td>{animal.status}</td>
+                            <td><StatusBadge status={animal.status}/></td>
 
                             <td>
                                 <button type="button">View</button>
