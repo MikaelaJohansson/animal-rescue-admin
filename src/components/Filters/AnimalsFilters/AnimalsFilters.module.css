@@ -32,7 +32,7 @@
 
 
 .filterContainer select {
-    width: 160px;      
+    width: 140px;      
     padding: 0.75rem;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-M);
@@ -51,7 +51,7 @@
 
 
 .filterContainer button {
-    width: 180px;      
+    width: 140px;      
     padding: 0.75rem;
     border: 2px solid var( --color-border-green);
     border-radius: var(--radius-M);

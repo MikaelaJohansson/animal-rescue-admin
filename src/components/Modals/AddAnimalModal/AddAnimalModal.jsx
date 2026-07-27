@@ -7,9 +7,12 @@ import selectableAnimalImages from "../../../Data/selectableAnimalImages"
 
 export default function AddAnimalModal({ onClose, setAnimals }) {
 
+  // Stores the currently selected dog image.
   const [selectedImage, setSelectedImage] = useState("")
 
+  // Stores all form values before submitting the new animal.
   const [formData, setFormData] = useState({
+
     name: "",
     breed: "",
     age: "",
@@ -23,6 +26,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
 
   })
 
+  // Handles the form submission and creates a new animal in Firestore.
   async function handleSubmit(event){
 
     event.preventDefault();
@@ -32,6 +36,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
       return;
     }
 
+    // Creates the final animal object and converts numeric fields.
     const newAnimal = {
       ...formData,
       age: Number(formData.age),
@@ -40,11 +45,13 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
     }
 
     try {
+
       const addedAnimal = await addDoc(
         collection(db, "animals"),
         newAnimal
       );
 
+      // Updates the local state so the table refreshes immediately.
       setAnimals((currentAnimals) => {
         return [
           ...currentAnimals,
@@ -53,9 +60,11 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
             ...newAnimal
           }
         ];
+
       });
 
       onClose();
+
     } catch (error) {
       console.error("Failed to add animal:", error);
     }
@@ -78,7 +87,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
         <form className={styles.addAnimalForm} onSubmit={handleSubmit}>
 
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" value={formData.name} onChange={(event)=>{ setFormData({...formData, name: event.target.value})}} required/>
+          <input type="text" id="name" value={formData.name} onChange={(event)=>{ setFormData({...formData, name: event.target.value})}}  required/>
 
           <label htmlFor="breed">Breed</label>
           <input type="text" id="breed" value={formData.breed} onChange={(event)=>{setFormData({...formData, breed: event.target.value})}} required/>
@@ -89,6 +98,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
           <label htmlFor="gender">Gender</label>
           <input type="text" id="gender" value={formData.gender}  onChange={(event) => {setFormData({...formData, gender: event.target.value})}} required />
 
+   
           <label htmlFor="status">Status</label>
           <select
             id="status"
@@ -146,8 +156,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
               />
           </div>
 
-          {/* dog img selectble */}
-
+          {/* dog img select */}
           <div className={styles.addAnimalModalImg}>
 
             {selectableAnimalImages.map((animalImage)=>{
