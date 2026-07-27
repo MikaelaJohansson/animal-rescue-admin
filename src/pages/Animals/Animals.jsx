@@ -98,7 +98,7 @@ export default function Animals() {
       </AnimalsFilters>
       
       {/* modal add animal */}
-      {isAddModalOpen && (<AddAnimalModal onClose={handleCloseAddModal} />)}
+      {isAddModalOpen && (<AddAnimalModal onClose={handleCloseAddModal} setAnimals={setAnimals} />)}
 
       <AnimalsTable animals ={filteredAnimals}></AnimalsTable>
 

@@ -9,9 +9,18 @@ import mixedBreedImage from "../assets/animals/Mixed-Breed.jpg";
 import siberianHuskyImage from "../assets/animals/Siberian-Husky.jpg";
 import staffordshireBullTerrierImage from "../assets/animals/Staffordshire-Bull-Terrier.jpg";
 
+// Images used when the admin creates a new animal
+import corgiImage from "../assets/selectableAnimalImages/corgi.jpg";
+import dachshundImage from "../assets/selectableAnimalImages/dachshund.jpg";
+import dalmatianImage from "../assets/selectableAnimalImages/dalmatian.jpg";
+import eurasierImage from "../assets/selectableAnimalImages/eurasier.jpg";
+import mixBreedImage from "../assets/selectableAnimalImages/mixBreed.jpg";
+import weimaranerImage from "../assets/selectableAnimalImages/sleutloff-weimaraner.jpg";
+import vizslaImage from "../assets/selectableAnimalImages/vizsla.jpg";
 
 // Dictionary of animal images
 const animalImages = {
+  // Existing animals
   leo: beagleImage,
   rocky: germanShepherdImage,
   charlie: mixedBreedImage,
@@ -21,7 +30,16 @@ const animalImages = {
   nala: siberianHuskyImage,
   max: goldenRetrieverImage,
   milo: staffordshireBullTerrierImage,
-  molly: chihuahuaImage
+  molly: chihuahuaImage,
+
+  // Images available when creating new animals
+  corgi: corgiImage,
+  dachshund: dachshundImage,
+  dalmatian: dalmatianImage,
+  eurasier: eurasierImage,
+  mixBreed: mixBreedImage,
+  weimaraner: weimaranerImage,
+  vizsla: vizslaImage
 };
 
-export default animalImages
+export default animalImages;

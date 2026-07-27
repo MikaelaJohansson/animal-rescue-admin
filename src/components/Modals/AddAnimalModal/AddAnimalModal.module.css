@@ -12,7 +12,7 @@
    background: white;
    width: 600px;
    max-width: 80%;
-   padding: clamp(1rem, 3vw, 2rem);
+   padding: clamp(1rem, 3vw, 1rem);
    border-radius: var(--radius-S);
    height: fit-content;
 }
@@ -28,3 +28,37 @@
     margin: 1rem;
 }
 
+
+/* dog img selectable */
+
+.addAnimalModalImg img:hover{
+    scale: calc(1.05);
+    cursor: pointer;
+}
+
+.addAnimalModalImg {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.imageButton {
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius-M);
+  background: transparent;
+  cursor: pointer;
+}
+
+.imageButton img {
+  display: block;
+  width: 70px;
+  height: 90px;
+  object-position: top;
+  object-fit: cover;
+  border-radius: var(--radius-M);
+}
+
+.selectedImage {
+  border-color: var(--color-border-green);
+}
