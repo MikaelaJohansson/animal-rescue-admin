@@ -20,24 +20,22 @@ import vizslaImage from "../assets/selectableAnimalImages/vizsla.jpg";
 
 // Dictionary of animal images
 const animalImages = {
-  // Existing animals
-  leo: beagleImage,
-  rocky: germanShepherdImage,
-  charlie: mixedBreedImage,
-  luna: labradorRetrieverImage,
-  bella: borderCollieImage,
-  daisy: cockerSpanielImage,
-  nala: siberianHuskyImage,
-  max: goldenRetrieverImage,
-  milo: staffordshireBullTerrierImage,
-  molly: chihuahuaImage,
+  beagle: beagleImage,
+  germanShepherd: germanShepherdImage,
+  mixedBreed: mixedBreedImage,
+  labradorRetriever: labradorRetrieverImage,
+  borderCollie: borderCollieImage,
+  cockerSpaniel: cockerSpanielImage,
+  siberianHusky: siberianHuskyImage,
+  goldenRetriever: goldenRetrieverImage,
+  staffordshireBullTerrier: staffordshireBullTerrierImage,
+  chihuahua: chihuahuaImage,
 
-  // Images available when creating new animals
   corgi: corgiImage,
   dachshund: dachshundImage,
   dalmatian: dalmatianImage,
   eurasier: eurasierImage,
-  mixBreed: mixBreedImage,
+  mixBreedImage: mixBreedImage,
   weimaraner: weimaranerImage,
   vizsla: vizslaImage
 };
