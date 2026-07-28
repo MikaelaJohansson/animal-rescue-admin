@@ -1,21 +1,22 @@
-.addAnimalMainContainer{
+.addAnimalMainContainer {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
 }
 
-.addAnimalContainer{
+.addAnimalContainer {
   background: white;
   width: 600px;
-  max-width: 80%;
-  padding: clamp(1rem, 3vw, 1rem);
+  max-width: 100%;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  padding: 1rem;
   border-radius: var(--radius-S);
-  height: fit-content;
   display: flex;
   flex-direction: column;
 }
@@ -63,5 +64,35 @@
 }
 
 .selectedImage {
-  border-color: var(--color-border-green);
+  border: 3px solid var(--color-border-dark-green);
 }
+
+
+/* selected Image button style */
+
+.imageMoreButton {
+  width: 70px;
+  height: 90px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-M);
+  background: white;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+.imageMoreButton:hover {
+  border-color: var(--color-border-green);
+  scale: 1.03;
+}
+
+.imageMoreButton span {
+  font-size: 2rem;
+  line-height: 1;
+}
+
