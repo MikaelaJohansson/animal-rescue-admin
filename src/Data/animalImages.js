@@ -8,17 +8,16 @@ import labradorRetrieverImage from "../assets/animals/Labrador-Retriever.jpg";
 import mixedBreedImage from "../assets/animals/Mixed-Breed.jpg";
 import siberianHuskyImage from "../assets/animals/Siberian-Husky.jpg";
 import staffordshireBullTerrierImage from "../assets/animals/Staffordshire-Bull-Terrier.jpg";
-
-// Images used when the admin creates a new animal
-import corgiImage from "../assets/selectableAnimalImages/corgi.jpg";
-import dachshundImage from "../assets/selectableAnimalImages/dachshund.jpg";
-import dalmatianImage from "../assets/selectableAnimalImages/dalmatian.jpg";
-import eurasierImage from "../assets/selectableAnimalImages/eurasier.jpg";
-import mixBreedImage from "../assets/selectableAnimalImages/mixBreed.jpg";
-import weimaranerImage from "../assets/selectableAnimalImages/sleutloff-weimaraner.jpg";
-import vizslaImage from "../assets/selectableAnimalImages/vizsla.jpg";
+import corgiImage from "../assets/animals/corgi.jpg";
+import dachshundImage from "../assets/animals/dachshund.jpg";
+import dalmatianImage from "../assets/animals/dalmatian.jpg";
+import eurasierImage from "../assets/animals/eurasier.jpg";
+import mixBreedImage from "../assets/animals/mixBreed.jpg";
+import weimaranerImage from "../assets/animals/sleutloff-weimaraner.jpg";
+import vizslaImage from "../assets/animals/vizsla.jpg";
 
 // Dictionary of animal images
+// Stores the key value in Firebase.
 const animalImages = {
   beagle: beagleImage,
   germanShepherd: germanShepherdImage,
@@ -30,12 +29,11 @@ const animalImages = {
   goldenRetriever: goldenRetrieverImage,
   staffordshireBullTerrier: staffordshireBullTerrierImage,
   chihuahua: chihuahuaImage,
-
   corgi: corgiImage,
   dachshund: dachshundImage,
   dalmatian: dalmatianImage,
   eurasier: eurasierImage,
-  mixBreedImage: mixBreedImage,
+  mixBreed: mixBreedImage,
   weimaraner: weimaranerImage,
   vizsla: vizslaImage
 };

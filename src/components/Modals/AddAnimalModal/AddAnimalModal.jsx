@@ -28,6 +28,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
     neutered: false
   });
 
+  // Converts the object into an array so it can be mapped.
   const allAnimalImages = Object.entries(animalImages);
 
   let visibleAnimalImages = allAnimalImages;
@@ -81,17 +82,10 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
   }
 
   return (
-    <div
-      className={styles.addAnimalMainContainer}
-      onClick={onClose}
-    >
 
-      <div
-        className={styles.addAnimalContainer}
-        onClick={(event) => {
-          event.stopPropagation();
-        }}
-      >
+    <div className={styles.addAnimalMainContainer} onClick={onClose}>
+
+      <div className={styles.addAnimalContainer} onClick={(event) => { event.stopPropagation(); }}>
 
         <h1>Add animal</h1>
 
@@ -100,16 +94,14 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
         </p>
 
         {/* Form inputs */}
-        <form
-          className={styles.addAnimalForm}
-          onSubmit={handleSubmit}
-        >
+        <form className={styles.addAnimalForm} onSubmit={handleSubmit}>
 
           <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
             value={formData.name}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
@@ -117,6 +109,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
               });
             }}
             required
+
           />
 
           <label htmlFor="breed">Breed</label>
@@ -124,6 +117,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
             type="text"
             id="breed"
             value={formData.breed}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
@@ -131,6 +125,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
               });
             }}
             required
+
           />
 
           <label htmlFor="age">Age</label>
@@ -138,6 +133,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
             type="number"
             id="age"
             value={formData.age}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
@@ -145,6 +141,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
               });
             }}
             required
+
           />
 
           <label htmlFor="gender">Gender</label>
@@ -152,6 +149,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
             type="text"
             id="gender"
             value={formData.gender}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
@@ -159,6 +157,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
               });
             }}
             required
+
           />
 
           <label htmlFor="status">Status</label>
@@ -186,12 +185,14 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
             type="number"
             id="weight"
             value={formData.weight}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
                 weight: event.target.value
               });
             }}
+
           />
 
           <label htmlFor="color">Color</label>
@@ -199,60 +200,70 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
             type="text"
             id="color"
             value={formData.color}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
                 color: event.target.value
               });
             }}
+
           />
 
           <label htmlFor="description">Overview</label>
           <textarea
             id="description"
             value={formData.description}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
                 description: event.target.value
               });
             }}
+
           />
 
           <label htmlFor="medicalNotes">Medical</label>
           <textarea
             id="medicalNotes"
             value={formData.medicalNotes}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
                 medicalNotes: event.target.value
               });
             }}
+
           />
 
           <label htmlFor="notes">Notes</label>
           <textarea
             id="notes"
             value={formData.notes}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
                 notes: event.target.value
               });
             }}
+
           />
 
           <label htmlFor="history">History</label>
           <textarea
             id="history"
             value={formData.history}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
                 history: event.target.value
               });
             }}
+
           />
 
           <label htmlFor="date">Date added</label>
@@ -260,42 +271,46 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
             type="date"
             id="date"
             value={formData.dateAdded}
+
             onChange={(event) => {
               setFormData({
                 ...formData,
                 dateAdded: event.target.value
               });
             }}
+
           />
 
           <div className={styles.addAnimalFormCheckbox}>
-            <label htmlFor="vaccinated">Vaccinated</label>
 
+            <label htmlFor="vaccinated">Vaccinated</label>
             <input
               type="checkbox"
               id="vaccinated"
               checked={formData.vaccinated}
+
               onChange={(event) => {
                 setFormData({
                   ...formData,
                   vaccinated: event.target.checked
                 });
               }}
+
             />
-
             &nbsp;&nbsp;&nbsp;
-
             <label htmlFor="neutered">Neutered</label>
             <input
               type="checkbox"
               id="neutered"
               checked={formData.neutered}
+
               onChange={(event) => {
                 setFormData({
                   ...formData,
                   neutered: event.target.checked
                 });
               }}
+
             />
 
           </div>
@@ -309,41 +324,43 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
 
               return (
                 <button
+
                   key={imageId}
                   type="button"
-                  className={`${styles.imageButton} ${
-                    selectedImage === imageId
-                      ? styles.selectedImage
-                      : ""
-                  }`}
+                  className={`${styles.imageButton} ${selectedImage === imageId ? styles.selectedImage   : "" }`}
+
                   onClick={() => {
                     setSelectedImage(imageId);
                   }}
+
                 >
+
                   <img
                     src={imageSource}
                     alt={imageId}
                   />
+
                 </button>
               );
 
             })}
 
             {allAnimalImages.length > 5 && (
-              <button
-                type="button"
-                className={`${styles.imageButton} ${styles.imageMoreButton}`}
-                onClick={() => {
-                  setShowAllImages(!showAllImages);
-                }}
-              >
-                <>
+
+              <button type="button" className={`${styles.imageButton} ${styles.imageMoreButton}`} onClick={() => { setShowAllImages(!showAllImages);}}>
+
+                <div>
+
                   <span>{showAllImages ? "−" : "+"}</span>
+
                   <small>
                     {showAllImages ? "Show less" : "Show more"}
                   </small>
-                </>
+
+                </div>
+
               </button>
+
             )}
 
           </div>
