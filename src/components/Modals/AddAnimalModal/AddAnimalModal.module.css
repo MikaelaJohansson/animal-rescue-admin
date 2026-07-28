@@ -21,24 +21,18 @@
   flex-direction: column;
 }
 
-.addAnimalForm{
+.addAnimalForm {
   display: flex;
   flex-direction: column;
   padding: 1rem;
   gap: 0.5rem;
 }
 
-.addAnimalFormCheckbox{
+.addAnimalFormCheckbox {
   margin: 1rem;
 }
 
-
-/* dog img selectable */
-
-.addAnimalModalImg img:hover{
-  scale: calc(1.05);
-  cursor: pointer;
-}
+/* Dog image selection */
 
 .addAnimalModalImg {
   display: flex;
@@ -47,6 +41,8 @@
 }
 
 .imageButton {
+  width: 70px;
+  height: 90px;
   padding: 0;
   border: 2px solid transparent;
   border-radius: var(--radius-M);
@@ -56,43 +52,46 @@
 
 .imageButton img {
   display: block;
-  width: 70px;
-  height: 90px;
+  width: 100%;
+  height: 100%;
   object-position: top;
   object-fit: cover;
   border-radius: var(--radius-M);
 }
 
-.selectedImage {
-  border: 3px solid var(--color-border-dark-green);
+.imageButton img:hover {
+  scale: 1.05;
 }
 
+.selectedImage {
+  border-color: var(--color-danger);
+}
 
-/* selected Image button style */
+/* Show more / show less button */
 
 .imageMoreButton {
-  width: 70px;
-  height: 90px;
   border: 2px dashed var(--color-border);
-  border-radius: var(--radius-M);
   background: white;
-  cursor: pointer;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  transition: 0.2s;
+  gap: 0.2rem;
 }
 
 .imageMoreButton:hover {
   border-color: var(--color-border-green);
-  scale: 1.03;
 }
 
 .imageMoreButton span {
+  display: block;
   font-size: 2rem;
-  line-height: 1;
+  color: var(--color-text-muted-dark);
 }
 
+.imageMoreButton small {
+  display: block;
+  font-size: 0.7rem;
+  line-height:var(--line-height);
+  color: var(--color-text-muted-dark);
+}
