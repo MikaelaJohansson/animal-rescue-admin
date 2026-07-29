@@ -125,7 +125,7 @@
 
 .sideBarNav::-webkit-scrollbar-thumb {
     background: var(--color-sidebar-hover);
-    border-radius: 999px;
+    border-radius: var( --radius-S);
 }
 
 .sideBarNav::-webkit-scrollbar-thumb:hover {

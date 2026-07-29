@@ -1,6 +1,5 @@
 .tableMainCointainer{
     overflow-x: auto;
-    
 }
 .tableContainer{
    width: 90%;
@@ -33,4 +32,22 @@
     border-radius: var(--radius-M);
     display: block;
     margin: 0.2rem;
+}
+
+/* scrollbar style */
+.tableMainCointainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tableMainCointainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tableMainCointainer::-webkit-scrollbar-thumb {
+  background: var(--color-sidebar-hover);
+  border-radius: var( --radius-M);
+}
+
+.tableMainCointainer::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
 }

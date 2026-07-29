@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase";
+import { LuSave } from "react-icons/lu";
 import animalImages from "../../../Data/animalImages";
 import styles from "./AddAnimalModal.module.css";
 
@@ -87,11 +88,14 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
 
       <div className={styles.addAnimalContainer} onClick={(event) => { event.stopPropagation(); }}>
 
-        <h1>Add animal</h1>
+          <div className={styles.addAnimalContainerTitle}>
+            <h1>Add new animal</h1>
 
-        <p>
-          Fill in the details below to create anew animal
-        </p>
+            <p>
+              Fill in the details below to create a new animal
+            </p>
+          </div>
+      
 
         {/* Form inputs */}
         <form className={styles.addAnimalForm} onSubmit={handleSubmit}>
@@ -283,35 +287,39 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
 
           <div className={styles.addAnimalFormCheckbox}>
 
-            <label htmlFor="vaccinated">Vaccinated</label>
-            <input
-              type="checkbox"
-              id="vaccinated"
-              checked={formData.vaccinated}
+            <div className={styles.checkboxGroup}>
+              <label htmlFor="vaccinated">Vaccinated</label>
 
-              onChange={(event) => {
-                setFormData({
-                  ...formData,
-                  vaccinated: event.target.checked
-                });
-              }}
+              <input
+                type="checkbox"
+                id="vaccinated"
+                checked={formData.vaccinated}
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    vaccinated: event.target.checked
+                  });
+                }}
+              />
 
-            />
-            &nbsp;&nbsp;&nbsp;
-            <label htmlFor="neutered">Neutered</label>
-            <input
-              type="checkbox"
-              id="neutered"
-              checked={formData.neutered}
+            </div>
 
-              onChange={(event) => {
-                setFormData({
-                  ...formData,
-                  neutered: event.target.checked
-                });
-              }}
+            <div className={styles.checkboxGroup}>
+              <label htmlFor="neutered">Neutered</label>
 
-            />
+              <input
+                type="checkbox"
+                id="neutered"
+                checked={formData.neutered}
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    neutered: event.target.checked
+                  });
+                }}
+              />
+              
+            </div>
 
           </div>
 
@@ -347,7 +355,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
 
             {allAnimalImages.length > 5 && (
 
-              <button type="button" className={`${styles.imageButton} ${styles.imageMoreButton}`} onClick={() => { setShowAllImages(!showAllImages);}}>
+              <button type="button" className={`${styles.imageButton} ${styles.imageGalleryToggleButton}`} onClick={() => { setShowAllImages(!showAllImages);}}>
 
                 <div>
 
@@ -365,16 +373,15 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
 
           </div>
 
-          <button
-            type="button"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
+          <div className={styles.addAnimalContainerButtonsCancelSubmit}>
 
-          <button type="submit">
-            Save animal
-          </button>
+            <button className={styles.addAnimalContainerCancelButton}  type="button"  onClick={onClose} > Cancel </button>
+
+            <button className={styles.addAnimalContainerSubmitButton} type="submit"><LuSave /> Save animal</button>
+
+          </div>
+
+          
 
         </form>
 
