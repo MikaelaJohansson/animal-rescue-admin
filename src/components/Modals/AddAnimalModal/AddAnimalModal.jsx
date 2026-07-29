@@ -318,7 +318,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
                   });
                 }}
               />
-              
+
             </div>
 
           </div>
@@ -331,8 +331,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
               const imageSource = animalImage[1];
 
               return (
-                <button
-
+                <button                 
                   key={imageId}
                   type="button"
                   className={`${styles.imageButton} ${selectedImage === imageId ? styles.selectedImage   : "" }`}
@@ -346,6 +345,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
                   <img
                     src={imageSource}
                     alt={imageId}
+                    loading="lazy"
                   />
 
                 </button>

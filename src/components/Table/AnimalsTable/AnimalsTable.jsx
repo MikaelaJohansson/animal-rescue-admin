@@ -1,6 +1,8 @@
 import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalsTable.module.css"
 import StatusBadge from "../../StatusBadge/StatusBadge";
+import {Link} from "react-router-dom"
+import { LuPencilLine } from "react-icons/lu";
 
 
 export default function AnimalsTable({animals}) {
@@ -50,9 +52,8 @@ export default function AnimalsTable({animals}) {
                             <td>{animal.gender}</td>
                             <td><StatusBadge status={animal.status}/></td>
 
-                            <td>
-                                <button type="button">View</button>
-                            </td>
+                            <td className={styles.tableBodyRowTd}> <Link to={`/animals/${animal.id}`}> <LuPencilLine /></Link></td>
+                           
 
                         </tr>
 

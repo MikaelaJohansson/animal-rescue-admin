@@ -49,7 +49,6 @@
 }
 .addAnimalForm textarea:hover{
   scale: calc(1.02);
-  cursor: pointer;
 }
 
 /* select styles */
