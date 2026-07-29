@@ -52,7 +52,7 @@ export default function AnimalsTable({animals}) {
                             <td>{animal.gender}</td>
                             <td><StatusBadge status={animal.status}/></td>
 
-                            <td className={styles.tableBodyRowTd}> <Link to={`/animals/${animal.id}`}> <LuPencilLine /></Link></td>
+                            <td className={styles.tableBodyRowTd}> <Link to={`/animals/${animal.id}`}><LuPencilLine /></Link></td>
                            
 
                         </tr>
