@@ -6,6 +6,7 @@ import {LuTrash2, LuPencilLine } from "react-icons/lu";
 import StatusBadge from "../../../components/StatusBadge/StatusBadge"
 import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalDetails.module.css"
+import EditAnimalModal from "../../../components/Modals/EditAnimalModal/EditAnimalModal";
 
 
 export default function AnimalDetails() {
@@ -14,8 +15,17 @@ export default function AnimalDetails() {
 
   const [animal, setAnimal] = useState(null)
   const [activeTab, setActiveTab] = useState("overview");
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const navigate = useNavigate()
+
+  // open closes modal
+  function openEditModal(){
+    setIsEditModalOpen(true)
+  }
+  function closeEditModal(){
+    setIsEditModalOpen(false)
+  }
 
   useEffect(() => {
 
@@ -58,6 +68,7 @@ export default function AnimalDetails() {
 
   }, [animalId]);
 
+  // delete animal
   async function deleteAnimal(){
 
     const userConfirmedDelete = window.confirm(`Are you sure you want to delete ${animal.name}?`)
@@ -81,7 +92,6 @@ export default function AnimalDetails() {
 
   }
 
-
   if(animal === null){
     return(
       <p>Loading animal..</p>
@@ -102,7 +112,7 @@ export default function AnimalDetails() {
         </div>
        
         <div className={styles.animalDetailsbuttons}>
-          <button className={styles.animalDetailsbuttonsEdit}><LuPencilLine /> Edit</button>
+          <button className={styles.animalDetailsbuttonsEdit}  onClick={openEditModal}><LuPencilLine /> Edit</button>
           <button className={styles.animalDetailsbuttonsDelete} onClick={deleteAnimal}><LuTrash2 /> Delete</button>
         </div>     
 
@@ -201,6 +211,14 @@ export default function AnimalDetails() {
         </div>
 
       </section>
+      
+      {/* modal */}
+      {isEditModalOpen && (
+        <EditAnimalModal
+          animal={animal}
+          onClose={closeEditModal}
+        />
+      )}
 
     </div>
   )
