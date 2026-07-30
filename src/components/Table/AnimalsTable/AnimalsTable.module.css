@@ -42,6 +42,8 @@
   border-radius: var(--radius-S);
   display: block;
   margin: 0.2rem;
+  object-fit: cover;
+  object-position: top;
 }
 
 /* scrollbar style */

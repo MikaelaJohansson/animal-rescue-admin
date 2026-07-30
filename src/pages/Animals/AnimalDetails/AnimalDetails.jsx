@@ -1,7 +1,8 @@
-import {useParams} from 'react-router-dom'
-import {doc, getDoc} from "firebase/firestore"
+import {useParams, useNavigate} from 'react-router-dom'
+import {deleteDoc, doc, getDoc} from "firebase/firestore"
 import {db} from "../../../firebase"
 import { useEffect, useState } from "react";
+import {LuTrash2, LuPencilLine } from "react-icons/lu";
 import StatusBadge from "../../../components/StatusBadge/StatusBadge"
 import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalDetails.module.css"
@@ -12,6 +13,9 @@ export default function AnimalDetails() {
   const {animalId} = useParams()
 
   const [animal, setAnimal] = useState(null)
+  const [activeTab, setActiveTab] = useState("overview");
+
+  const navigate = useNavigate()
 
   useEffect(() => {
 
@@ -54,6 +58,29 @@ export default function AnimalDetails() {
 
   }, [animalId]);
 
+  async function deleteAnimal(){
+
+    const userConfirmedDelete = window.confirm(`Are you sure you want to delete ${animal.name}?`)
+
+    if(userConfirmedDelete === false){
+      return;
+    }
+
+    try{
+
+      const animalDocumentReference = doc(db, "animals", animalId)
+
+      await deleteDoc(animalDocumentReference)
+
+      navigate("/animals")
+
+    }catch(error){
+      console.error("Failed to delete animal:", error)
+    }
+
+
+  }
+
 
   if(animal === null){
     return(
@@ -74,9 +101,9 @@ export default function AnimalDetails() {
           <StatusBadge status={animal.status}/>
         </div>
        
-        <div>
-          <button>Edit</button>
-          <button>Delete</button>
+        <div className={styles.animalDetailsbuttons}>
+          <button className={styles.animalDetailsbuttonsEdit}><LuPencilLine /> Edit</button>
+          <button className={styles.animalDetailsbuttonsDelete} onClick={deleteAnimal}><LuTrash2 /> Delete</button>
         </div>     
 
       </header>
@@ -102,13 +129,77 @@ export default function AnimalDetails() {
         </div>
       </section>
 
-      <section className={styles.animalDetailsDbMedecin}>
-        <div>
-          {animal.description} <br /> <br />
-          {animal.medicalNotes} <br /> <br />
-          {animal.notes} <br /> <br />
-          {animal.history} <br /> <br />
+      {/* tabs */}
+      <section className={styles.animalDetailsTabs}>
+
+        <div className={styles.tabButtons}>
+
+          <button
+            type="button"
+            className={activeTab === "overview" ? styles.activeTab : ""}
+            onClick={() => setActiveTab("overview")}
+          >
+            Overview
+          </button>
+
+          <button
+            type="button"
+            className={activeTab === "medical" ? styles.activeTab : ""}
+            onClick={() => setActiveTab("medical")}
+          >
+            Medical
+          </button>
+
+          <button
+            type="button"
+            className={activeTab === "notes" ? styles.activeTab : ""}
+            onClick={() => setActiveTab("notes")}
+          >
+            Notes
+          </button>
+
+          <button
+            type="button"
+            className={activeTab === "history" ? styles.activeTab : ""}
+            onClick={() => setActiveTab("history")}
+          >
+            History
+          </button>
+
         </div>
+
+        <div className={styles.tabContent}>
+
+          {activeTab === "overview" && (
+            <div>
+              <h3>About {animal.name}</h3>
+              <p>{animal.description}</p>
+            </div>
+          )}
+
+          {activeTab === "medical" && (
+            <div>
+              <h3>Medical information</h3>
+              <p>{animal.medicalNotes}</p>
+            </div>
+          )}
+
+          {activeTab === "notes" && (
+            <div>
+              <h3>Notes</h3>
+              <p>{animal.notes}</p>
+            </div>
+          )}
+
+          {activeTab === "history" && (
+            <div>
+              <h3>History</h3>
+              <p>{animal.history}</p>
+            </div>
+          )}
+
+        </div>
+
       </section>
 
     </div>
