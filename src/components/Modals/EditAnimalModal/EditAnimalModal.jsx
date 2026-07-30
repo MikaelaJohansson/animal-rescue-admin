@@ -8,15 +8,7 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
 
     const [selectedImage, setSelectedImage] = useState(animal.image);
     const [showAllImages, setShowAllImages] = useState(false);
-
-    const allAnimalImages = Object.entries(animalImages);
-
-    let visibleAnimalImages = allAnimalImages;
-
-    if (showAllImages === false) {
-        visibleAnimalImages = allAnimalImages.slice(0, 5);
-    }
-
+    
     const [formData, setFormData] = useState({
 
         name: animal.name,
@@ -36,6 +28,14 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
 
     });
 
+    const allAnimalImages = Object.entries(animalImages);
+
+    let visibleAnimalImages = allAnimalImages;
+
+    if (showAllImages === false) {
+        visibleAnimalImages = allAnimalImages.slice(0, 5);
+    }
+
     async function handleSubmit(event) {
 
         event.preventDefault();
@@ -48,27 +48,18 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
         };
 
         try {
-            const animalDocumentReference = doc(
-            db,
-            "animals",
-            animal.id
-            );
+            const animalDocumentReference = doc( db,"animals",animal.id);
 
-            await updateDoc(
-            animalDocumentReference,
-            updatedAnimal
-            );
+            await updateDoc( animalDocumentReference, updatedAnimal );
 
-            setAnimal({
-            id: animal.id,
-            ...updatedAnimal
-            });
+            setAnimal({ id: animal.id,  ...updatedAnimal });
 
             onClose();
 
         } catch (error) {
             console.error("Failed to update animal:", error);
         }
+
     }
 
 
@@ -186,97 +177,99 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
 
                 <label htmlFor="description">Overview</label>
                 <textarea
-                id="description"
-                value={formData.description}
-                onChange={(event) => {
-                    setFormData({
-                    ...formData,
-                    description: event.target.value
-                    });
-                }}
+                    id="description"
+                    value={formData.description}
+                    onChange={(event) => {
+                        setFormData({
+                        ...formData,
+                        description: event.target.value
+                        });
+                    }}
                 />
 
                 <label htmlFor="medicalNotes">Medical</label>
                 <textarea
-                id="medicalNotes"
-                value={formData.medicalNotes}
-                onChange={(event) => {
-                    setFormData({
-                    ...formData,
-                    medicalNotes: event.target.value
-                    });
-                }}
+                    id="medicalNotes"
+                    value={formData.medicalNotes}
+                    onChange={(event) => {
+                        setFormData({
+                        ...formData,
+                        medicalNotes: event.target.value
+                        });
+                    }}
                 />
 
                 <label htmlFor="notes">Notes</label>
                 <textarea
-                id="notes"
-                value={formData.notes}
-                onChange={(event) => {
-                    setFormData({
-                    ...formData,
-                    notes: event.target.value
-                    });
-                }}
+                    id="notes"
+                    value={formData.notes}
+                    onChange={(event) => {
+                        setFormData({
+                        ...formData,
+                        notes: event.target.value
+                        });
+                    }}
                 />
 
                 <label htmlFor="history">History</label>
                 <textarea
-                id="history"
-                value={formData.history}
-                onChange={(event) => {
-                    setFormData({
-                    ...formData,
-                    history: event.target.value
-                    });
-                }}
+                    id="history"
+                    value={formData.history}
+                    onChange={(event) => {
+                        setFormData({
+                        ...formData,
+                        history: event.target.value
+                        });
+                    }}
                 />
 
                 <label htmlFor="dateAdded">Date added</label>
                 <input
-                type="date"
-                id="dateAdded"
-                value={formData.dateAdded}
-                onChange={(event) => {
-                    setFormData({
-                    ...formData,
-                    dateAdded: event.target.value
-                    });
-                }}
+                    type="date"
+                    id="dateAdded"
+                    value={formData.dateAdded}
+                    onChange={(event) => {
+                        setFormData({
+                        ...formData,
+                        dateAdded: event.target.value
+                        });
+                    }}
                 />
 
                 <div className={styles.editAnimalFormCheckbox}>
 
                     <div className={styles.checkboxGroup}>
-                        <label htmlFor="vaccinated">Vaccinated</label>
 
+                        <label htmlFor="vaccinated">Vaccinated</label>
                         <input
-                        type="checkbox"
-                        id="vaccinated"
-                        checked={formData.vaccinated}
-                        onChange={(event) => {
-                            setFormData({
-                            ...formData,
-                            vaccinated: event.target.checked
-                            });
-                        }}
+                            type="checkbox"
+                            id="vaccinated"
+                            checked={formData.vaccinated}
+                            onChange={(event) => {
+                                setFormData({
+                                ...formData,
+                                vaccinated: event.target.checked
+                                });
+                            }}
                         />
+
                     </div>
 
                     <div className={styles.checkboxGroup}>
-                        <label htmlFor="neutered">Neutered</label>
 
+                        <label htmlFor="neutered">Neutered</label>
                         <input
-                        type="checkbox"
-                        id="neutered"
-                        checked={formData.neutered}
-                        onChange={(event) => {
-                            setFormData({
-                            ...formData,
-                            neutered: event.target.checked
-                            });
-                        }}
+                            type="checkbox"
+                            id="neutered"
+                            checked={formData.neutered}
+                            onChange={(event) => {
+                                setFormData({
+                                ...formData,
+                                neutered: event.target.checked
+                                });
+                            }}
                         />
+
                     </div>
 
 
@@ -291,40 +284,36 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
                         const imageSource = animalImage[1];
 
                         return (
-                        <button
-                            key={imageId}
-                            type="button"
-                            className={`${styles.imageButton} ${
-                            selectedImage === imageId ? styles.selectedImage : ""
-                            }`}
-                            onClick={() => {
-                            setSelectedImage(imageId);
-                            }}
-                        >
-                            <img
-                            src={imageSource}
-                            alt={imageId}
-                            loading="lazy"
-                            />
-                        </button>
+                            <button
+                                key={imageId}
+                                type="button"
+                                className={`${styles.imageButton} ${
+                                selectedImage === imageId ? styles.selectedImage : ""}`}
+                                onClick={() => { setSelectedImage(imageId); }}
+                            >
+                                <img
+                                    src={imageSource}
+                                    alt={imageId}
+                                    loading="lazy"
+                                />
+                            </button>
                         );
                     })}
 
                     {allAnimalImages.length > 5 && (
                         <button
-                        type="button"
-                        className={`${styles.imageButton} ${styles.imageGalleryToggleButton}`}
-                        onClick={() => {
-                            setShowAllImages(!showAllImages);
-                        }}
-                        >
-                        <div>
-                            <span>{showAllImages ? "−" : "+"}</span>
+                            type="button"
+                            className={`${styles.imageButton} ${styles.imageGalleryToggleButton}`}
 
-                            <small>
-                            {showAllImages ? "Show less" : "Show more"}
-                            </small>
-                        </div>
+                            onClick={() => {
+                                setShowAllImages(!showAllImages);
+                            }}
+
+                            >
+                            <div>
+                                <span>{showAllImages ? "−" : "+"}</span>
+                                <small> {showAllImages ? "Show less" : "Show more"} </small>
+                            </div>
                         </button>
                     )}
 

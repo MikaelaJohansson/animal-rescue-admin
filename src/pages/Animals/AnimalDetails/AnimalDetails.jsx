@@ -213,13 +213,7 @@ export default function AnimalDetails() {
       </section>
       
       {/* modal */}
-      {isEditModalOpen && (
-        <EditAnimalModal
-          animal={animal}
-          setAnimal={setAnimal}
-          onClose={closeEditModal}
-        />
-      )}
+      {isEditModalOpen && (<EditAnimalModal animal={animal} setAnimal={setAnimal} onClose={closeEditModal}/>)}
 
     </div>
   )
