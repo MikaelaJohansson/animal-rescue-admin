@@ -1,0 +1,240 @@
+.editAnimalMainContainer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.editAnimalContainer {
+  background: white;
+  width: 600px;
+  max-width: 100%;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  padding: 1rem;
+  border-radius: var(--radius-S);
+  display: flex;
+  flex-direction: column;
+}
+
+.editAnimalForm label {
+  font-size: var(--font-size-M);
+  font-weight: var(--font-weight-L);
+  margin-top: 0.8rem;
+}
+
+.editAnimalForm {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.editAnimalForm input,
+.editAnimalForm select {
+  width: 100%;
+  padding: 0.4rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-S);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: var(--font-size-M);
+  font-weight: var(--font-weight-L);
+  outline: none;
+}
+
+.editAnimalForm input:focus,
+.editAnimalForm select:focus {
+  border-color: var(--color-border-green);
+}
+
+
+/* terxtarea */
+.editAnimalForm textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.4rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-S);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: var(--font-size-M);
+  font-weight: var(--font-weight-L);
+  outline: none;
+  resize: vertical;
+}
+.editAnimalForm textarea:focus {
+  border-color: var(--color-border-green);
+}
+
+
+
+/* checkboxes */
+.editAnimalFormCheckbox {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.checkboxGroup label {
+  margin-top: 0;
+}
+
+.editAnimalForm input[type="checkbox"] {
+  flex: 0;
+  min-width: auto;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  transform: scale(1.6);
+}
+
+
+
+/* buttons */
+.editAnimalContainerButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.editAnimalContainerCancelButton {
+  width: 140px;
+  padding: 0.75rem;
+  border: 2px solid var(--color-text-muted);
+  border-radius: var(--radius-S);
+  background-color: var(--color-surface-muted);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: 18px;
+  font-weight: var(--font-weight-L);
+  color: var(--color-text-muted);
+}
+.editAnimalContainerCancelButton:hover {
+  cursor: pointer;
+  scale: 1.02;
+}
+
+.editAnimalContainerSaveButton {
+  width: 140px;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border-green);
+  border-radius: var(--radius-S);
+  background-color: var(--color-button);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: 17px;
+  font-weight: var(--font-weight-L);
+  color: var(--color-font-light);
+}
+.editAnimalContainerSaveButton:hover {
+  cursor: pointer;
+  scale: 1.02;
+}
+
+
+/* dog img select */
+.editAnimalModalImg {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.imageButton {
+  width: 70px;
+  height: 90px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius-S);
+  background: transparent;
+  cursor: pointer;
+}
+.imageButton img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: var(--radius-S);
+}
+.imageButton img:hover {
+  scale: 1.05;
+}
+
+.selectedImage {
+  border-color: var(--color-danger);
+}
+
+.imageGalleryToggleButton {
+  border: 2px dashed var(--color-border);
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imageGalleryToggleButton:hover {
+  border-color: var(--color-border-green);
+}
+
+.imageGalleryToggleButton span {
+  display: block;
+  font-size: 2rem;
+  color: var(--color-text-muted-dark);
+}
+
+.imageGalleryToggleButton small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-text-muted-dark);
+}
+
+
+/* Textarea scrollbar */
+.editAnimalForm textarea::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.editAnimalForm textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editAnimalForm textarea::-webkit-scrollbar-thumb {
+  background: var(--color-sidebar-hover);
+  border-radius: var(--radius-S);
+}
+
+.editAnimalForm textarea::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+
+/* scrollbar style */
+.editAnimalContainer::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.editAnimalContainer::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.editAnimalContainer::-webkit-scrollbar-thumb {
+  background: var(--color-sidebar-hover);
+  border-radius: var(--radius-S);  
+}
+
+.editAnimalContainer::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}

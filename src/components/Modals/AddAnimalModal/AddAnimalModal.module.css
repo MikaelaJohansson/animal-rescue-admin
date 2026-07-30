@@ -241,9 +241,29 @@
   cursor: pointer;
 }
 
+/* Textarea scrollbar */
+.addAnimalContainer textarea::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.addAnimalContainer textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.addAnimalContainer textarea::-webkit-scrollbar-thumb {
+  background: var(--color-sidebar-hover);
+  border-radius: var(--radius-S);
+}
+
+.addAnimalContainer textarea::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
 /* scrollbar style */
 .addAnimalContainer::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 .addAnimalContainer::-webkit-scrollbar-track {

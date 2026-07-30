@@ -216,6 +216,7 @@ export default function AnimalDetails() {
       {isEditModalOpen && (
         <EditAnimalModal
           animal={animal}
+          setAnimal={setAnimal}
           onClose={closeEditModal}
         />
       )}
