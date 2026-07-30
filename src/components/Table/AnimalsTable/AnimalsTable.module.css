@@ -39,14 +39,15 @@
 
 
 .tableBodyRowImg{
-  border-radius: var(--radius-M);
+  border-radius: var(--radius-S);
   display: block;
   margin: 0.2rem;
 }
 
 /* scrollbar style */
 .tableMainCointainer::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;   
+  height: 6px;
 }
 
 .tableMainCointainer::-webkit-scrollbar-track {

@@ -78,8 +78,8 @@
     justify-content: flex-start;
     margin-left: 40px;
     margin-right: 30px;
-    padding: 8px;
-    border-radius: 30px;
+    padding: 9px;
+    border-radius: var(--radius-Sidebar-expand);
 }
 .sidebarLinkExpanded:hover {
     background-color: var(--color-sidebar-hover);

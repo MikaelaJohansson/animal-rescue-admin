@@ -4,6 +4,8 @@ import { db } from "../../../firebase";
 import { LuSave } from "react-icons/lu";
 import animalImages from "../../../Data/animalImages";
 import styles from "./AddAnimalModal.module.css";
+import appLogo from "../../../assets/appLogo.png"
+import sideBarPawLogo from "../../../assets/sideBarPawLogo.png"
 
 export default function AddAnimalModal({ onClose, setAnimals }) {
 
@@ -85,16 +87,20 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
   return (
 
     <div className={styles.addAnimalMainContainer} onClick={onClose}>
+      
 
       <div className={styles.addAnimalContainer} onClick={(event) => { event.stopPropagation(); }}>
 
-          <div className={styles.addAnimalContainerTitle}>
-            <h1>Add new animal</h1>
-
-            <p>
-              Fill in the details below to create a new animal
-            </p>
-          </div>
+        <div className={styles.addAnimalContainerHeader}>
+          <img src={sideBarPawLogo} alt="Logo paw" width={50}/>
+          <p>
+            Fill in the details below to create a new animal
+          </p>
+        </div>
+        
+        <div className={styles.addAnimalContainerLogo}>
+          <img src={appLogo} alt="Logo" width={270} />         
+        </div>
       
 
         {/* Form inputs */}
