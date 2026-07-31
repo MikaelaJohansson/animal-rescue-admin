@@ -1,5 +1,7 @@
 import styles from "./EditAnimalModal.module.css"
 import animalImages from "../../../Data/animalImages";
+import appLogo from "../../../assets/appLogo.png"
+import sideBarPawLogo from "../../../assets/sideBarPawLogo.png"
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { useState } from "react";
@@ -67,10 +69,18 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
   return (
     <div className={styles.editAnimalMainContainer} onClick={onClose}>
 
-        <div className={styles.editAnimalContainer}onClick={(event) =>{ event.stopPropagation(); }}>
+        <div className={styles.editAnimalContainer} onClick={(event) =>{ event.stopPropagation(); }}>
 
-            <h2>Edit {animal.name}</h2>
+            <div className={styles.editAnimalHeader}>
+                <img src={sideBarPawLogo} alt="Paw logo" width={50}/>
+                <p> Fill in the details below to update a new animal</p>
+            </div>
 
+            <div className={styles.editAnimalContainerLogo}>
+                <img src={appLogo} alt="Logo" width={270} />              
+            </div>
+
+            <h1>Edit: {animal.name}</h1>
             <form className={styles.editAnimalForm} onSubmit={handleSubmit}>
 
                 <label htmlFor="name">Name</label>

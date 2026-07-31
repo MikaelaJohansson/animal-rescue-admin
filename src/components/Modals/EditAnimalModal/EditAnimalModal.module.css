@@ -21,6 +21,21 @@
   flex-direction: column;
 }
 
+.editAnimalHeader{
+  display: flex;
+  line-height: var(--line-height-XS);
+  margin: -10px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.editAnimalContainerLogo{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-top: 3rem;
+  margin-bottom: -2rem;
+}
+
 .editAnimalForm label {
   font-size: var(--font-size-M);
   font-weight: var(--font-weight-L);
@@ -30,7 +45,6 @@
 .editAnimalForm {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   gap: 0.5rem;
 }
 
