@@ -102,7 +102,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
           <img src={appLogo} alt="Logo" width={270} />         
         </div>
       
-
+        <h1>Add new animal:</h1>
         {/* Form inputs */}
         <form className={styles.addAnimalForm} onSubmit={handleSubmit}>
 
