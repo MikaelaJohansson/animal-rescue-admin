@@ -1,7 +1,7 @@
-import React from 'react'
 import styles from "./RecentlyAddedAnimals.module.css"
 import animalImages from "../../../Data/animalImages";
 import StatusBadge from "../../../components/StatusBadge/StatusBadge";
+import { Link } from "react-router-dom";
 
 export default function RecentlyAddedAnimals({animals}) {
 
@@ -15,39 +15,49 @@ export default function RecentlyAddedAnimals({animals}) {
 
    
 
-  return (
-    <section>
+    return (
+        <section className={styles.recentAnimalsContainer}>
 
-        <h2>Recently Added Animals</h2>
+            <div className={styles.recentAnimalsHeader}>
+                <h2>Recently Added Animals</h2>
+            </div>
 
-        <div>
+            <div className={styles.recentAnimalsList}>
 
-            {recentAnimals.map((animal) => {
+                {recentAnimals.map((animal) => {
 
-                const animalImage = animalImages[animal.image];
+                    const animalImage = animalImages[animal.image];
 
-                return (
-                    <article key={animal.id}>
+                    return (
+                    <Link key={animal.id} className={styles.recentAnimalRow} to={`/animals/${animal.id}`} >
 
-                        <img src={animalImage} alt={`${animal.name}, ${animal.breed}`} width={100}/>
+                        <img className={styles.recentAnimalImage}src={animalImage} alt={`${animal.name}, ${animal.breed}`} />
 
-                        <div>
+                        <div className={styles.recentAnimalInformation}>
+
                             <h3>{animal.name}</h3>
-                            <p>{animal.breed}</p>
-                            <p>{animal.age} years</p>
 
-                            <StatusBadge status={animal.status} />
+                            <p>
+                                {animal.breed} · {animal.age} years
+                            </p>
 
-                            <p>Added: {animal.dateAdded}</p>
+                            <p className={styles.recentAnimalDate}>
+                                Added: {animal.dateAdded}
+                            </p>
+
                         </div>
 
-                    </article>
-                );
+                        <div className={styles.recentAnimalStatus}>
+                            <StatusBadge status={animal.status} />
+                        </div>
 
-            })}
+                    </Link>
+                    );
 
-        </div>
+                })}
 
-    </section>
+            </div>
+
+        </section>
     );
 }

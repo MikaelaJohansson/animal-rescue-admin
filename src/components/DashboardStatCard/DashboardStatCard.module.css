@@ -2,11 +2,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: min(90%, 300px);
+  width: 100%;
   padding-left: 1rem;
   box-shadow: 0 0 5px rgb(232, 230, 230);
-  border-radius: var(--radius-XS);
+  border-radius: var(--radius-S);
   background-color: white;
+  min-height: 145px;
 }
 
 .dashboardStatCardIcon{
