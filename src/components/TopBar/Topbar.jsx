@@ -6,7 +6,7 @@ import {auth} from "../../firebase"
 import appLogo from "../../assets/appLogo.png"
 import styles from "./Topbar.module.css";
 import mikaelaAvatar from "../../assets/avatars/mikaelaAvatar.jpg";
-import bellaAvatar from "../../assets/avatars/bellaAvatar.jpg";
+import bellaAvatar from "../../assets/avatars/BellaAvatar.jpg";
 import karinAvatar from "../../assets/avatars/karinAvatar.jpg";
 import stigAvatar from "../../assets/avatars/stigAvatar.jpg";
 import tommyAvatar from "../../assets/avatars/tommyAvatar.jpg";
