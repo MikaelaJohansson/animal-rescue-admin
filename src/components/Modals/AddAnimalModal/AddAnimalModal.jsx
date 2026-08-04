@@ -92,7 +92,7 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
       <div className={styles.addAnimalContainer} onClick={(event) => { event.stopPropagation(); }}>
 
         <div className={styles.addAnimalContainerHeader}>
-          <img src={sideBarPawLogo} alt="Logo paw" width={50}/>
+          <img src={sideBarPawLogo} alt="Logo paw" width={60}/>
           <p>
             Fill in the details below to create a new animal
           </p>

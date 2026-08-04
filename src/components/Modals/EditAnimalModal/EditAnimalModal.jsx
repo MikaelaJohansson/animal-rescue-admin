@@ -72,7 +72,7 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
         <div className={styles.editAnimalContainer} onClick={(event) =>{ event.stopPropagation(); }}>
 
             <div className={styles.editAnimalHeader}>
-                <img src={sideBarPawLogo} alt="Paw logo" width={50}/>
+                <img src={sideBarPawLogo} alt="Paw logo" width={60}/>
                 <p> Fill in the details below to update a new animal</p>
             </div>
 
