@@ -75,6 +75,7 @@ export default function Topbar({ userProfile }) {
         </button>
 
       </div>      */}
+      
 
       {/* avatar and user info */}
       <div className={styles.topBarUserInfoCointainer}>
