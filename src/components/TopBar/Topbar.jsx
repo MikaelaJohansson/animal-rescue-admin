@@ -59,8 +59,8 @@ export default function Topbar({ userProfile }) {
       </div>
 
 
-      {/* Notifications */}
-      <div className={styles.topBarNotification}>
+      {/* Notifications, not ready */}
+      {/* <div className={styles.topBarNotification}>
 
         <button type="button" aria-label="Notifications">
           <LuBell />
@@ -74,7 +74,7 @@ export default function Topbar({ userProfile }) {
           <LuCircleHelp />
         </button>
 
-      </div>     
+      </div>      */}
 
       {/* avatar and user info */}
       <div className={styles.topBarUserInfoCointainer}>

@@ -51,13 +51,17 @@
 
 
 /* sidebar Links */
-.sideBarNav{
+.sideBarNav {
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
     font-size: var(--font-size-M);
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
 .sidebarLink {
     display: flex;
     align-items: center;
@@ -67,6 +71,20 @@
     transition:
         background-color 0.2s ease,
         transform 0.2s ease;
+}
+
+.sidebarLink:focus {
+    outline: none;
+}
+
+.sidebarLink:focus-visible {
+    outline: 2px solid var(--color-text-white);
+    outline-offset: 3px;
+}
+
+.sidebarLinkExpanded:hover {
+    background-color: var(--color-sidebar-hover);
+    transform: translateX(3px);
 }
 .sidebarLinkActive {
     background-color: var(--color-primary);
