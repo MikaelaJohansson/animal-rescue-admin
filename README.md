@@ -6,6 +6,10 @@ The application helps staff manage rescue dogs, keep track of their medical info
 
 > ⚠️ This project is under active development and new features are continuously being added.
 
+## 🌐 Live Demo
+
+**Live application:** https://animal-rescue-admin.web.app
+
 ---
 
 ## ✨ Features
