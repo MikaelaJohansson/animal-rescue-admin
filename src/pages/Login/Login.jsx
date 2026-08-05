@@ -89,6 +89,7 @@ export default function Login({ setIsLoggedIn}) {
     function handleSelectDemoAccount(user){
         setEmail(user.email)
         setPassword(user.password)
+        setIsDemoMenuOpen(false)
     }
 
 
@@ -127,7 +128,7 @@ export default function Login({ setIsLoggedIn}) {
                     <input type="email" placeholder='Email' value={email} required onChange={(event) => setEmail(event.target.value)}/> 
                     <input type="password" placeholder='Password' value={password} required onChange={(event) => setPassword(event.target.value)}/>
                     {errorMessage && <p>{errorMessage}</p>}
-                    <button type='submit'className={styles.loginButton}>{isLoading ? "Logging in...." : "Log in"}</button>
+                    <button type="submit" className={styles.loginButton} disabled={isLoading}>{isLoading ? "Logging in..." : "Log in"}</button>
                 </form>
 
             </section>
