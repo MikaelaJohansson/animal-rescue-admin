@@ -123,22 +123,14 @@
 }
 
 /* scrollbar style */
+/* Hides the scrollbar but keeps horizontal scrolling */
+.tabButtons {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 .tabButtons::-webkit-scrollbar {
-  width: 2px;   
-  height: 2px;
-}
-
-.tabButtons::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.tabButtons::-webkit-scrollbar-thumb {
-  background: var(--color-sidebar-hover);
-  border-radius: var( --radius-M);
-}
-
-.tabButtons::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  display: none;
 }
 
 .tabContent {

@@ -96,14 +96,19 @@
 
 /* Demo Section */
 .loginDemoInfo{
-    height: 100%;
-    right: 0%;
+      height: 100%;
+    right: 0;
     position: absolute;
     margin-right: 1rem;
     display: flex;
     flex-direction: column;
     color: var(--color-danger);
     line-height: var(--line-height-S);
+    pointer-events: none;
+}
+.loginDemoButton,
+.loginDemoDropdownFileds {
+    pointer-events: auto;
 }
 
 .loginDemoButton{
@@ -131,3 +136,16 @@
     cursor: pointer;
     font-size: var(--font-size-S);
 }
+
+/* @media (max-width: 700px) {
+   
+
+    
+
+    .loginDemoDropdown {
+        width: 100%;
+        max-width: 320px;
+    }
+
+   
+} */
