@@ -1,7 +1,7 @@
 import DashboardStatCard from "../../components/DashboardStatCard/DashboardStatCard"
 import styles from "../Dashboard/Dashborad.module.css"
 import RecentlyAddedAnimals from "../Dashboard/RecentlyAddedAnimals/RecentlyAddedAnimals";
-import { Dog,Heart,CalendarDays,Users,FileText } from "lucide-react";
+import { Dog,Heart,ShieldCheck,Handshake,Stethoscope,Home } from "lucide-react";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -93,7 +93,7 @@ export default function Dashboard() {
           title="Adopted Animals"
           value={isLoading ? "..." : adoptedAnimals.length}
           statusText="Found a new home"
-          icon={CalendarDays}
+          icon={ShieldCheck}
           color="blue"
         />
 
@@ -101,7 +101,7 @@ export default function Dashboard() {
           title="Medical Hold"
           value={isLoading ? "..." : medicalHoldAnimals.length}
           statusText="Receiving medical care"
-          icon={Users}
+          icon={Stethoscope}
           color="orange"
         />
 
@@ -109,7 +109,7 @@ export default function Dashboard() {
           title="In Foster Care"
           value={isLoading ? "..." : fosterCareAnimals.length}
           statusText="Living with foster families"
-          icon={FileText}
+          icon={Handshake}
           color="yellow"
         />
       </div> 
