@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AppLayout from "./components/AppLayout/AppLayout";
 import Animals from "./pages/Animals/Animals";
 import AnimalDetails from "./pages/Animals/AnimalDetails/AnimalDetails";
+import Adoptions from "./pages/Adoptions/Adoptions";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -81,8 +82,11 @@ export default function App() {
         {/* AppLayout is responsible for the shared layout */}
         <Route element={<AppLayout userProfile={userProfile} />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          
           <Route path="/animals" element={<Animals />} />
           <Route path="/animals/:animalId" element={<AnimalDetails/>}/>
+
+          <Route path="/adoptions" element={<Adoptions/>}/>
         </Route>
 
       </Route>

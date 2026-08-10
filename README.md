@@ -149,8 +149,6 @@ Planned features include:
 
 This project has been developed by me as a personal portfolio project.
 
-AI tools have been used as a learning aid for explanations and problem solving when I got stuck. The application architecture, implementation, UI decisions, and continuous development have been carried out by me.
-
 ---
 
 ## 📌 Status

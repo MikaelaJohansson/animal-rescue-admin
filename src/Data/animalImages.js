@@ -18,6 +18,10 @@ import vizslaImage from "../assets/animals/vizsla.jpg";
 
 // Dictionary of animal images
 // Stores the key value in Firebase.
+
+// labradorRetriever: labradorRetrieverImage
+// ↑ key              ↑ importerade bilden
+
 const animalImages = {
   beagle: beagleImage,
   germanShepherd: germanShepherdImage,
