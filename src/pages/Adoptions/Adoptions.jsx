@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../firebase'
 import styles from "./Adoptions.module.css"
-import AdoptionsFilters from '../../components/Filters/AdoptionsFilters/adoptionsFilters'
+import AdoptionsFilters from '../../components/Filters/AdoptionsFilters/AdoptionsFilters'
 import AdoptionsTable from "../../components/Table/AdoptionsTable/AdoptionsTable";
 
 export default function Adoptions() {
