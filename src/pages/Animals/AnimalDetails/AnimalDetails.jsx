@@ -1,8 +1,8 @@
-import {useParams, useNavigate} from 'react-router-dom'
+import {useParams, useNavigate, Link} from 'react-router-dom'
 import {deleteDoc, doc, getDoc} from "firebase/firestore"
 import {db} from "../../../firebase"
 import { useEffect, useState } from "react";
-import {LuTrash2, LuPencilLine } from "react-icons/lu";
+import {LuTrash2, LuPencilLine,LuArrowLeft, } from "react-icons/lu";
 import StatusBadge from "../../../components/StatusBadge/StatusBadge"
 import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalDetails.module.css"
@@ -108,11 +108,14 @@ export default function AnimalDetails() {
   return (
     <div className={styles.animalDetailsMainContainer}>
 
+      <Link className={styles.animalDetailsLink} to={"/animals"}><LuArrowLeft />Back to animals</Link>
+
       <header className={styles.animalDetailsHeader}>
 
         <div  className={styles.animalDetailsHeaderText}>
           <h1>{animal.name}</h1>
           <StatusBadge status={animal.status}/>
+          
         </div>
        
         <div className={styles.animalDetailsbuttons}>
@@ -122,13 +125,7 @@ export default function AnimalDetails() {
             className={styles.animalDetailsbuttonsDelete}
             onClick={deleteAnimal}
             disabled={animal.isDemoProtected}
-            title={
-              animal.isDemoProtected
-                ? "Demo animal – deletion is disabled because this animal is linked to adoption applications."
-                : "Delete animal"
-            }
-          >
-            <LuTrash2 /> Delete
+            title={animal.isDemoProtected ? "Demo animal – deletion is disabled because this animal is linked to adoption applications." : "Delete animal" } > <LuTrash2 /> Delete
           </button>
 
         </div>     
@@ -228,6 +225,7 @@ export default function AnimalDetails() {
         </div>
 
       </section>
+
       
       {/* modal */}
       {isEditModalOpen && (<EditAnimalModal animal={animal} setAnimal={setAnimal} onClose={closeEditModal}/>)}

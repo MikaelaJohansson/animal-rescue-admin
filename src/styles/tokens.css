@@ -119,40 +119,6 @@
   --topbar-height: 64px;
 
   /* ======================================
-     COMPONENTS
-  ====================================== */
-
-  --button-padding-XL: 12px;
-  --button-padding-M: 10px;
-  --button-padding-L: 8px;
-  --button-padding-S: 5px;
-  --button-padding-XS: 3px;
-
-  --input-padding-XL: 12px;
-  --input-padding-M: 10px;
-  --input-padding-L: 8px;
-  --input-padding-S: 5px;
-  --input-padding-XS: 3px;
-
-  --card-padding: 24px;
-
-  --table-row-height: 56px;
-
-  --badge-height: 24px;
-
-  /* ======================================
-     IMAGES
-  ====================================== */
-
-  --animal-thumbnail-size: 40px;
-  --animal-gallery-size: 72px;
-  --animal-detail-image-size: 320px;
-
-  --avatar-S: 28px;
-  --avatar-M: 32px;
-  --avatar-L: 40px;
-
-  /* ======================================
      ICONS
   ====================================== */
 

@@ -10,6 +10,23 @@
   align-items: center;
   
 }
+
+.animalDetailsLink{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-L);
+}
+.animalDetailsLink:hover {
+  text-decoration: underline;
+}
+
+.animalDetailsLink svg {
+  flex-shrink: 0;
+}
+
 .animalDetailsHeaderText{
   display: flex;
   justify-content: center;
@@ -24,6 +41,7 @@
   scale: calc(1.03);
   cursor: pointer;
 }
+
 .animalDetailsbuttonsEdit{
   width: 100px;      
   padding: 0.2rem;
@@ -39,6 +57,7 @@
   background-color: var(--color-primary);
   color: white;
 }
+
 .animalDetailsbuttonsDelete{
   width: 100px;      
   padding: 0.2rem;
@@ -49,6 +68,10 @@
   font-size: 15px;
   font-weight: var(--font-weight-L);
   color: var(--color-statusBadge-red-font);
+}
+.animalDetailsbuttonsDelete:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 
