@@ -1,29 +1,34 @@
 .status{
-    padding: 0.3rem;
+    padding: 2px;
     border-radius: var(--radius-M);
 }
 
 .available{
     background: var(--color-statusBadge-green-background);
     color: var( --color-statusBadge-green-font);
+    border: 1px solid var(--color-statusBadge-green-font);
 }
 
 .adopted{
     background: var(--color-statusBadge-gray-background);
     color: var(--color-statusBadge-gray-font);
+    border: 1px solid var(--color-statusBadge-gray-font);
 }
 
 .reserved{
     background: var(--color-statusBadge-brown-background);
     color: var(--color-statusBadge-brown-font);
+    border: 1px solid var(--color-statusBadge-brown-font);
 }
 
 .medicalHold{
     background: var(--color-statusBadge-red-background);
     color: var(--color-statusBadge-red-font);
+    border: 1px solid var(--color-statusBadge-red-font);
 }
 
 .fosterCare{
     background: var(--color-statusBadge-blue-background);
     color: var(--color-statusBadge-blue-font);
+    border: 1px solid var(--color-statusBadge-blue-font);
 }

@@ -4,19 +4,19 @@ export default function StatusBadge({status}) {
 
     function getStatusClass (status) {
 
-        if(status === "Available"){
+        if(status === "Available" || status === "Approved"){
             return styles.available;
         }
-        if(status === "Adopted"){
+        if(status === "Adopted" || status === "In review"){
             return styles.adopted;
         }
         if(status === "Reserved"){
             return styles.reserved;
         }
-        if(status === "Medical Hold"){
+        if(status === "Medical Hold" || status === "Rejected"){
             return styles.medicalHold;
         }
-        if(status === "In Foster Care"){
+        if(status === "In Foster Care" || status === "New"){
             return styles.fosterCare
         }
         return ""

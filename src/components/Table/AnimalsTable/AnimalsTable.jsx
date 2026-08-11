@@ -1,8 +1,8 @@
+import {Link} from "react-router-dom"
+import { LuPencilLine } from "react-icons/lu";
 import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalsTable.module.css"
 import StatusBadge from "../../StatusBadge/StatusBadge";
-import {Link} from "react-router-dom"
-import { LuPencilLine } from "react-icons/lu";
 
 
 export default function AnimalsTable({animals}) {

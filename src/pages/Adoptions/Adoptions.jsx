@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import { db } from '../../firebase'
 import styles from "./Adoptions.module.css"
 import AdoptionsFilters from '../../components/Filters/AdoptionsFilters/AdoptionsFilters'

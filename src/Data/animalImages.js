@@ -16,11 +16,23 @@ import mixBreedImage from "../assets/animals/mixBreed.jpg";
 import weimaranerImage from "../assets/animals/sleutloff-weimaraner.jpg";
 import vizslaImage from "../assets/animals/vizsla.jpg";
 
-// Dictionary of animal images
-// Stores the key value in Firebase.
+// Dogs used for Adoption Applications
+import demoBichonFriséImage from "../assets/animals/demoBichonFrisé.jpg";
+import demoBulldogImage from "../assets/animals/demoBulldog.jpg";
+import demoChihuahuaImage from "../assets/animals/demoChihuahua.jpg";
+import demoGrandDanoisImage from "../assets/animals/demoGrandDanois.jpg";
+import demoGreyhoundImage from "../assets/animals/demoGreyhound.jpg";
+import demoMixImage from "../assets/animals/demoMix.jpg";
+import demoNakedDogImage from "../assets/animals/demoNakedDog.jpg";
+import demoPugImage from "../assets/animals/demoPug.jpg";
 
+
+// Dictionary of animal images.
+// The key is stored in Firebase.
+//
+// Example:
 // labradorRetriever: labradorRetrieverImage
-// ↑ key              ↑ importerade bilden
+// ↑ Firebase key      ↑ imported image
 
 const animalImages = {
   beagle: beagleImage,
@@ -39,7 +51,17 @@ const animalImages = {
   eurasier: eurasierImage,
   mixBreed: mixBreedImage,
   weimaraner: weimaranerImage,
-  vizsla: vizslaImage
+  vizsla: vizslaImage,
+
+  // Dogs used for Adoption Applications
+  demoBichonFrisé: demoBichonFriséImage,
+  demoBulldog: demoBulldogImage,
+  demoChihuahua: demoChihuahuaImage,
+  demoGrandDanois: demoGrandDanoisImage,
+  demoGreyhound: demoGreyhoundImage,
+  demoMix: demoMixImage,
+  demoNakedDog: demoNakedDogImage,
+  demoPug: demoPugImage
 };
 
 export default animalImages;
