@@ -71,6 +71,10 @@ export default function AnimalDetails() {
   // delete animal
   async function deleteAnimal(){
 
+    if (animal.isDemoProtected) {
+      return;
+    }
+
     const userConfirmedDelete = window.confirm(`Are you sure you want to delete ${animal.name}?`)
 
     if(userConfirmedDelete === false){
@@ -113,7 +117,20 @@ export default function AnimalDetails() {
        
         <div className={styles.animalDetailsbuttons}>
           <button className={styles.animalDetailsbuttonsEdit}  onClick={openEditModal}><LuPencilLine /> Edit</button>
-          <button className={styles.animalDetailsbuttonsDelete} onClick={deleteAnimal}><LuTrash2 /> Delete</button>
+
+          <button
+            className={styles.animalDetailsbuttonsDelete}
+            onClick={deleteAnimal}
+            disabled={animal.isDemoProtected}
+            title={
+              animal.isDemoProtected
+                ? "Demo animal – deletion is disabled because this animal is linked to adoption applications."
+                : "Delete animal"
+            }
+          >
+            <LuTrash2 /> Delete
+          </button>
+
         </div>     
 
       </header>

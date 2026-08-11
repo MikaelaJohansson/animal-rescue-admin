@@ -54,7 +54,10 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
 
             await updateDoc( animalDocumentReference, updatedAnimal );
 
-            setAnimal({ id: animal.id,  ...updatedAnimal });
+            setAnimal({
+                ...animal,
+                ...updatedAnimal
+            });
 
             onClose();
 
@@ -73,7 +76,7 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
 
             <div className={styles.editAnimalHeader}>
                 <img src={sideBarPawLogo} alt="Paw logo" width={60}/>
-                <p> Fill in the details below to update a new animal</p>
+                <p>Update the animal details below</p>
             </div>
 
             <div className={styles.editAnimalContainerLogo}>
