@@ -1,6 +1,8 @@
 .status{
     padding: 2px;
     border-radius: var(--radius-M);
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    white-space: nowrap;
 }
 
 .available{
@@ -31,4 +33,5 @@
     background: var(--color-statusBadge-blue-background);
     color: var(--color-statusBadge-blue-font);
     border: 1px solid var(--color-statusBadge-blue-font);
+    
 }

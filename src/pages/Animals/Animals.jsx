@@ -86,6 +86,11 @@ export default function Animals() {
   return (
     <div className={styles.animalsMainContainer}>
 
+      <div className={styles.animalsHeader}>
+        <h1>Animals in Our Care</h1>
+        <p>View and manage all animals currently in our care.</p>
+      </div>
+
       <AnimalsFilters  
         searchText={searchText}  
         setSearchText={setSearchText}  

@@ -198,8 +198,8 @@
 
   .animalDetailsData img {
     width: 100%;
-    height: clamp(220px, 70vw, 360px);
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
   }
 
   .animalDetailsOverview {
