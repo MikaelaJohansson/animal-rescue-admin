@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from "./AnimalsFilters.module.css"
 
 export default function AnimalsFilters(

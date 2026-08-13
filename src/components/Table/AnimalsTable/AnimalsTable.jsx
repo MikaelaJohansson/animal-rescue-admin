@@ -9,7 +9,7 @@ export default function AnimalsTable({animals}) {
 
 
   return (
-    <div className={styles.tableMainCointainer }>
+    <div className={styles.tableMainContainer }>
 
         <table className={styles.tableContainer}>
 

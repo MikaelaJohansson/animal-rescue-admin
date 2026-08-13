@@ -55,6 +55,7 @@ export default function Adoptions() {
 
     },[])
 
+    // filter name,email,animal
     const filteredApplications  = applications.filter((application)=>{
 
         const search = searchText.toLowerCase();
@@ -72,10 +73,9 @@ export default function Adoptions() {
         )
     })
 
-    let sortedApplications = filteredApplications
 
-    console.log(selectedDateSort);
-    
+    // filter date
+    let sortedApplications = filteredApplications
     if(selectedDateSort  === "Newest first"){
 
         sortedApplications = filteredApplications.toSorted((a,b)=>{
@@ -83,7 +83,6 @@ export default function Adoptions() {
         })
 
     }
-
     if(selectedDateSort === "Oldest first" ){
 
         sortedApplications = filteredApplications.toSorted((a, b) => {

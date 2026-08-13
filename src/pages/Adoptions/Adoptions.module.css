@@ -19,4 +19,9 @@
   .adoptionsContainer {
     margin: 0.5rem;
   }
+  .adoptionsHeader{
+    margin: 1rem;
+    margin-top: 3rem;
+  }
+
 }
