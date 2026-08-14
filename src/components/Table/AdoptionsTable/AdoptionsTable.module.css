@@ -26,6 +26,20 @@
   border-top: 1.5px solid var(--color-border);
 }
 
+.tableBodyRowEmail{
+  color: var(--color-text-muted-dark);
+ 
+}
+
+.tableBodyRowAnimal{
+
+  display: flex;
+align-items: center;
+gap: 1rem;
+  
+  
+  
+}
 
 .tableBodyRow td {
   font-size: var(--font-size-L);
@@ -50,9 +64,10 @@
 .tableBodyRowImg {
   border-radius: var(--radius-S);
   display: block;
-  margin: 0.2rem;
+  margin: 0.1rem;
   object-fit: cover;
-  object-position: top;
+  height: 80px;
+  width: 80px;
 }
 
 

@@ -10,6 +10,7 @@ import AppLayout from "./components/AppLayout/AppLayout";
 import Animals from "./pages/Animals/Animals";
 import AnimalDetails from "./pages/Animals/AnimalDetails/AnimalDetails";
 import Adoptions from "./pages/Adoptions/Adoptions";
+import AdoptionDetails from "./pages/Adoptions/AdoptionDetails/AdoptionDetails";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -87,6 +88,7 @@ export default function App() {
           <Route path="/animals/:animalId" element={<AnimalDetails/>}/>
 
           <Route path="/adoptions" element={<Adoptions/>}/>
+          <Route path="/adoptionDetails/:adoptionId" element={<AdoptionDetails/>}/>
         </Route>
 
       </Route>

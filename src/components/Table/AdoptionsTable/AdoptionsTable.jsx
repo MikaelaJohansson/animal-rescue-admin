@@ -18,10 +18,6 @@ export default function AdoptionsTable({ applications }) {
 
         <thead>
           <tr className={styles.tableHeadRow}>
-            <th>
-              Photo
-            </th>
-
 
             <th>
               Applicant
@@ -61,25 +57,28 @@ export default function AdoptionsTable({ applications }) {
             return (
               <tr key={application.id} className={styles.tableBodyRow} >
 
-
                 <td>
-                  <img
-                    className={styles.tableBodyRowImg}
-                    src={animalImage}
-                    alt={application.animalName}
-                    width={80}
-                    loading="lazy"
-                  />
+
+                  <div>{application.applicantName}</div>
+
+                  <div className={styles.tableBodyRowEmail}>
+                    {application.email}
+                  </div>
+
                 </td>
 
 
                 <td>
-                  {application.applicantName}
-                </td>
+                  <div className={styles.tableBodyRowAnimal}>
+                    <img
+                      className={styles.tableBodyRowImg}
+                      src={animalImage}
+                      alt={application.animalName}
+                      loading="lazy"
+                    />
 
-
-                <td>
-                  {application.animalName}
+                    <span>{application.animalName}</span>
+                  </div>
                 </td>
 
 
@@ -94,7 +93,7 @@ export default function AdoptionsTable({ applications }) {
 
 
                 <td className={styles.tableBodyRowTd}>
-                  <Link>
+                  <Link to={`/adoptionDetails/${application.id}`}>
                     <LuPencilLine />
                   </Link>
                 </td>
