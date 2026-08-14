@@ -12,7 +12,7 @@
     flex-wrap: wrap;
 }
 .adoptionDetailsContainer h2{
-   color: var(--color-font-black);
+   color: var();
 }
 
 .adoptionDetailsApplicant,

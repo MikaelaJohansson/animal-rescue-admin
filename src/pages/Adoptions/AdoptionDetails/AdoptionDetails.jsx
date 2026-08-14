@@ -12,6 +12,7 @@ export default function AdoptionDetails() {
     const [errorMessage, setErrorMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [applicationData, setApplicationData] = useState("")
+    const [activeTab, setActiveTab] = useState("overview");
 
     const {adoptionId} = useParams()
 
@@ -68,6 +69,7 @@ export default function AdoptionDetails() {
     <div className={styles.adoptionDetailsMainContainer}>
 
         <p className={styles.adoptionDetailsLink}>
+            <h1>OBS....Under construction!!!!</h1>
             <Link to={"/adoptions"}>back to aplications</Link> <br />
         </p>
         
@@ -92,6 +94,80 @@ export default function AdoptionDetails() {
 
             <div className={styles.adoptionDetailsDetails}>
                 <h2>Application Detils</h2>
+                   <section className={styles.animalDetailsTabs}>
+                
+                        <div className={styles.tabButtons}>
+                
+                          <button
+                            type="button"
+                            className={activeTab === "experience" ? styles.activeTab : ""}
+                            onClick={() => setActiveTab("experience")}
+                          >
+                            experience
+                          </button>
+                
+                          <button
+                            type="button"
+                            className={activeTab === "workSituation" ? styles.activeTab : ""}
+                            onClick={() => setActiveTab("workSituation")}
+                          >
+                            workSituation
+                          </button>
+                
+                          <button
+                            type="button"
+                            className={activeTab === "notes" ? styles.activeTab : ""}
+                            onClick={() => setActiveTab("notes")}
+                          >
+                            Notes
+                          </button>
+                
+                          <button
+                            type="button"
+                            className={activeTab === "General" ? styles.activeTab : ""}
+                            onClick={() => setActiveTab("General")}
+                          >
+                            General
+                          </button>
+                
+                        </div>
+                
+                        <div className={styles.tabContent}>
+                
+                          {activeTab === "experience" && (
+                            <div>
+                              <h3>experience</h3>
+                              <p>{applicationData.experience}</p>
+                            </div>
+                          )}
+                
+                          {activeTab === "workSituation" && (
+                            <div>
+                              <h3>workSituation</h3>
+                              <p>{applicationData.workSituation}</p>
+                            </div>
+                          )}
+                
+                          {activeTab === "notes" && (
+                            <div>
+                              <h3>Notes</h3>
+                              <p>{applicationData.notes}</p>
+                            </div>
+                          )}
+                
+                          {activeTab === "General" && (
+                            <div>
+                              <h3>General</h3>
+                              <p>{applicationData.hasGarden ? "has garden" : "No garden"}</p>
+                              <p>{applicationData.hasOtherPets ? "has other pets" : "No other pets"}</p>
+                              <p>{applicationData.householdMembers ? applicationData.householdMembers : "Singel life"}</p>
+                              <p>{applicationData.housingType}</p>
+                            </div>
+                          )}
+                
+                        </div>
+                
+                      </section>
             </div>
 
             <div className={styles.adoptionDetailsStatus}>
