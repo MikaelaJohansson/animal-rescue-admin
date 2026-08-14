@@ -1,10 +1,4 @@
-.adoptionDetailsMainContainer{
-    
-}
 
-.adoptionDetailsLink{
-
-}
 
 .adoptionDetailsContainer{
     display: flex;
@@ -12,7 +6,7 @@
     flex-wrap: wrap;
 }
 .adoptionDetailsContainer h2{
-   color: var();
+   color: var(--color-font-black);
 }
 
 .adoptionDetailsApplicant,
