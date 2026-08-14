@@ -4,7 +4,8 @@
 
 
 .tableContainer {
-  width: 90%;
+   width: 90%;
+  min-width: 750px;
   border-collapse: collapse;
   margin: 0 auto;
   margin-bottom: 1rem;
