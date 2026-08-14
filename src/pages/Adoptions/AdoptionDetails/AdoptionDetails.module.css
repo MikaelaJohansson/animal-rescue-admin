@@ -1,0 +1,27 @@
+.adoptionDetailsMainContainer{
+    
+}
+
+.adoptionDetailsLink{
+
+}
+
+.adoptionDetailsContainer{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.adoptionDetailsContainer h2{
+   color: var(--color-font-black);
+}
+
+.adoptionDetailsApplicant,
+.adoptionDetailsRequest,
+.adoptionDetailsDetails,
+.adoptionDetailsStatus{
+    border: 1px solid gray;
+    padding: 1rem;
+    width: fit-content;
+    height: fit-content;
+    color: var(--color-text-muted-dark);
+}
