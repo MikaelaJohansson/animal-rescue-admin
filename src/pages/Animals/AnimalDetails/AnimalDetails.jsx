@@ -45,14 +45,17 @@ export default function AnimalDetails() {
         // Checks if the document exists before reading its data.
         if (animalDocumentSnapshot.exists()) {
 
-          // Creates an animal object and includes the document ID.
+          const savedAnimalStatuses = JSON.parse(sessionStorage.getItem("animalStatuses")) || {}
+
+          const savedStatus = savedAnimalStatuses[animalId]
+
           const animalData = {
             id: animalDocumentSnapshot.id,
-            ...animalDocumentSnapshot.data()
-          };
+            ...animalDocumentSnapshot.data(),
+            status: savedStatus || animalDocumentSnapshot.data().status
+          }
 
-          // Stores the animal data in state.
-          setAnimal(animalData);
+          setAnimal(animalData)
 
         } else {
           console.error("Animal not found.");

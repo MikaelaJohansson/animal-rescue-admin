@@ -26,13 +26,20 @@ export default function Dashboard() {
         // Goes to the saved path and retrieves everything from it.
         const snapshot = await getDocs(animalCollection)
 
-        // Loops through all retrieved documents and creates a new array with the document ID and data.
-        const animalData = snapshot.docs.map((document)=>{
+        const savedAnimalStatuses = JSON.parse(sessionStorage.getItem("animalStatuses")) || {}
 
-          return{
-            id: document.id, ...document.data()
+        const animalData = snapshot.docs.map((document) => {
+
+          const animal = document.data()
+
+          const savedStatus = savedAnimalStatuses[document.id]
+
+          return {
+            id: document.id,
+            ...animal,
+            status: savedStatus || animal.status
           }
-             
+
         })
 
         setAnimals(animalData)

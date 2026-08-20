@@ -18,42 +18,66 @@ export default function Adoptions() {
 
 
     // Fetches applications from Firestore.
-    useEffect(()=>{
+    useEffect(() => {
 
-        async function getApplications(){
+        async function getApplications() {
             
-            try{
+            try {
 
                 setIsLoading(true)
 
-                const applicationsCollection = collection(db,"adoptionApplications")
+                const applicationsCollection = collection(
+                    db,
+                    "adoptionApplications"
+                )
 
                 const snapshot = await getDocs(applicationsCollection)
 
+
+                // Get saved demo statuses from sessionStorage
+                const savedStatuses = JSON.parse(sessionStorage.getItem("adoptionStatuses")) || {}
+
+
                 const applicationsData = snapshot.docs.map((document) => {
 
-                    return {
-                    id: document.id,
-                    ...document.data()
-                    };
+                    const application = document.data()
 
-                });
+                    const savedStatus = savedStatuses[document.id]
+
+                    return {
+                        id: document.id,
+                        ...application,
+                        status: savedStatus || application.status
+                    }
+
+                })
+
 
                 setApplications(applicationsData)
                 setErrorMessage("")
 
-            }catch(error){
-                console.error("Failed to load adoption applications:", error);
-                setErrorMessage("Failed to load adoption applications.");
+            } catch (error) {
 
-            }finally{
-                setIsLoading(false);
+                console.error(
+                    "Failed to load adoption applications:",
+                    error
+                )
+
+                setErrorMessage(
+                    "Failed to load adoption applications."
+                )
+
+            } finally {
+
+                setIsLoading(false)
+
             }
         }
 
-        getApplications();
 
-    },[])
+        getApplications()
+
+    }, [])
 
     // filter name,email,animal
     const filteredApplications  = applications.filter((application)=>{

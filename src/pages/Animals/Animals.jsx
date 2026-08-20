@@ -31,17 +31,24 @@ export default function Animals() {
 
         const snapshot = await getDocs(animalCollection)
 
-        const animalData = snapshot.docs.map((doc)=>{
+        const savedAnimalStatuses = JSON.parse(sessionStorage.getItem("animalStatuses")) || {}
+
+        const animalData = snapshot.docs.map((document) => {
+
+          const animal = document.data()
+
+          const savedStatus = savedAnimalStatuses[document.id]
 
           return {
-            id: doc.id, ...doc.data()
+            id: document.id,
+            ...animal,
+            status: savedStatus || animal.status
           }
 
         })
 
         setAnimals(animalData)
-
-
+ 
       }catch(error){
         setErrorMessage("Failed to load animals.");
       }finally{
