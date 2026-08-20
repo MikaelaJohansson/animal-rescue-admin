@@ -77,3 +77,18 @@
   color:var(--color-cards-darkOrange);
 }
 
+.purpleBackground {
+  background-color: var(--color-cards-lightPurple);
+  color: var(--color-cards-darkPurple);
+}
+.purpleText {
+  color: var(--color-cards-darkPurple);
+}
+
+.pinkBackground {
+  background-color: var(--color-cards-lightPink);
+  color: var(--color-cards-darkPink);
+}
+.pinkText {
+  color: var(--color-cards-darkPink);
+}

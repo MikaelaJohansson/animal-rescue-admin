@@ -106,7 +106,7 @@ export default function AdoptionDetails() {
     if (selectedStatus === "Approved") {
 
       // Approved application = animal becomes adopted
-      savedAnimalStatuses[applicationData.animalId] = "Adopted"
+      savedAnimalStatuses[applicationData.animalId] = "Reserved"
 
     } else {
 

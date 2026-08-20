@@ -59,6 +59,12 @@
   --color-cards-darkYellow:   #c3c010;
   --color-cards-lightYellow:    #fdfdd6;
 
+  --color-cards-darkPurple: #7b3fa1;
+  --color-cards-lightPurple: #f1e5f7;
+
+  --color-cards-darkPink: #c0447a;
+  --color-cards-lightPink: #fbe4ee;
+
   /* statusBadge color */
 
   --color-statusBadge-green-font: #2e7d32;
@@ -75,7 +81,10 @@
 
    --color-statusBadge-blue-font: #1565c0;
    --color-statusBadge-blue-background: #ddeeff;
-  
+   
+   --color-statusBadge-purple-font: #6b3fa0;
+   --color-statusBadge-purple-background: #f0e6fa;
+   --color-statusBadge-purple-border: #9b72cf;
 
   /* ======================================
      TYPOGRAPHY

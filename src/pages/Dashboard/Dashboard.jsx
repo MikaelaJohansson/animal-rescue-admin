@@ -1,7 +1,7 @@
 import DashboardStatCard from "../../components/DashboardStatCard/DashboardStatCard"
 import styles from "../Dashboard/Dashborad.module.css"
 import RecentlyAddedAnimals from "../Dashboard/RecentlyAddedAnimals/RecentlyAddedAnimals";
-import { Dog,Heart,ShieldCheck,Handshake,Stethoscope,Home } from "lucide-react";
+import { Dog,Heart,ShieldCheck,Handshake,Stethoscope,Hourglass } from "lucide-react";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -73,6 +73,10 @@ export default function Dashboard() {
     return animal.status === "In Foster Care"
   })
 
+   const reservedAnimals = animals.filter((animal)=>{
+    return animal.status === "Reserved"
+  })
+
 
   return (
     <section className={styles.dashboardCointainer}>
@@ -85,7 +89,7 @@ export default function Dashboard() {
           value={isLoading ? "..." : animals.length}
           statusText="Registered animals"
           icon={Dog}
-          color="green"
+          color="pink"
         />
 
         <DashboardStatCard
@@ -93,7 +97,7 @@ export default function Dashboard() {
           value={isLoading ? "..." : availableAnimals.length}
           statusText="Ready for adoption"
           icon={Heart}
-          color="red"
+          color="green"
         />
 
         <DashboardStatCard
@@ -101,7 +105,7 @@ export default function Dashboard() {
           value={isLoading ? "..." : adoptedAnimals.length}
           statusText="Found a new home"
           icon={ShieldCheck}
-          color="blue"
+          color="purple"
         />
 
         <DashboardStatCard
@@ -109,7 +113,7 @@ export default function Dashboard() {
           value={isLoading ? "..." : medicalHoldAnimals.length}
           statusText="Receiving medical care"
           icon={Stethoscope}
-          color="orange"
+          color="red"
         />
 
         <DashboardStatCard
@@ -117,7 +121,15 @@ export default function Dashboard() {
           value={isLoading ? "..." : fosterCareAnimals.length}
           statusText="Living with foster families"
           icon={Handshake}
-          color="yellow"
+          color="blue"
+        />
+
+        <DashboardStatCard
+          title="Reserved Animals"
+          value={isLoading ? "..." : reservedAnimals.length}
+          statusText="Reserved Animals"
+          icon={Hourglass}
+          color="orange"
         />
       </div> 
 

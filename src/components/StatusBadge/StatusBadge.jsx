@@ -7,8 +7,11 @@ export default function StatusBadge({status}) {
         if(status === "Available" || status === "Approved"){
             return styles.available;
         }
-        if(status === "Adopted" || status === "In Review"){
+        if(status === "Adopted"){
             return styles.adopted;
+        }
+        if(status === "In Review"){
+            return styles.inReview;
         }
         if(status === "Reserved"){
             return styles.reserved;

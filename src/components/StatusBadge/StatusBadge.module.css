@@ -11,7 +11,13 @@
     border: 1px solid var(--color-statusBadge-green-font);
 }
 
-.adopted{
+.adopted {
+  background: var(--color-statusBadge-purple-background);
+  color: var(--color-statusBadge-purple-font);
+  border: 1px solid var(--color-statusBadge-purple-border);
+}
+
+.inReview{
     background: var(--color-statusBadge-gray-background);
     color: var(--color-statusBadge-gray-font);
     border: 1px solid var(--color-statusBadge-gray-font);
