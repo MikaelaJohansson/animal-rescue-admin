@@ -127,7 +127,7 @@ export default function Dashboard() {
         <DashboardStatCard
           title="Reserved Animals"
           value={isLoading ? "..." : reservedAnimals.length}
-          statusText="Reserved Animals"
+          statusText="Awaiting adoption"
           icon={Hourglass}
           color="orange"
         />
