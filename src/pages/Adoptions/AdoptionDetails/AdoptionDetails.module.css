@@ -142,6 +142,9 @@
     display: flex;
     flex-direction: column;
 }
+.adoptionDetailsStatus h2{
+    text-decoration: underline;
+}
 
 .adoptionDetailsStatus select,
 .adoptionDetailsStatus button {
