@@ -140,7 +140,7 @@ export default function AnimalDetails() {
           <img src={animalImage} alt={animal.name} />
         </div>
         <div className={styles.animalDetailsOverview}>
-          <h3>Overview</h3>
+          <h2>Overview</h2>
 
           <div className={styles.animalDetailsDb}>
             <p>Status: <StatusBadge status={animal.status}/> </p>

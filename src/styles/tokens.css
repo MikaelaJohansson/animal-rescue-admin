@@ -47,8 +47,8 @@
   --color-cards-darkGreen: rgb(37, 56, 47);
   --color-cards-lightGreen:  rgb(231, 241, 234);
 
-  --color-cards-darkRed: #b70b22;
-  --color-cards-lightRed:  #faeded;
+  --color-cards-darkRed: #860f1f;
+  --color-cards-lightRed:  #f9e0e0;
 
   --color-cards-darkBlue: #2473ea;
   --color-cards-lightBlue:   #eaf2fa;
@@ -62,7 +62,7 @@
   --color-cards-darkPurple: #7b3fa1;
   --color-cards-lightPurple: #f1e5f7;
 
-  --color-cards-darkPink: #c0447a;
+  --color-cards-darkPink: #e65292;
   --color-cards-lightPink: #fbe4ee;
 
   /* statusBadge color */
@@ -95,7 +95,7 @@
 
   --font-size-XS: 8px;
   --font-size-S: 13px;
-  --font-size-M: 16px;
+  --font-size-M: 17px;
   --font-size-L: 20px;
   --font-size-XL: 30px;
 

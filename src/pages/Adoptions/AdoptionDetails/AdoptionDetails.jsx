@@ -12,7 +12,7 @@ export default function AdoptionDetails() {
   const [errorMessage, setErrorMessage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [applicationData, setApplicationData] = useState("")
-  const [activeTab, setActiveTab] = useState("overview")
+  const [activeTab, setActiveTab] = useState("general")
   const [selectedStatus, setSelectedStatus] = useState("")
 
   const { adoptionId } = useParams()
@@ -149,10 +149,8 @@ export default function AdoptionDetails() {
     <div className={styles.adoptionDetailsMainContainer}>
 
       <div className={styles.adoptionDetailsLink}>
-        <h1>OBS....Under construction!!!!</h1>
-
         <Link to="/adoptions">
-          back to applications
+          Back to applications
         </Link>
       </div>
 
@@ -166,15 +164,15 @@ export default function AdoptionDetails() {
           <h2>Applicant information</h2>
 
           <p>
-            Name: {applicationData.applicantName}
+            <strong>Name:</strong> {applicationData.applicantName}
           </p>
 
           <p>
-            Email: {applicationData.email}
+            <strong>Email:</strong> {applicationData.email}
           </p>
 
           <p>
-            Phone: {applicationData.phone}
+            <strong>Phone:</strong> {applicationData.phone}
           </p>
 
         </div>
@@ -186,14 +184,21 @@ export default function AdoptionDetails() {
 
           <h2>Requested animal</h2>
 
-          <img
-            src={animalImage}
-            alt={applicationData.animalName}
-          />
+          <div className={styles.adoptionDetailsData}>
+            <img
+              src={animalImage}
+              alt={applicationData.animalName}
+              width={100}
+            />
 
-          <p>{applicationData.animalName}</p>
+            <div>
+             <strong> <p>{applicationData.animalName}</p></strong>
 
-          <StatusBadge status={selectedStatus} />
+              <StatusBadge status={selectedStatus} />
+            </div>
+            
+          </div>
+          
 
         </div>
 
@@ -204,9 +209,21 @@ export default function AdoptionDetails() {
 
           <h2>Application Details</h2>
 
-          <section className={styles.animalDetailsTabs}>
+          <section className={styles.adoptionDetailsTabs}>
 
             <div className={styles.tabButtons}>
+
+              <button
+                type="button"
+                className={
+                  activeTab === "general"
+                    ? styles.activeTab
+                    : ""
+                }
+                onClick={() => setActiveTab("general")}
+              >
+                General
+              </button>
 
               <button
                 type="button"
@@ -246,19 +263,6 @@ export default function AdoptionDetails() {
                 Notes
               </button>
 
-
-              <button
-                type="button"
-                className={
-                  activeTab === "general"
-                    ? styles.activeTab
-                    : ""
-                }
-                onClick={() => setActiveTab("general")}
-              >
-                General
-              </button>
-
             </div>
 
 
@@ -290,29 +294,31 @@ export default function AdoptionDetails() {
 
               {activeTab === "general" && (
                 <div>
-
                   <h3>General</h3>
 
-                  <p>
-                    {applicationData.hasGarden
-                      ? "Has garden"
-                      : "No garden"}
-                  </p>
+                  <ul className={styles.generalList}>
+                    <li>
+                      {applicationData.hasGarden
+                        ? "Has garden"
+                        : "No garden"}
+                    </li>
 
-                  <p>
-                    {applicationData.hasOtherPets
-                      ? "Has other pets"
-                      : "No other pets"}
-                  </p>
+                    <li>
+                      {applicationData.hasOtherPets
+                        ? "Has other pets"
+                        : "No other pets"}
+                    </li>
 
-                  <p>
-                    {applicationData.householdMembers
-                      ? applicationData.householdMembers
-                      : "Single household"}
-                  </p>
+                    <li>
+                      {applicationData.householdMembers
+                        ? applicationData.householdMembers
+                        : "Single household"}
+                    </li>
 
-                  <p>{applicationData.housingType}</p>
-
+                    <li>
+                      {applicationData.housingType}
+                    </li>
+                  </ul>
                 </div>
               )}
 
@@ -330,7 +336,7 @@ export default function AdoptionDetails() {
           <h2>Status</h2>
 
           <label htmlFor="applicationStatus">
-            Current status
+           <strong><h3>Current status</h3></strong>
           </label>
 
           <select
@@ -360,10 +366,7 @@ export default function AdoptionDetails() {
           </select>
 
 
-          <button
-            type="button"
-            onClick={handleUpdateStatus}
-          >
+          <button className={styles.adoptionDetailsStatusbutton} type="button" onClick={handleUpdateStatus}>
             Update Status
           </button>
 
