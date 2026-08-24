@@ -110,7 +110,7 @@ export default function Login({ setIsLoggedIn}) {
                 <aside className={styles.loginDemoInfo}>
 
                     <h2>Demo Account</h2>
-                    <button className={styles.loginDemoButton} type='button' onClick={handleDemoMenu} disabled={isLoading}>Use demo account for</button>
+                    <button className={styles.loginDemoButton} type='button' onClick={handleDemoMenu} disabled={isLoading}>Demo accounts</button>
 
                     {/* Demo account menu with selectable test users */}
                     {isDemoMenuOpen && 

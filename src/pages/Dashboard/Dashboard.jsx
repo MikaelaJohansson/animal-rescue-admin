@@ -90,6 +90,7 @@ export default function Dashboard() {
           statusText="Registered animals"
           icon={Dog}
           color="pink"
+          to={"/animals"}
         />
 
         <DashboardStatCard
@@ -98,6 +99,7 @@ export default function Dashboard() {
           statusText="Ready for adoption"
           icon={Heart}
           color="green"
+          to={"/animals?status=Available"}
         />
 
         <DashboardStatCard
@@ -106,6 +108,7 @@ export default function Dashboard() {
           statusText="Found a new home"
           icon={ShieldCheck}
           color="purple"
+          to="/animals?status=Adopted"
         />
 
         <DashboardStatCard
@@ -114,6 +117,7 @@ export default function Dashboard() {
           statusText="Receiving medical care"
           icon={Stethoscope}
           color="red"
+          to={"/animals?status=Medical Hold"}
         />
 
         <DashboardStatCard
@@ -122,6 +126,7 @@ export default function Dashboard() {
           statusText="Living with foster families"
           icon={Handshake}
           color="blue"
+          to={"/animals?status=In Foster Care"}
         />
 
         <DashboardStatCard
@@ -130,6 +135,7 @@ export default function Dashboard() {
           statusText="Awaiting adoption"
           icon={Hourglass}
           color="orange"
+           to={"/animals?status=Reserved"}
         />
       </div> 
 

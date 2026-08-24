@@ -1,4 +1,4 @@
-
+import { useSearchParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import {collection, getDocs} from "firebase/firestore"
 import {db} from "../../firebase"
@@ -9,14 +9,18 @@ import AddAnimalModal from "../../components/Modals/AddAnimalModal/AddAnimalModa
 
 export default function Animals() {
 
+  const [searchParams] = useSearchParams()
+
+  const statusFromUrl = searchParams.get("status") || ""
+
   const [animals, setAnimals] = useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [searchText,setSearchText] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("")
+  const [selectedStatus, setSelectedStatus] = useState(statusFromUrl)
   const [selectedGender, setSelectedGender] = useState("")
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
-  
+
 
   // Fetches animals and their IDs from the database.
   useEffect(()=>{
