@@ -135,7 +135,7 @@ export default function Dashboard() {
           statusText="Awaiting adoption"
           icon={Hourglass}
           color="orange"
-           to={"/animals?status=Reserved"}
+          to={"/animals?status=Reserved"}
         />
       </div> 
 

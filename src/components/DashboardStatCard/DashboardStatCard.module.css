@@ -9,6 +9,9 @@
   background-color: white;
   min-height: 145px;
 }
+.dashboardStatCardContainer:hover{
+  scale: 1.03;
+}
 
 .dashboardStatCardIcon{
   display: flex;
