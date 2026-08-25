@@ -3,7 +3,7 @@ import styles from "./Calendar.module.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import {addDoc,collection, getDocs,query, where} from "firebase/firestore";
+import {addDoc,collection, getDocs,query, where, deleteDoc} from "firebase/firestore";
 import { auth, db } from "../../firebase";
 
 
@@ -21,7 +21,6 @@ export default function Calendar() {
     }
 
 
-    // Saves a new calendar event to Firestore
     // Saves a new calendar event to Firestore
     async function handleSaveEvent(event) {
 
@@ -70,37 +69,38 @@ export default function Calendar() {
 
         async function getCalendarEvents() {
 
-        const currentUser = auth.currentUser;
+            const currentUser = auth.currentUser;
 
-        if (!currentUser) {
-            return;
-        }
+            if (!currentUser) {
+                return;
+            }
 
-        try {
+            try {
 
-            const calendarEventsCollection = collection(db, "calendarEvents");
+                const calendarEventsCollection = collection(db, "calendarEvents");
 
-            const calendarEventsQuery = query( calendarEventsCollection, where("userId", "==", currentUser.uid) );
+                const calendarEventsQuery = query( calendarEventsCollection, where("userId", "==", currentUser.uid) );
 
-            const snapshot = await getDocs(calendarEventsQuery);
+                const snapshot = await getDocs(calendarEventsQuery);
 
-            const eventData = snapshot.docs.map((document) => {
+                const eventData = snapshot.docs.map((document) => {
 
-                const data = document.data();
+                    const data = document.data();
 
-                return {
-                    id: document.id,
-                    title: data.title,
-                    start: `${data.date}T${data.time}`
-                };
+                    return {
+                        id: document.id,
+                        title: data.title,
+                        start: `${data.date}T${data.time}`
+                    };
 
-            });
+                });
 
-            setCalendarEvents(eventData);
+                setCalendarEvents(eventData);
 
-        } catch (error) {
-            console.error("Could not load calendar events:", error);
-        }
+            } catch (error) {
+                console.error("Could not load calendar events:", error);
+            }
+
         }
 
         getCalendarEvents();
