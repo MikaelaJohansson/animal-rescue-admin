@@ -11,6 +11,7 @@ import Animals from "./pages/Animals/Animals";
 import AnimalDetails from "./pages/Animals/AnimalDetails/AnimalDetails";
 import Adoptions from "./pages/Adoptions/Adoptions";
 import AdoptionDetails from "./pages/Adoptions/AdoptionDetails/AdoptionDetails";
+import Calendar from "./pages/Calendar/Calendar";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -89,6 +90,8 @@ export default function App() {
 
           <Route path="/adoptions" element={<Adoptions/>}/>
           <Route path="/adoptionDetails/:adoptionId" element={<AdoptionDetails/>}/>
+
+          <Route path="/calendar" element={<Calendar/>} />
         </Route>
 
       </Route>

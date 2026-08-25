@@ -54,6 +54,7 @@ export default function Animals() {
         setAnimals(animalData)
  
       }catch(error){
+        console.error(error)
         setErrorMessage("Failed to load animals.");
       }finally{
         setIsLoading(false);
