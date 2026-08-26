@@ -3,8 +3,18 @@ import styles from "./Calendar.module.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import {addDoc,collection, getDocs,query, where, deleteDoc} from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+    deleteDoc,
+    doc,
+    updateDoc
+} from "firebase/firestore";
 import { auth, db } from "../../firebase";
+import CalendarEventModal from "../../components/Modals/CalendarEventModal/CalendarEventModal";
 
 
 export default function Calendar() {
@@ -13,11 +23,40 @@ export default function Calendar() {
     const [eventTitle, setEventTitle] = useState("");
     const [eventTime, setEventTime] = useState("");
     const [calendarEvents, setCalendarEvents] = useState([]);
+    const [selectedEventId, setSelectedEventId] = useState("");
 
 
-    // Gets the date that the user clicks in the calendar
+    // Opens the modal for a new event
     function handleDateClick(info) {
+
+        setSelectedEventId("");
         setSelectedDate(info.dateStr);
+        setEventTitle("");
+        setEventTime("");
+    }
+
+
+    // Opens the modal with the selected event
+    function handleEventClick(info) {
+
+        setSelectedEventId(info.event.id);
+        setEventTitle(info.event.title);
+
+        const eventDate = info.event.startStr.split("T")[0];
+        const eventTime = info.event.startStr.split("T")[1].slice(0, 5);
+
+        setSelectedDate(eventDate);
+        setEventTime(eventTime);
+    }
+
+
+    // Closes the event modal
+    function handleCloseModal() {
+
+        setSelectedEventId("");
+        setSelectedDate("");
+        setEventTitle("");
+        setEventTime("");
     }
 
 
@@ -34,19 +73,25 @@ export default function Calendar() {
 
         try {
 
-            const calendarEventsCollection = collection(db, "calendarEvents");
+            const calendarEventsCollection = collection( db, "calendarEvents" );
 
-            const newEventDocument = await addDoc(calendarEventsCollection, {
-                title: eventTitle,
-                date: selectedDate,
-                time: eventTime,
-                userId: currentUser.uid
-            });
+            const newEventDocument = await addDoc(
+
+                calendarEventsCollection, {
+                    title: eventTitle,
+                    date: selectedDate,
+                    time: eventTime,
+                    userId: currentUser.uid
+                }
+
+            );
 
             const newCalendarEvent = {
+
                 id: newEventDocument.id,
                 title: eventTitle,
                 start: `${selectedDate}T${eventTime}`
+
             };
 
             setCalendarEvents((currentEvents) => [
@@ -54,12 +99,91 @@ export default function Calendar() {
                 newCalendarEvent
             ]);
 
-            setEventTitle("");
-            setEventTime("");
-            setSelectedDate("");
+            handleCloseModal();
 
         } catch (error) {
             console.error("Could not save calendar event:", error);
+        }
+    }
+
+
+    // Updates the selected calendar event
+    async function handleUpdateEvent() {
+
+        if (!selectedEventId) {
+            return;
+        }
+
+        try {
+
+            const eventDocumentReference = doc( db, "calendarEvents",  selectedEventId );
+
+            await updateDoc(eventDocumentReference, {
+
+                title: eventTitle,
+                date: selectedDate,
+                time: eventTime
+
+            });
+
+            setCalendarEvents((currentEvents) => {
+
+                return currentEvents.map((event) => {
+
+                    if (event.id === selectedEventId) {
+
+                        return {
+                            ...event,
+                            title: eventTitle,
+                            start: `${selectedDate}T${eventTime}`
+                        };
+                    }
+
+                    return event;
+                });
+            });
+
+            handleCloseModal();
+
+        } catch (error) {
+            console.error("Could not update calendar event:", error);
+        }
+    }
+
+
+    // Deletes the selected calendar event
+    async function handleDeleteEvent() {
+
+        if (!selectedEventId) {
+            return;
+        }
+
+        const userConfirmedDelete = window.confirm(
+            `Are you sure you want to delete ${eventTitle}?`
+        );
+
+        if (userConfirmedDelete === false) {
+            return;
+        }
+
+        try {
+
+            const eventDocumentReference = doc( db, "calendarEvents", selectedEventId );
+
+            await deleteDoc(eventDocumentReference);
+
+            setCalendarEvents((currentEvents) => {
+
+                return currentEvents.filter((event) => {
+                    return event.id !== selectedEventId;
+                });
+
+            });
+
+            handleCloseModal();
+
+        } catch (error) {
+            console.error("Could not delete calendar event:", error);
         }
     }
 
@@ -77,11 +201,16 @@ export default function Calendar() {
 
             try {
 
-                const calendarEventsCollection = collection(db, "calendarEvents");
+                const calendarEventsCollection = collection( db, "calendarEvents" );
 
-                const calendarEventsQuery = query( calendarEventsCollection, where("userId", "==", currentUser.uid) );
+                const calendarEventsQuery = query(
+
+                    calendarEventsCollection, where("userId", "==", currentUser.uid)
+
+                );
 
                 const snapshot = await getDocs(calendarEventsQuery);
+
 
                 const eventData = snapshot.docs.map((document) => {
 
@@ -100,7 +229,6 @@ export default function Calendar() {
             } catch (error) {
                 console.error("Could not load calendar events:", error);
             }
-
         }
 
         getCalendarEvents();
@@ -112,75 +240,37 @@ export default function Calendar() {
 
         <section>
 
-            <h1>Calendar/ OBS....Under construction</h1>
+            <h1>Calendar / OBS....Under construction</h1>
 
             <FullCalendar
                 plugins={[dayGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 dateClick={handleDateClick}
+                eventClick={handleEventClick}
                 events={calendarEvents}
-
                 eventTimeFormat={{
                     hour: "2-digit",
                     minute: "2-digit",
                     hour12: false
                 }}
-
             />
 
 
             {selectedDate && (
-                <div>
-                    <div>
 
-                        <h2>Add event</h2>
-
-                        <form onSubmit={handleSaveEvent}>
-
-                            <label htmlFor="eventTitle">
-                                Title
-                            </label>
-                            <input
-                                id="eventTitle"
-                                type="text"
-                                value={eventTitle}
-                                onChange={(event) => setEventTitle(event.target.value)}
-                                placeholder="Example: Walk Luna"
-                                required
-                            />
-
-
-                            <label htmlFor="eventDate">
-                                Date
-                            </label>
-                            <input
-                                id="eventDate"
-                                type="date"
-                                value={selectedDate}
-                                readOnly
-                            />
-
-
-                            <label htmlFor="eventTime">
-                                Time
-                            </label>
-                            <input
-                                id="eventTime"
-                                type="time"
-                                value={eventTime}
-                                onChange={(event) => setEventTime(event.target.value)}
-                                required
-                            />
-
-
-                            <button type="button" onClick={() => setSelectedDate("")}> Cancel </button>
-
-                            <button type="submit"> Save event </button>
-
-                        </form>
-
-                    </div>
-                </div>
+                  <CalendarEventModal
+                    selectedEventId={selectedEventId}
+                    selectedDate={selectedDate}
+                    setSelectedDate={setSelectedDate}
+                    eventTitle={eventTitle}
+                    setEventTitle={setEventTitle}
+                    eventTime={eventTime}
+                    setEventTime={setEventTime}
+                    handleSaveEvent={handleSaveEvent}
+                    handleUpdateEvent={handleUpdateEvent}
+                    handleDeleteEvent={handleDeleteEvent}
+                    handleCloseModal={handleCloseModal}
+                />
             )}
 
         </section>
