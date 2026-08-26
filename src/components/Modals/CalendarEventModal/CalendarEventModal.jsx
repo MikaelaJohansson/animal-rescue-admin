@@ -16,9 +16,9 @@ export default function CalendarEventModal({
 
 
     return (
-        <div className={styles.modalOverlay}>
+        <div className={styles.modalOverlay} onClick={closeEventModal}>
 
-            <div className={styles.modal}>
+            <div className={styles.modal}  onClick={(event) => event.stopPropagation()}>
 
                 <h2>
                     {selectedEventId ? "Edit event" : "Add event"}
