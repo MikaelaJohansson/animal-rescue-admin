@@ -3,6 +3,7 @@ import styles from "./Calendar.module.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+
 import {
     addDoc,
     collection,
@@ -13,6 +14,7 @@ import {
     doc,
     updateDoc
 } from "firebase/firestore";
+
 import { auth, db } from "../../firebase";
 import CalendarEventModal from "../../components/Modals/CalendarEventModal/CalendarEventModal";
 

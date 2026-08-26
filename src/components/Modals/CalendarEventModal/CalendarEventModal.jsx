@@ -29,7 +29,6 @@ export default function CalendarEventModal({
                     <label htmlFor="eventTitle">
                         Title
                     </label>
-
                     <input
                         id="eventTitle"
                         type="text"
@@ -42,7 +41,6 @@ export default function CalendarEventModal({
                     <label htmlFor="eventDate">
                         Date
                     </label>
-
                     <input
                         id="eventDate"
                         type="date"
@@ -54,7 +52,6 @@ export default function CalendarEventModal({
                     <label htmlFor="eventTime">
                         Time
                     </label>
-
                     <input
                         id="eventTime"
                         type="time"
@@ -63,33 +60,26 @@ export default function CalendarEventModal({
                         required
                     />
 
-                    <button
-                        type="button"
-                        onClick={closeEventModal}
-                    >
+                    <button type="button" onClick={closeEventModal} >
                         Cancel
                     </button>
 
                     {selectedEventId ? (
+
                         <>
-                            <button
-                                type="button"
-                                onClick={deleteCalendarEvent}
-                            >
+                            <button type="button" onClick={deleteCalendarEvent} >
                                 Delete
                             </button>
 
-                            <button
-                                type="button"
-                                onClick={updateCalendarEvent}
-                            >
+                            <button type="button" onClick={updateCalendarEvent}>
                                 Update
                             </button>
                         </>
+
                     ) : (
-                        <button type="submit">
-                            Save event
-                        </button>
+
+                        <button type="submit"> Save event </button>
+
                     )}
 
                 </form>
