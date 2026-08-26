@@ -248,6 +248,9 @@ export default function Calendar() {
                 dateClick={openAddEventModal}
                 eventClick={openEditEventModal}
                 events={calendarEvents}
+                 buttonText={{
+                    today: "Today"
+                }}
                 eventTimeFormat={{
                     hour: "2-digit",
                     minute: "2-digit",

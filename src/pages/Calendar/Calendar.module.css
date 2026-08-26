@@ -2,3 +2,22 @@
     margin: 2rem;
     margin-top: 4rem;
 }
+
+/* Today button */
+.calendarMainContainer :global(.fc-today-button) {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-S);
+}
+
+/* Previous and next buttons */
+.calendarMainContainer :global(.fc-prev-button),
+.calendarMainContainer :global(.fc-next-button) {
+    background-color: var(--color-primary);
+    border: none;
+}
+
+/* Hover */
+.calendarMainContainer :global(.fc-button:hover) {
+    background-color: var(--color-primary-hover);
+}
