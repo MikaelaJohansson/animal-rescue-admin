@@ -1,7 +1,6 @@
-
 import styles from "./CalendarEventModal.module.css"
 
-export default function CalendarEventModal({ 
+export default function CalendarEventModal({
     selectedEventId,
     selectedDate,
     setSelectedDate,
@@ -9,16 +8,15 @@ export default function CalendarEventModal({
     setEventTitle,
     eventTime,
     setEventTime,
-    handleSaveEvent,
-    handleUpdateEvent,
-    handleDeleteEvent,
-    handleCloseModal
+    createCalendarEvent,
+    updateCalendarEvent,
+    deleteCalendarEvent,
+    closeEventModal
 }) {
 
 
-        
     return (
-      <div className={styles.modalOverlay}>
+        <div className={styles.modalOverlay}>
 
             <div className={styles.modal}>
 
@@ -26,7 +24,7 @@ export default function CalendarEventModal({
                     {selectedEventId ? "Edit event" : "Add event"}
                 </h2>
 
-                <form onSubmit={handleSaveEvent}>
+                <form onSubmit={createCalendarEvent}>
 
                     <label htmlFor="eventTitle">
                         Title
@@ -67,7 +65,7 @@ export default function CalendarEventModal({
 
                     <button
                         type="button"
-                        onClick={handleCloseModal}
+                        onClick={closeEventModal}
                     >
                         Cancel
                     </button>
@@ -76,14 +74,14 @@ export default function CalendarEventModal({
                         <>
                             <button
                                 type="button"
-                                onClick={handleDeleteEvent}
+                                onClick={deleteCalendarEvent}
                             >
                                 Delete
                             </button>
 
                             <button
                                 type="button"
-                                onClick={handleUpdateEvent}
+                                onClick={updateCalendarEvent}
                             >
                                 Update
                             </button>

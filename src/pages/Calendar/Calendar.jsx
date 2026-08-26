@@ -27,7 +27,7 @@ export default function Calendar() {
 
 
     // Opens the modal for a new event
-    function handleDateClick(info) {
+    function openAddEventModal(info) {
 
         setSelectedEventId("");
         setSelectedDate(info.dateStr);
@@ -37,7 +37,7 @@ export default function Calendar() {
 
 
     // Opens the modal with the selected event
-    function handleEventClick(info) {
+    function openEditEventModal(info) {
 
         setSelectedEventId(info.event.id);
         setEventTitle(info.event.title);
@@ -51,7 +51,7 @@ export default function Calendar() {
 
 
     // Closes the event modal
-    function handleCloseModal() {
+    function closeEventModal() {
 
         setSelectedEventId("");
         setSelectedDate("");
@@ -60,8 +60,8 @@ export default function Calendar() {
     }
 
 
-    // Saves a new calendar event to Firestore
-    async function handleSaveEvent(event) {
+    // Creates a new calendar event in Firestore
+    async function createCalendarEvent(event) {
 
         event.preventDefault();
 
@@ -73,7 +73,7 @@ export default function Calendar() {
 
         try {
 
-            const calendarEventsCollection = collection( db, "calendarEvents" );
+            const calendarEventsCollection = collection(db, "calendarEvents");
 
             const newEventDocument = await addDoc(
 
@@ -99,7 +99,7 @@ export default function Calendar() {
                 newCalendarEvent
             ]);
 
-            handleCloseModal();
+            closeEventModal();
 
         } catch (error) {
             console.error("Could not save calendar event:", error);
@@ -108,7 +108,7 @@ export default function Calendar() {
 
 
     // Updates the selected calendar event
-    async function handleUpdateEvent() {
+    async function updateCalendarEvent() {
 
         if (!selectedEventId) {
             return;
@@ -116,7 +116,7 @@ export default function Calendar() {
 
         try {
 
-            const eventDocumentReference = doc( db, "calendarEvents",  selectedEventId );
+            const eventDocumentReference = doc(db, "calendarEvents", selectedEventId);
 
             await updateDoc(eventDocumentReference, {
 
@@ -143,7 +143,7 @@ export default function Calendar() {
                 });
             });
 
-            handleCloseModal();
+            closeEventModal();
 
         } catch (error) {
             console.error("Could not update calendar event:", error);
@@ -152,15 +152,13 @@ export default function Calendar() {
 
 
     // Deletes the selected calendar event
-    async function handleDeleteEvent() {
+    async function deleteCalendarEvent() {
 
         if (!selectedEventId) {
             return;
         }
 
-        const userConfirmedDelete = window.confirm(
-            `Are you sure you want to delete ${eventTitle}?`
-        );
+        const userConfirmedDelete = window.confirm( `Are you sure you want to delete ${eventTitle}?`);
 
         if (userConfirmedDelete === false) {
             return;
@@ -168,7 +166,7 @@ export default function Calendar() {
 
         try {
 
-            const eventDocumentReference = doc( db, "calendarEvents", selectedEventId );
+            const eventDocumentReference = doc(db, "calendarEvents", selectedEventId);
 
             await deleteDoc(eventDocumentReference);
 
@@ -180,7 +178,7 @@ export default function Calendar() {
 
             });
 
-            handleCloseModal();
+            closeEventModal();
 
         } catch (error) {
             console.error("Could not delete calendar event:", error);
@@ -201,7 +199,7 @@ export default function Calendar() {
 
             try {
 
-                const calendarEventsCollection = collection( db, "calendarEvents" );
+                const calendarEventsCollection = collection(db, "calendarEvents");
 
                 const calendarEventsQuery = query(
 
@@ -238,15 +236,15 @@ export default function Calendar() {
 
     return (
 
-        <section>
+        <section className={styles.calendarMainContainer}>
 
             <h1>Calendar / OBS....Under construction</h1>
 
             <FullCalendar
                 plugins={[dayGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
-                dateClick={handleDateClick}
-                eventClick={handleEventClick}
+                dateClick={openAddEventModal}
+                eventClick={openEditEventModal}
                 events={calendarEvents}
                 eventTimeFormat={{
                     hour: "2-digit",
@@ -258,7 +256,7 @@ export default function Calendar() {
 
             {selectedDate && (
 
-                  <CalendarEventModal
+                <CalendarEventModal
                     selectedEventId={selectedEventId}
                     selectedDate={selectedDate}
                     setSelectedDate={setSelectedDate}
@@ -266,10 +264,10 @@ export default function Calendar() {
                     setEventTitle={setEventTitle}
                     eventTime={eventTime}
                     setEventTime={setEventTime}
-                    handleSaveEvent={handleSaveEvent}
-                    handleUpdateEvent={handleUpdateEvent}
-                    handleDeleteEvent={handleDeleteEvent}
-                    handleCloseModal={handleCloseModal}
+                    createCalendarEvent={createCalendarEvent}
+                    updateCalendarEvent={updateCalendarEvent}
+                    deleteCalendarEvent={deleteCalendarEvent}
+                    closeEventModal={closeEventModal}
                 />
             )}
 
