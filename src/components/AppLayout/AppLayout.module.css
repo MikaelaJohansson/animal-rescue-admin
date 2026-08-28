@@ -22,9 +22,6 @@
 .topBarAppLayout {
   flex-shrink: 0;
   width: 100%;
-
-  position: relative;
-  z-index: 10;
 }
 
 .outletAppLayout {
@@ -33,9 +30,6 @@
   overflow-y: auto;
   padding-left: 2rem;
   background-color: var(--color-background-topbar);
-
-  position: relative;
-  z-index: 1;
 }
 
 /* scrollbar style */
