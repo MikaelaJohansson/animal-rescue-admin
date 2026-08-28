@@ -1,35 +1,41 @@
 .mainAppLayout {
-    display: flex;
-    height: 100dvh;
-    overflow: hidden;
-    width: 100%;
+  display: flex;
+  height: 100dvh;
+  overflow: hidden;
+  width: 100%;
 }
 
 .sideBarAppLayout {
-    display: flex;
-    flex-shrink: 0;
-    background-color: var(--color-sidebar);    
+  display: flex;
+  flex-shrink: 0;
+  background-color: var(--color-sidebar);    
 }
 
 .RightSideAppLayout {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
-    min-height: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
 }
 
 .topBarAppLayout {
-    flex-shrink: 0;
-    width: 100%;
+  flex-shrink: 0;
+  width: 100%;
+
+  position: relative;
+  z-index: 10;
 }
 
 .outletAppLayout {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    padding-left: 2rem;
-    background-color: var(--color-background-topbar);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-left: 2rem;
+  background-color: var(--color-background-topbar);
+
+  position: relative;
+  z-index: 1;
 }
 
 /* scrollbar style */

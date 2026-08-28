@@ -1,21 +1,21 @@
 .modalOverlay {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal {
-    width: 450px;
-    padding: 1rem;
-    max-width: calc(100% - 2rem);
-    background-color: var(--color-surface);
-    border-radius: var(--radius-M);
+  width: 450px;
+  padding: 1rem;
+  max-width: calc(100% - 2rem);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-M);
 }
 
 .calendarEventHeader {
@@ -26,15 +26,15 @@
 }
 
 .calendarEventHeaderLogo{
-    margin-top: 0.4rem;
+  margin-top: 0.4rem;
 }
 
 .calendarEventForm{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 
@@ -61,10 +61,10 @@
 
 /* buttons container */
 .calendarEventButtonsContainer{
-    display: flex;
-    gap: 2rem;
-    align-self: center;
-    margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-self: center;
+  margin-top: 2rem;
 }
 
 /* cancel button */

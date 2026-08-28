@@ -71,6 +71,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  z-index: 1000;
 }
 
 .topBarProfileDropdown button{
@@ -82,6 +83,7 @@
   font-weight: var(--font-weight-M);
   color: var(--color-sidebar);
   font-size: var(--font-size-S);
+  
 }
 
 .topBarProfileDropdown button:hover{
