@@ -12,8 +12,146 @@
 
 .modal {
     width: 450px;
-    padding: 2rem;
-
+    padding: 1rem;
+    max-width: calc(100% - 2rem);
     background-color: var(--color-surface);
     border-radius: var(--radius-M);
 }
+
+.calendarEventHeader {
+  display: flex;
+  margin-top: -1rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 3rem;
+}
+
+.calendarEventHeaderLogo{
+    margin-top: 0.4rem;
+}
+
+.calendarEventForm{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+
+/* inputs */
+.calendarEventForm input{
+  flex: 1;     
+  min-width: 140px;      
+  padding: 0.4rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-S);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: var(--font-size-M);
+  font-weight: var(--font-weight-L);
+  outline: none;
+}
+.calendarEventForm input:focus {
+  border-color: var(--color-border-green) 
+}
+.calendarEventForm input:hover{
+  scale: calc(1.01);
+  cursor: pointer;
+}
+
+
+/* buttons container */
+.calendarEventButtonsContainer{
+    display: flex;
+    gap: 2rem;
+    align-self: center;
+    margin-top: 2rem;
+}
+
+/* cancel button */
+.calendarEventCancelButton {
+  width: 140px;      
+  padding: 0.75rem;
+  border-radius: var(--radius-S);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: 18px;
+  font-weight: var(--font-weight-L);
+
+  border: 2px solid var( --color-text-muted);
+  background-color: var(--color-surface-muted);
+  color: var(--color-text-muted);
+}
+.calendarEventCancelButton:hover{
+  scale: calc(1.02);
+  cursor: pointer;
+}
+
+
+/* save button */
+.calendarEventSaveButton {
+  width: 140px;      
+  padding: 0.75rem;
+  border-radius: var(--radius-S);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: 17px;
+  font-weight: var(--font-weight-L);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border: 2px solid var( --color-border-green);
+  background-color: var(--color-button);
+  color: var(--color-font-light);
+}
+.calendarEventSaveButton:hover{
+  scale: calc(1.02);
+  cursor: pointer;
+}
+
+/* delete button */
+.calendarEventDeleteButton{
+  width: 140px;      
+  padding: 0.75rem;
+  border-radius: var(--radius-S);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: 17px;
+  font-weight: var(--font-weight-L);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border: 1px solid var(--color-statusBadge-red-font);
+  background-color: var(--color-statusBadge-red-background);
+  color: var(--color-statusBadge-red-font);
+}
+.calendarEventDeleteButton:hover{
+  scale: calc(1.02);
+  cursor: pointer;
+}
+
+/* update button */
+.calendarEventUpdateButton{
+  width: 140px;      
+  padding: 0.75rem;
+  border-radius: var(--radius-S);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: 17px;
+  font-weight: var(--font-weight-L);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border: 1px solid var(--color-cards-darkOrange);
+  background-color: var(--color-cards-lightOrange);
+  color: var(--color-cards-darkOrange);
+}
+.calendarEventUpdateButton:hover{
+  scale: calc(1.02);
+  cursor: pointer;
+}
+
+
+
+

@@ -240,23 +240,28 @@ export default function Calendar() {
 
         <section className={styles.calendarMainContainer}>
 
-            <h1>Calendar / OBS....Under construction</h1>
+            <div className={styles.calendarContainer}>
+               
+                <FullCalendar
+                    plugins={[dayGridPlugin, interactionPlugin]}
+                    initialView="dayGridMonth"
+                    dateClick={openAddEventModal}
+                    eventClick={openEditEventModal}
+                    events={calendarEvents}
+                    height="70vh"
+                    buttonText={{
+                        today: "Today"
+                    }}
+                    eventTimeFormat={{
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                    }}
+                />
 
-            <FullCalendar
-                plugins={[dayGridPlugin, interactionPlugin]}
-                initialView="dayGridMonth"
-                dateClick={openAddEventModal}
-                eventClick={openEditEventModal}
-                events={calendarEvents}
-                 buttonText={{
-                    today: "Today"
-                }}
-                eventTimeFormat={{
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: false
-                }}
-            />
+            </div>
+
+          
 
 
             {selectedDate && (

@@ -1,27 +1,27 @@
 .adoptionDetailsContainer{
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-   
-    margin-top: 1rem;
-    margin-right: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  
+  margin-top: 1rem;
+  margin-right: 1rem;
 }
 
 .adoptionDetailsContainer h2{
-   color: var(--color-font-black);
+  color: var(--color-font-black);
 }
 
 .adoptionDetailsApplicant,
 .adoptionDetailsRequest,
 .adoptionDetailsDetails,
 .adoptionDetailsStatus{
-    border: 2px solid var(--color-border);
-    padding-left: 1rem;
-    padding-bottom: 1rem;
-    min-width: 0;
-    border-radius: var(--radius-S);
-    background-color:var(--color-text-white);
-    font-size: var(--font-size-M);
+  border: 2px solid var(--color-border);
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  min-width: 0;
+  border-radius: var(--radius-S);
+  background-color:var(--color-text-white);
+  font-size: var(--font-size-M);
 }
 
 .adoptionDetailsLink{
@@ -40,17 +40,17 @@
 
 /* APPLICATN */
 .adoptionDetailsApplicant h2{
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 
 /* REQUESTED ANIMAL */
 .adoptionDetailsRequest h2{
-    text-decoration: underline;
+  text-decoration: underline;
 }
 .adoptionDetailsRequest img{
-    border-radius: var(--radius-S);
-    box-shadow: 0px 2px 3px rgb(191, 191, 191);
+  border-radius: var(--radius-S);
+  box-shadow: 0px 2px 3px rgb(191, 191, 191);
 }
 .adoptionDetailsRequest{
     padding-left: 1rem;
@@ -65,7 +65,7 @@
 
 /* APPLICATN DETAILS/TABS */
 .adoptionDetailsDetails h2{
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .adoptionDetailsTabs {
@@ -84,7 +84,7 @@
   font-weight: var(--font-weight-L);
 
   /* Allows horizontal scrolling if the tabs
-    do not fit on a smaller screen */
+  do not fit on a smaller screen */
   overflow-x: auto;
 
   /* Hides the scrollbar */
@@ -139,12 +139,12 @@
 /* STATUS */
 
 .adoptionDetailsStatus{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .adoptionDetailsStatus h2{
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .adoptionDetailsStatus select,
@@ -155,19 +155,19 @@
 }
 
 .adoptionDetailsStatusbutton{
-    max-width: 300px;     
-    padding: 0.75rem;
-    border: 2px solid var( --color-border-green);
-    border-radius: var(--radius-S);
-    background-color: var(--color-button);
-    font-family: var(--font-family-Cormorant-Garamond);
-    font-size: var(--font-size-M);
-    font-weight: var(--font-weight-L);
-    color: var(--color-font-light);
+  max-width: 300px;     
+  padding: 0.75rem;
+  border: 2px solid var( --color-border-green);
+  border-radius: var(--radius-S);
+  background-color: var(--color-button);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: var(--font-size-M);
+  font-weight: var(--font-weight-L);
+  color: var(--color-font-light);
 }
 .adoptionDetailsStatusbutton:hover{
-    scale: calc(1.02);
-    cursor: pointer;
+  scale: calc(1.02);
+  cursor: pointer;
 }
 
 
@@ -176,11 +176,13 @@
 /* MEDIA QUERY */
 
 @media (max-width: 768px) {
-    .adoptionDetailsContainer {
-        grid-template-columns: 1fr;
-    }
-    .adoptionDetailsStatus{
-        padding: 1rem;
-        margin-bottom: 1rem;
-    }
+  
+  .adoptionDetailsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .adoptionDetailsStatus{
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
 }

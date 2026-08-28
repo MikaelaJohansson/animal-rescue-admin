@@ -104,7 +104,7 @@
   border-color: var(--color-border-green) 
 }
 .addAnimalForm input:hover{
-  scale: calc(1.02);
+  scale: calc(1.01);
   cursor: pointer;
 }
 
