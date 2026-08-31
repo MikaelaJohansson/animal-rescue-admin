@@ -3,14 +3,17 @@ import styles from "../Dashboard/Dashborad.module.css"
 import RecentlyAddedAnimals from "../Dashboard/RecentlyAddedAnimals/RecentlyAddedAnimals";
 import { Dog,Heart,ShieldCheck,Handshake,Stethoscope,Hourglass } from "lucide-react";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { auth, db } from "../../firebase";
+import TodaysSchedule from "./TodaysSchedule/TodaysSchedule";
 
 export default function Dashboard() {
 
   const [errorMessage, setErrorMessage] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [animals, setAnimals] = useState([])
+  const [todayEvents,setTodayEvents] = useState([])
+
 
   useEffect(()=>{
 
@@ -57,13 +60,70 @@ export default function Dashboard() {
 
   },[])
 
+  useEffect(() => {
+
+    async function getTodayEvents() {
+
+      // Gets the currently signed-in user from Firebase Authentication.
+      const currentUser = auth.currentUser
+
+      // Stops the function if no user is signed in.
+      if (!currentUser) {
+        return;
+      }
+
+      // Gets today's date in YYYY-MM-DD format.
+      const today = new Date().toISOString().split("T")[0]
+
+      try {
+
+        // Points to the "calendarEvents" collection in Firestore.
+        const calendarEventsCollection = collection(db, "calendarEvents")
+
+        // Creates a query for the signed-in user's events for today.
+        const todayEventsQuery = query(
+          calendarEventsCollection,
+          where("userId", "==", currentUser.uid),
+          where("date", "==", today)
+        )
+
+        // Gets the documents that match the query.
+        const snapshot = await getDocs(todayEventsQuery)
+
+        // Converts the Firestore documents into a regular JavaScript array.
+        const eventData = snapshot.docs.map((document) => {
+
+          const data = document.data()
+
+          return {
+            id: document.id,
+            title: data.title,
+            date: data.date,
+            time: data.time
+          }
+
+        })
+
+        // Saves today's events in React state.
+        setTodayEvents(eventData)
+
+      } catch (error) {
+        console.error("Could not load today's events:", error)
+      }
+
+    }
+
+    getTodayEvents()
+
+  }, [])
+
   const availableAnimals = animals.filter((animal)=>{
     return animal.status === "Available"
   })
 
-  const adoptedAnimals = animals.filter((animal=>{
+  const adoptedAnimals = animals.filter((animal) => {
     return animal.status === "Adopted"
-  }))
+  })
 
   const medicalHoldAnimals = animals.filter((animal)=>{
     return animal.status === "Medical Hold"
@@ -73,7 +133,7 @@ export default function Dashboard() {
     return animal.status === "In Foster Care"
   })
 
-   const reservedAnimals = animals.filter((animal)=>{
+  const reservedAnimals = animals.filter((animal)=>{
     return animal.status === "Reserved"
   })
 
@@ -139,7 +199,14 @@ export default function Dashboard() {
         />
       </div> 
 
-      <RecentlyAddedAnimals animals={animals} />     
+      <div className={styles.dashboardCointainerUppdates}>
+        <RecentlyAddedAnimals animals={animals} />   
+
+        <TodaysSchedule todayEvents={todayEvents}/>
+
+      </div>
+
+      
 
     </section>
   )

@@ -1,0 +1,30 @@
+.scheduleContainer {
+  padding: 1rem;
+  background-color: white;
+  border-radius: var(--radius-S);
+  box-shadow: 0 0 5px rgb(232, 230, 230);
+}
+
+.scheduleList {
+  display: flex;
+  flex-direction: column;
+}
+
+.scheduleEvent {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  text-decoration: none;
+  color: var(--color-font-black);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var( --font-size-M);
+}
+.scheduleEvent:hover{
+    scale: calc(1.02);
+    background-color: var( --color-background-color);
+    padding-left: 5px;
+}
+
+.scheduleTime {
+  font-weight: var(--font-weight-L);
+}
