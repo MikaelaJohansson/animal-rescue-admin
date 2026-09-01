@@ -20,11 +20,47 @@
   font-size: var( --font-size-M);
 }
 .scheduleEvent:hover{
-    scale: calc(1.02);
-    background-color: var( --color-background-color);
-    padding-left: 5px;
+  scale: calc(1.02);
+  background-color: var( --color-background-color);
+  padding-left: 5px;
 }
 
-.scheduleTime {
+.scheduleEventIcon{
+  background-color: var(--color-statusBadge-green-background);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scheduleEventTitle{
+  font-size: var(--font-size-L);
   font-weight: var(--font-weight-L);
+  margin-top: 8px;
+}
+.scheduleTime {
+  font-weight: var(--font-weight-XL);
+  font-size: var(--font-size-L);
+  margin-top: 8px;
+}
+
+.scheduleContainerNoEvent{
+  text-align: center;
+}
+.scheduleContainerNoEvent{
+  font-size: var(--font-size-L);
+}
+
+.calendarLink{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--color-primary-hover);
+  font-weight: var(--font-weight-XL);
+  margin-top: 2rem;
+  font-size: var(--font-size-L);
+  
 }
