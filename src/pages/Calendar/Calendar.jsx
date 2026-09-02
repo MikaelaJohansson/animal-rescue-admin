@@ -23,10 +23,11 @@ export default function Calendar() {
 
     const [selectedDate, setSelectedDate] = useState("");
     const [eventTitle, setEventTitle] = useState("");
-    const [eventTime, setEventTime] = useState("");
+    const [eventStartTime, setEventStartTime] = useState("");
+    const [eventEndTime, setEventEndTime] = useState("");
     const [calendarEvents, setCalendarEvents] = useState([]);
     const [selectedEventId, setSelectedEventId] = useState("");
-
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     // Opens the modal for a new event
     function openAddEventModal(info) {
@@ -34,7 +35,8 @@ export default function Calendar() {
         setSelectedEventId("");
         setSelectedDate(info.dateStr);
         setEventTitle("");
-        setEventTime("");
+        setEventStartTime("");
+        setEventEndTime("");
     }
 
 
@@ -45,10 +47,12 @@ export default function Calendar() {
         setEventTitle(info.event.title);
 
         const eventDate = info.event.startStr.split("T")[0];
-        const eventTime = info.event.startStr.split("T")[1].slice(0, 5);
+        const eventStartTime = info.event.startStr.split("T")[1].slice(0, 5);
+        const eventEndTime = info.event.endStr.split("T")[1].slice(0, 5);
 
         setSelectedDate(eventDate);
-        setEventTime(eventTime);
+        setEventStartTime(eventStartTime);
+        setEventEndTime(eventEndTime);
     }
 
 
@@ -58,7 +62,8 @@ export default function Calendar() {
         setSelectedEventId("");
         setSelectedDate("");
         setEventTitle("");
-        setEventTime("");
+        setEventStartTime("");
+        setEventEndTime("");
     }
 
 
@@ -82,7 +87,8 @@ export default function Calendar() {
                 calendarEventsCollection, {
                     title: eventTitle,
                     date: selectedDate,
-                    time: eventTime,
+                    startTime: eventStartTime,
+                    endTime: eventEndTime,
                     userId: currentUser.uid
                 }
 
@@ -92,7 +98,8 @@ export default function Calendar() {
 
                 id: newEventDocument.id,
                 title: eventTitle,
-                start: `${selectedDate}T${eventTime}`
+                start: `${selectedDate}T${eventStartTime}`,
+                end: `${selectedDate}T${eventEndTime}`
 
             };
 
@@ -124,7 +131,8 @@ export default function Calendar() {
 
                 title: eventTitle,
                 date: selectedDate,
-                time: eventTime
+                startTime: eventStartTime,
+                endTime: eventEndTime
 
             });
 
@@ -137,7 +145,8 @@ export default function Calendar() {
                         return {
                             ...event,
                             title: eventTitle,
-                            start: `${selectedDate}T${eventTime}`
+                            start: `${selectedDate}T${eventStartTime}`,
+                            end: `${selectedDate}T${eventEndTime}`
                         };
                     }
 
@@ -160,7 +169,7 @@ export default function Calendar() {
             return;
         }
 
-        const userConfirmedDelete = window.confirm( `Are you sure you want to delete ${eventTitle}?`);
+        const userConfirmedDelete = window.confirm(`Are you sure you want to delete ${eventTitle}?`);
 
         if (userConfirmedDelete === false) {
             return;
@@ -205,7 +214,8 @@ export default function Calendar() {
 
                 const calendarEventsQuery = query(
 
-                    calendarEventsCollection, where("userId", "==", currentUser.uid)
+                    calendarEventsCollection,
+                    where("userId", "==", currentUser.uid)
 
                 );
 
@@ -219,7 +229,8 @@ export default function Calendar() {
                     return {
                         id: document.id,
                         title: data.title,
-                        start: `${data.date}T${data.time}`
+                        start: `${data.date}T${data.startTime}`,
+                        end: `${data.date}T${data.endTime}`
                     };
 
                 });
@@ -234,6 +245,22 @@ export default function Calendar() {
         getCalendarEvents();
 
     }, []);
+    
+
+    // Updates the calendar layout when the screen size changes
+    useEffect(() => {
+
+        function handleResize() {
+            setIsMobile(window.innerWidth <= 768);
+        }
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+
+    }, []);
 
 
     return (
@@ -241,12 +268,13 @@ export default function Calendar() {
         <section className={styles.calendarMainContainer}>
 
             <div className={styles.calendarContainer}>
-               
+
                 <FullCalendar
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     dateClick={openAddEventModal}
                     eventClick={openEditEventModal}
+                    displayEventEnd={!isMobile}
                     events={calendarEvents}
                     height="70vh"
                     buttonText={{
@@ -261,8 +289,6 @@ export default function Calendar() {
 
             </div>
 
-          
-
 
             {selectedDate && (
 
@@ -272,8 +298,10 @@ export default function Calendar() {
                     setSelectedDate={setSelectedDate}
                     eventTitle={eventTitle}
                     setEventTitle={setEventTitle}
-                    eventTime={eventTime}
-                    setEventTime={setEventTime}
+                    eventStartTime={eventStartTime}
+                    setEventStartTime={setEventStartTime}
+                    eventEndTime={eventEndTime}
+                    setEventEndTime={setEventEndTime}
                     createCalendarEvent={createCalendarEvent}
                     updateCalendarEvent={updateCalendarEvent}
                     deleteCalendarEvent={deleteCalendarEvent}

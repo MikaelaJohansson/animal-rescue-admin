@@ -7,8 +7,10 @@ export default function CalendarEventModal({
     setSelectedDate,
     eventTitle,
     setEventTitle,
-    eventTime,
-    setEventTime,
+    eventStartTime,
+    setEventStartTime,
+    eventEndTime,
+    setEventEndTime,
     createCalendarEvent,
     updateCalendarEvent,
     deleteCalendarEvent,
@@ -19,7 +21,7 @@ export default function CalendarEventModal({
     return (
         <div className={styles.modalOverlay} onClick={closeEventModal}>
 
-            <div className={styles.modal}  onClick={(event) => event.stopPropagation()}>
+            <div className={styles.modal} onClick={(event) => event.stopPropagation()}>
 
                 <div className={styles.calendarEventHeader}>
                     <div className={styles.calendarEventHeaderLogo}>
@@ -32,7 +34,7 @@ export default function CalendarEventModal({
                 </div>
 
                 <h2>
-                   <strong> {selectedEventId ? "Edit event" : "Add event"}</strong>
+                    <strong>{selectedEventId ? "Edit event" : "Add event"}</strong>
                 </h2>
 
                 <form className={styles.calendarEventForm} onSubmit={createCalendarEvent}>
@@ -60,14 +62,25 @@ export default function CalendarEventModal({
                         required
                     />
 
-                    <label htmlFor="eventTime">
-                        Time
+                    <label htmlFor="eventStartTime">
+                        Start time
                     </label>
                     <input
-                        id="eventTime"
+                        id="eventStartTime"
                         type="time"
-                        value={eventTime}
-                        onChange={(event) => setEventTime(event.target.value)}
+                        value={eventStartTime}
+                        onChange={(event) => setEventStartTime(event.target.value)}
+                        required
+                    />
+
+                    <label htmlFor="eventEndTime">
+                        End time
+                    </label>
+                    <input
+                        id="eventEndTime"
+                        type="time"
+                        value={eventEndTime}
+                        onChange={(event) => setEventEndTime(event.target.value)}
                         required
                     />
 

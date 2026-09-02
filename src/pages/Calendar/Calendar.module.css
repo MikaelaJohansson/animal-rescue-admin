@@ -58,6 +58,8 @@
     /* Events */
     .calendarMainContainer :global(.fc-event) {
         font-size: 0.5rem;
+        right: 4px;
     }
+
 
 }
