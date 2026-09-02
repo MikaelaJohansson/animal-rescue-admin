@@ -257,3 +257,16 @@
 .editAnimalContainer::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
 }
+
+/* disabled */
+.editAnimalForm input:disabled,
+.editAnimalForm select:disabled,
+.editAnimalForm textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.editAnimalModalImg button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -6,7 +6,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { useState } from "react";
 
-export default function EditAnimalModal({ animal, onClose, setAnimal }) {
+export default function EditAnimalModal({ animal, onClose, setAnimal, userPermissions }) {
 
     const [selectedImage, setSelectedImage] = useState(animal.image);
     const [showAllImages, setShowAllImages] = useState(false);
@@ -42,17 +42,40 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
 
         event.preventDefault();
 
-        const updatedAnimal = {
-            ...formData,
-            age: Number(formData.age),
-            weight: Number(formData.weight),
-            image: selectedImage
-        };
+        let updatedAnimal = {};
+
+        if (userPermissions?.canEditAnimal) {
+
+            updatedAnimal = {
+                name: formData.name,
+                breed: formData.breed,
+                age: Number(formData.age),
+                gender: formData.gender,
+                status: formData.status,
+                weight: Number(formData.weight),
+                color: formData.color,
+                description: formData.description,
+                notes: formData.notes,
+                history: formData.history,
+                dateAdded: formData.dateAdded,
+                vaccinated: formData.vaccinated,
+                neutered: formData.neutered,
+                image: selectedImage
+            };
+
+        } else if (userPermissions?.canEditMedicalHistory) {
+
+            updatedAnimal = {
+                medicalNotes: formData.medicalNotes
+            };
+
+        }
 
         try {
-            const animalDocumentReference = doc( db,"animals",animal.id);
 
-            await updateDoc( animalDocumentReference, updatedAnimal );
+            const animalDocumentReference = doc(db, "animals", animal.id);
+
+            await updateDoc(animalDocumentReference, updatedAnimal);
 
             setAnimal({
                 ...animal,
@@ -64,297 +87,319 @@ export default function EditAnimalModal({ animal, onClose, setAnimal }) {
         } catch (error) {
             console.error("Failed to update animal:", error);
         }
-
     }
 
+    return (
+        <div className={styles.editAnimalMainContainer} onClick={onClose}>
 
+            <div
+                className={styles.editAnimalContainer}
+                onClick={(event) => { event.stopPropagation(); }}
+            >
 
-  return (
-    <div className={styles.editAnimalMainContainer} onClick={onClose}>
-
-        <div className={styles.editAnimalContainer} onClick={(event) =>{ event.stopPropagation(); }}>
-
-            <div className={styles.editAnimalHeader}>
-                <img src={sideBarPawLogo} alt="Paw logo" width={60}/>
-                <p>Update the animal details below</p>
-            </div>
-
-            <div className={styles.editAnimalContainerLogo}>
-                <img src={appLogo} alt="Logo" width={270} />              
-            </div>
-
-            <h1>Edit: {animal.name}</h1>
-            <form className={styles.editAnimalForm} onSubmit={handleSubmit}>
-
-                <label htmlFor="name">Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    value={formData.name}
-                    onChange={(event) => {
-                    setFormData({
-                        ...formData,
-                        name: event.target.value
-                    });
-                    }}
-                    required
-                />
-
-                <label htmlFor="breed">Breed</label>
-                <input
-                    type="text"
-                    id="breed"
-                    value={formData.breed}
-                    onChange={(event) => {
-                    setFormData({
-                        ...formData,
-                        breed: event.target.value
-                    });
-                    }}
-                    required
-                />
-
-                <label htmlFor="age">Age</label>
-                <input
-                    type="number"
-                    id="age"
-                    value={formData.age}
-                    onChange={(event) => {
-                    setFormData({
-                        ...formData,
-                        age: event.target.value
-                    });
-                    }}
-                    required
-                />
-
-                <label htmlFor="gender">Gender</label>
-                <input
-                    type="text"
-                    id="gender"
-                    value={formData.gender}
-                    onChange={(event) => {
-                    setFormData({
-                        ...formData,
-                        gender: event.target.value
-                    });
-                    }}
-                    required
-                />
-
-                <label htmlFor="status">Status</label>
-                <select
-                    id="status"
-                    value={formData.status}
-                    onChange={(event) => {
-                    setFormData({
-                        ...formData,
-                        status: event.target.value
-                    });
-                    }}
-                    required
-                >
-                    <option value="">Select status</option>
-                    <option value="Available">Available</option>
-                    <option value="Adopted">Adopted</option>
-                    <option value="Reserved">Reserved</option>
-                    <option value="Medical Hold">Medical Hold</option>
-                    <option value="In Foster Care">In Foster Care</option>
-                </select>
-
-                <label htmlFor="weight">Weight (kg)</label>
-                <input
-                    type="number"
-                    id="weight"
-                    value={formData.weight}
-                    onChange={(event) => {
-                    setFormData({
-                        ...formData,
-                        weight: event.target.value
-                    });
-                    }}
-                />
-
-                <label htmlFor="color">Color</label>
-                <input
-                    type="text"
-                    id="color"
-                    value={formData.color}
-                    onChange={(event) => {
-                    setFormData({
-                        ...formData,
-                        color: event.target.value
-                    });
-                    }}
-                />
-
-                <label htmlFor="description">Overview</label>
-                <textarea
-                    id="description"
-                    value={formData.description}
-                    onChange={(event) => {
-                        setFormData({
-                        ...formData,
-                        description: event.target.value
-                        });
-                    }}
-                />
-
-                <label htmlFor="medicalNotes">Medical</label>
-                <textarea
-                    id="medicalNotes"
-                    value={formData.medicalNotes}
-                    onChange={(event) => {
-                        setFormData({
-                        ...formData,
-                        medicalNotes: event.target.value
-                        });
-                    }}
-                />
-
-                <label htmlFor="notes">Notes</label>
-                <textarea
-                    id="notes"
-                    value={formData.notes}
-                    onChange={(event) => {
-                        setFormData({
-                        ...formData,
-                        notes: event.target.value
-                        });
-                    }}
-                />
-
-                <label htmlFor="history">History</label>
-                <textarea
-                    id="history"
-                    value={formData.history}
-                    onChange={(event) => {
-                        setFormData({
-                        ...formData,
-                        history: event.target.value
-                        });
-                    }}
-                />
-
-                <label htmlFor="dateAdded">Date added</label>
-                <input
-                    type="date"
-                    id="dateAdded"
-                    value={formData.dateAdded}
-                    onChange={(event) => {
-                        setFormData({
-                        ...formData,
-                        dateAdded: event.target.value
-                        });
-                    }}
-                />
-
-                <div className={styles.editAnimalFormCheckbox}>
-
-                    <div className={styles.checkboxGroup}>
-
-                        <label htmlFor="vaccinated">Vaccinated</label>
-                        <input
-                            type="checkbox"
-                            id="vaccinated"
-                            checked={formData.vaccinated}
-                            onChange={(event) => {
-                                setFormData({
-                                ...formData,
-                                vaccinated: event.target.checked
-                                });
-                            }}
-                        />
-
-                    </div>
-
-                    <div className={styles.checkboxGroup}>
-
-                        <label htmlFor="neutered">Neutered</label>
-                        <input
-                            type="checkbox"
-                            id="neutered"
-                            checked={formData.neutered}
-                            onChange={(event) => {
-                                setFormData({
-                                ...formData,
-                                neutered: event.target.checked
-                                });
-                            }}
-                        />
-
-                    </div>
-
-
+                <div className={styles.editAnimalHeader}>
+                    <img src={sideBarPawLogo} alt="Paw logo" width={60}/>
+                    <p>Update the animal details below</p>
                 </div>
 
-                <label>Select image</label>
-                <div className={styles.editAnimalModalImg}>
+                <div className={styles.editAnimalContainerLogo}>
+                    <img src={appLogo} alt="Logo" width={270} />              
+                </div>
 
-                    {visibleAnimalImages.map((animalImage) => {
+                <h1>Edit: {animal.name}</h1>
 
-                        const imageId = animalImage[0];
-                        const imageSource = animalImage[1];
+                <form className={styles.editAnimalForm} onSubmit={handleSubmit}>
 
-                        return (
+                    <label htmlFor="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        value={formData.name}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                name: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                        required
+                    />
+
+                    <label htmlFor="breed">Breed</label>
+                    <input
+                        type="text"
+                        id="breed"
+                        value={formData.breed}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                breed: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                        required
+                    />
+
+                    <label htmlFor="age">Age</label>
+                    <input
+                        type="number"
+                        id="age"
+                        value={formData.age}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                age: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                        required
+                    />
+
+                    <label htmlFor="gender">Gender</label>
+                    <input
+                        type="text"
+                        id="gender"
+                        value={formData.gender}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                gender: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                        required
+                    />
+
+                    <label htmlFor="status">Status</label>
+                    <select
+                        id="status"
+                        value={formData.status}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                status: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                        required
+                    >
+                        <option value="">Select status</option>
+                        <option value="Available">Available</option>
+                        <option value="Adopted">Adopted</option>
+                        <option value="Reserved">Reserved</option>
+                        <option value="Medical Hold">Medical Hold</option>
+                        <option value="In Foster Care">In Foster Care</option>
+                    </select>
+
+                    <label htmlFor="weight">Weight (kg)</label>
+                    <input
+                        type="number"
+                        id="weight"
+                        value={formData.weight}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                weight: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                    />
+
+                    <label htmlFor="color">Color</label>
+                    <input
+                        type="text"
+                        id="color"
+                        value={formData.color}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                color: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                    />
+
+                    <label htmlFor="description">Overview</label>
+                    <textarea
+                        id="description"
+                        value={formData.description}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                description: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                    />
+
+                    <label htmlFor="medicalNotes">Medical</label>
+                    <textarea
+                        id="medicalNotes"
+                        value={formData.medicalNotes}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                medicalNotes: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditMedicalHistory}
+                    />
+
+                    <label htmlFor="notes">Notes</label>
+                    <textarea
+                        id="notes"
+                        value={formData.notes}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                notes: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                    />
+
+                    <label htmlFor="history">History</label>
+                    <textarea
+                        id="history"
+                        value={formData.history}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                history: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                    />
+
+                    <label htmlFor="dateAdded">Date added</label>
+                    <input
+                        type="date"
+                        id="dateAdded"
+                        value={formData.dateAdded}
+                        onChange={(event) => {
+                            setFormData({
+                                ...formData,
+                                dateAdded: event.target.value
+                            });
+                        }}
+                        disabled={!userPermissions?.canEditAnimal}
+                    />
+
+                    <div className={styles.editAnimalFormCheckbox}>
+
+                        <div className={styles.checkboxGroup}>
+
+                            <label htmlFor="vaccinated">Vaccinated</label>
+                            <input
+                                type="checkbox"
+                                id="vaccinated"
+                                checked={formData.vaccinated}
+                                onChange={(event) => {
+                                    setFormData({
+                                        ...formData,
+                                        vaccinated: event.target.checked
+                                    });
+                                }}
+                                disabled={!userPermissions?.canEditAnimal}
+                            />
+
+                        </div>
+
+                        <div className={styles.checkboxGroup}>
+
+                            <label htmlFor="neutered">Neutered</label>
+                            <input
+                                type="checkbox"
+                                id="neutered"
+                                checked={formData.neutered}
+                                onChange={(event) => {
+                                    setFormData({
+                                        ...formData,
+                                        neutered: event.target.checked
+                                    });
+                                }}
+                                disabled={!userPermissions?.canEditAnimal}
+                            />
+
+                        </div>
+
+                    </div>
+
+                    <label>Select image</label>
+
+                    <div className={styles.editAnimalModalImg}>
+
+                        {visibleAnimalImages.map((animalImage) => {
+
+                            const imageId = animalImage[0];
+                            const imageSource = animalImage[1];
+
+                            return (
+                                <button
+                                    key={imageId}
+                                    type="button"
+                                    className={`${styles.imageButton} ${
+                                        selectedImage === imageId ? styles.selectedImage : ""
+                                    }`}
+                                    onClick={() => {
+                                        setSelectedImage(imageId);
+                                    }}
+                                    disabled={!userPermissions?.canEditAnimal}
+                                >
+                                    <img
+                                        src={imageSource}
+                                        alt={imageId}
+                                        loading="lazy"
+                                    />
+                                </button>
+                            );
+                        })}
+
+                        {allAnimalImages.length > 5 && (
+
                             <button
-                                key={imageId}
                                 type="button"
-                                className={`${styles.imageButton} ${
-                                selectedImage === imageId ? styles.selectedImage : ""}`}
-                                onClick={() => { setSelectedImage(imageId); }}
+                                className={`${styles.imageButton} ${styles.imageGalleryToggleButton}`}
+                                onClick={() => {
+                                    setShowAllImages(!showAllImages);
+                                }}
+                                disabled={!userPermissions?.canEditAnimal}
                             >
-                                <img
-                                    src={imageSource}
-                                    alt={imageId}
-                                    loading="lazy"
-                                />
+                                <div>
+                                    <span>{showAllImages ? "−" : "+"}</span>
+                                    <small>
+                                        {showAllImages ? "Show less" : "Show more"}
+                                    </small>
+                                </div>
                             </button>
-                        );
-                    })}
 
-                    {allAnimalImages.length > 5 && (
+                        )}
+
+                    </div>
+
+                    <div className={styles.editAnimalContainerButtons}>
+
                         <button
                             type="button"
-                            className={`${styles.imageButton} ${styles.imageGalleryToggleButton}`}
-
-                            onClick={() => {
-                                setShowAllImages(!showAllImages);
-                            }}
-
-                            >
-                            <div>
-                                <span>{showAllImages ? "−" : "+"}</span>
-                                <small> {showAllImages ? "Show less" : "Show more"} </small>
-                            </div>
+                            className={styles.editAnimalContainerCancelButton}
+                            onClick={onClose}
+                        >
+                            Cancel
                         </button>
-                    )}
 
-                </div>
+                        <button
+                            type="submit"
+                            className={styles.editAnimalContainerSaveButton}
+                        >
+                            Save changes
+                        </button>
 
-                <div className={styles.editAnimalContainerButtons}>
+                    </div>
 
-                    <button
-                        type="button"
-                        className={styles.editAnimalContainerCancelButton}
-                        onClick={onClose}
-                    >
-                        Cancel
-                    </button>
+                </form>
 
-                    <button
-                        type="submit"
-                        className={styles.editAnimalContainerSaveButton}
-                    >
-                        Save changes
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </div>
-
-    </div>
-  )
+    )
 }

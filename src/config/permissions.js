@@ -35,7 +35,7 @@ export const permissions = {
     canAddAnimal: false,
     canEditAnimal: false,
     canDeleteAnimal: false,
-    canViewMedicalHistory: false,
+    canViewMedicalHistory: true,
     canEditMedicalHistory: false,
     canViewApplications: true,
     canManageApplications: false,
@@ -44,7 +44,7 @@ export const permissions = {
     canManageOwnCalendarEvents: true
   },
 
-  Veterinarian: {
+  veterinarian: {
     canViewDashboard: true,
     canViewAnimals: true,
     canAddAnimal: false,
@@ -59,13 +59,13 @@ export const permissions = {
     canManageOwnCalendarEvents: true
   },
 
-  Volunteer: {
+  volunteer: {
     canViewDashboard: true,
     canViewAnimals: true,
     canAddAnimal: false,
     canEditAnimal: false,
     canDeleteAnimal: false,
-    canViewMedicalHistory: false,
+    canViewMedicalHistory: true,
     canEditMedicalHistory: false,
     canViewApplications: false,
     canManageApplications: false,

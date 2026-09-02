@@ -123,7 +123,13 @@ export default function AnimalDetails({ userPermissions }) {
        
         <div className={styles.animalDetailsbuttons}>
 
-          {userPermissions?.canEditAnimal ?  (<button className={styles.animalDetailsbuttonsEdit}onClick={openEditModal}><LuPencilLine /> Edit</button>)  : null}
+          {userPermissions?.canEditAnimal || userPermissions?.canEditMedicalHistory ? 
+          (
+            <button className={styles.animalDetailsbuttonsEdit} onClick={openEditModal} >
+              <LuPencilLine /> Edit
+            </button>
+
+          ) : null}
 
           {userPermissions?.canDeleteAnimal ? (
             <button
@@ -240,7 +246,14 @@ export default function AnimalDetails({ userPermissions }) {
 
       
       {/* modal */}
-      {isEditModalOpen && (<EditAnimalModal animal={animal} setAnimal={setAnimal} onClose={closeEditModal}/>)}
+      {isEditModalOpen && (
+          <EditAnimalModal
+            animal={animal}
+            setAnimal={setAnimal}
+            onClose={closeEditModal}
+            userPermissions={userPermissions}
+          />
+        )}
 
     </div>
   )

@@ -7,7 +7,7 @@ import StatusBadge from "../../../components/StatusBadge/StatusBadge"
 import animalImages from "../../../Data/animalImages"
 
 
-export default function AdoptionDetails() {
+export default function AdoptionDetails({ userPermissions }) {
 
   const [errorMessage, setErrorMessage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -335,40 +335,52 @@ export default function AdoptionDetails() {
 
           <h2>Status</h2>
 
-          <label htmlFor="applicationStatus">
-           <strong><h3>Current status</h3></strong>
-          </label>
+          {userPermissions?.canManageApplications ? (
+            <>
+              <label htmlFor="applicationStatus">
+                <strong>
+                  <h3>Current status</h3>
+                </strong>
+              </label>
 
-          <select
-            id="applicationStatus"
-            value={selectedStatus}
-            onChange={(event) =>
-              setSelectedStatus(event.target.value)
-            }
-          >
+              <select
+                id="applicationStatus"
+                value={selectedStatus}
+                onChange={(event) =>
+                  setSelectedStatus(event.target.value)
+                }
+              >
+                <option value="New">
+                  New
+                </option>
 
-            <option value="New">
-              New
-            </option>
+                <option value="In Review">
+                  In Review
+                </option>
 
-            <option value="In Review">
-              In Review
-            </option>
+                <option value="Approved">
+                  Approved
+                </option>
 
-            <option value="Approved">
-              Approved
-            </option>
+                <option value="Rejected">
+                  Rejected
+                </option>
+              </select>
 
-            <option value="Rejected">
-              Rejected
-            </option>
-
-          </select>
-
-
-          <button className={styles.adoptionDetailsStatusbutton} type="button" onClick={handleUpdateStatus}>
-            Update Status
-          </button>
+              <button
+                className={styles.adoptionDetailsStatusbutton}
+                type="button"
+                onClick={handleUpdateStatus}
+              >
+                Update Status
+              </button>
+            </>
+          ) : (
+            <>
+              <h3>Current status</h3>
+              <StatusBadge status={applicationData.status} />
+            </>
+          )}
 
         </div>
 

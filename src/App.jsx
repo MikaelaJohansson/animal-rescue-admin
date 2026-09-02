@@ -89,7 +89,7 @@ export default function App() {
 
           <Route element={ <PermissionRoute hasPermission={userPermissions?.canViewApplications} />}>
             <Route path="/adoptions" element={<Adoptions />} />
-            <Route path="/adoptionDetails/:adoptionId" element={<AdoptionDetails />} />
+            <Route path="/adoptionDetails/:adoptionId" element={<AdoptionDetails userPermissions={userPermissions} />} />
           </Route>
 
           <Route path="/calendar" element={<Calendar />} />
