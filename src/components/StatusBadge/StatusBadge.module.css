@@ -1,8 +1,9 @@
 .status{
-    padding: 2px;
+    padding: 4px;
     border-radius: var(--radius-M);
     font-size: clamp(1rem, 3vw, 1.3rem);
     white-space: nowrap;
+    max-width: fit-content;
 }
 
 .available{
