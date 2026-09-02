@@ -9,7 +9,7 @@ import styles from "./AnimalDetails.module.css"
 import EditAnimalModal from "../../../components/Modals/EditAnimalModal/EditAnimalModal";
 
 
-export default function AnimalDetails() {
+export default function AnimalDetails({ userPermissions }) {
 
   const {animalId} = useParams()
 
@@ -122,14 +122,23 @@ export default function AnimalDetails() {
         </div>
        
         <div className={styles.animalDetailsbuttons}>
-          <button className={styles.animalDetailsbuttonsEdit}  onClick={openEditModal}><LuPencilLine /> Edit</button>
 
-          <button
-            className={styles.animalDetailsbuttonsDelete}
-            onClick={deleteAnimal}
-            disabled={animal.isDemoProtected}
-            title={animal.isDemoProtected ? "Demo animal – deletion is disabled because this animal is linked to adoption applications." : "Delete animal" } > <LuTrash2 /> Delete
-          </button>
+          {userPermissions?.canEditAnimal ?  (<button className={styles.animalDetailsbuttonsEdit}onClick={openEditModal}><LuPencilLine /> Edit</button>)  : null}
+
+          {userPermissions?.canDeleteAnimal ? (
+            <button
+              className={styles.animalDetailsbuttonsDelete}
+              onClick={deleteAnimal}
+              disabled={animal.isDemoProtected}
+              title={
+                animal.isDemoProtected
+                  ? "Demo animal – deletion is disabled because this animal is linked to adoption applications."
+                  : "Delete animal"
+              }
+            >
+              <LuTrash2 /> Delete
+            </button>
+          ) : null}
 
         </div>     
 

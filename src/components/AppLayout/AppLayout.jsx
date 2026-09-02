@@ -5,7 +5,7 @@ import Topbar from "../Topbar/Topbar";
 import styles from "../AppLayout/AppLayout.module.css"
 
 
-export default function AppLayout({userProfile }) {
+export default function AppLayout({userProfile,userPermissions }) {
 
 
 
@@ -15,7 +15,7 @@ export default function AppLayout({userProfile }) {
       
 
       <aside className={styles.sideBarAppLayout}>
-        <Sidebar></Sidebar>
+        <Sidebar userPermissions={userPermissions} />
       </aside>
 
       <section className={styles.RightSideAppLayout}>

@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { permissions } from "./config/permissions";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
@@ -11,15 +12,18 @@ import Animals from "./pages/Animals/Animals";
 import AnimalDetails from "./pages/Animals/AnimalDetails/AnimalDetails";
 import Adoptions from "./pages/Adoptions/Adoptions";
 import AdoptionDetails from "./pages/Adoptions/AdoptionDetails/AdoptionDetails";
+import PermissionRoute from "./components/PermissionRoute/PermissionRoute";
 import Calendar from "./pages/Calendar/Calendar";
 
 export default function App() {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
-  const [userProfile, setUserProfile] = useState(null)
+  const [userProfile, setUserProfile] = useState(null);
+
+  const userPermissions = userProfile ? permissions[userProfile.role] : null;
 
   // Checks if a user is signed in and loads the user's profile
-
   useEffect(() => {
 
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -29,18 +33,15 @@ export default function App() {
         setIsLoggedIn(true);
 
         try {
+
           const userDocumentReference = doc(db, "users", user.uid);
           const userDocumentSnapshot = await getDoc(userDocumentReference);
 
           if (userDocumentSnapshot.exists()) {
-
             setUserProfile(userDocumentSnapshot.data());
-
           } else {
-
             console.error("No user profile was found in Firestore");
             setUserProfile(null);
-
           }
 
         } catch (error) {
@@ -48,12 +49,9 @@ export default function App() {
           setUserProfile(null);
         }
 
-        
       } else {
-
         setIsLoggedIn(false);
         setUserProfile(null);
-
       }
 
       setIsAuthLoading(false);
@@ -71,31 +69,35 @@ export default function App() {
 
 
   return (
+
     <Routes>
 
-      <Route
-        path="/" 
-        element={isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login setIsLoggedIn={setIsLoggedIn} />}
+      <Route path="/" element={ isLoggedIn ? 
+        ( <Navigate to="/dashboard" replace /> ) : ( <Login setIsLoggedIn={setIsLoggedIn} /> ) }
       />
 
       {/* Protected routes */}
       <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
 
         {/* AppLayout is responsible for the shared layout */}
-        <Route element={<AppLayout userProfile={userProfile} />}>
+        <Route element={ <AppLayout userProfile={userProfile} userPermissions={userPermissions} /> } >
+
           <Route path="/dashboard" element={<Dashboard />} />
-          
-          <Route path="/animals" element={<Animals />} />
-          <Route path="/animals/:animalId" element={<AnimalDetails/>}/>
 
-          <Route path="/adoptions" element={<Adoptions/>}/>
-          <Route path="/adoptionDetails/:adoptionId" element={<AdoptionDetails/>}/>
+          <Route path="/animals" element={<Animals userPermissions={userPermissions} />} />
+          <Route path="/animals/:animalId" element={<AnimalDetails userPermissions={userPermissions}/>} />
 
-          <Route path="/calendar" element={<Calendar/>} />
+          <Route element={ <PermissionRoute hasPermission={userPermissions?.canViewApplications} />}>
+            <Route path="/adoptions" element={<Adoptions />} />
+            <Route path="/adoptionDetails/:adoptionId" element={<AdoptionDetails />} />
+          </Route>
+
+          <Route path="/calendar" element={<Calendar />} />
+
         </Route>
 
       </Route>
-      
+
     </Routes>
   );
 }

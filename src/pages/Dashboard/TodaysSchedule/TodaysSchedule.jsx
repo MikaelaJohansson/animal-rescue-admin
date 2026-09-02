@@ -1,7 +1,6 @@
-import React from 'react'
-import styles from "./TodaysSchedule.module.css"
-import { Link } from "react-router-dom"
 import { LuCalendarDays, LuArrowRight  } from "react-icons/lu";
+import { Link } from "react-router-dom"                                                                                                         
+import styles from "./TodaysSchedule.module.css"
 import backgroundDog from "../../../assets/backgroundDog.png"
 
 export default function TodaysSchedule({todayEvents}) {
@@ -40,7 +39,7 @@ export default function TodaysSchedule({todayEvents}) {
 
                     <div className={styles.scheduleContainerNoEvent}>
 
-                        <img src={backgroundDog} alt="" />
+                        <img src={backgroundDog} alt="background image of dog" />
                         <h3>Nothing scheduled for today.</h3>
                         <p>Enjoy a calm day!</p>
 

@@ -7,7 +7,7 @@ import AnimalsTable from "../../components/Table/AnimalsTable/AnimalsTable"
 import AnimalsFilters from "../../components/Filters/AnimalsFilters/AnimalsFilters"
 import AddAnimalModal from "../../components/Modals/AddAnimalModal/AddAnimalModal"
 
-export default function Animals() {
+export default function Animals({ userPermissions }) {
 
   const [searchParams] = useSearchParams()
 
@@ -111,6 +111,7 @@ export default function Animals() {
         selectedGender = {selectedGender}
         setSelectedGender = {setSelectedGender}
         onOpenAddModal={handleOpenAddModal}
+        canAddAnimal={userPermissions?.canAddAnimal}
         >       
       </AnimalsFilters>
       

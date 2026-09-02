@@ -7,7 +7,7 @@ import sideBarAppLogoWhite from "../../assets/sideBarAppLogoWhite.png"
 import sideBarPawLogoWhite from "../../assets/sideBarPawLogoWhite.png"
 
 
-export default function Sidebar() {
+export default function Sidebar({ userPermissions }) {
 
   const [isExpanded, setIsExpanded] = useState(() => {const isDesktopScreen = window.matchMedia("(min-width: 768px)").matches;
 
@@ -42,11 +42,29 @@ export default function Sidebar() {
      
       {/* sidebar Links to other pages */}
       <nav className={styles.sideBarNav}>
-        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/dashboard"><FaHouse />{isExpanded && <span>Dashboard</span>}</NavLink>
-        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animals</span>}</NavLink>
-        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/adoptions"><FaFilePen />{isExpanded && <span>Applications</span>}</NavLink>
-        <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/calendar"><FaCalendarDays />{isExpanded && <span>Calendar</span>}</NavLink>
-      
+
+        {userPermissions?.canViewDashboard ? 
+          (<NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/dashboard"><FaHouse />{isExpanded && <span>Dashboard</span>}</NavLink>) 
+          : null 
+        }
+        
+
+        {userPermissions?.canViewAnimals ? 
+          (<NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animals</span>}</NavLink>) 
+          : null 
+        }
+        
+       
+        {userPermissions?.canViewApplications ? 
+          ( <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : "" } ` } to="/adoptions" ><FaFilePen />{isExpanded && <span>Applications</span>}</NavLink>) 
+          : null
+        }
+
+        {userPermissions?.canViewCalendar ? 
+          (<NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/calendar"><FaCalendarDays />{isExpanded && <span>Calendar</span>}</NavLink>) 
+          : null
+        }
+        
       </nav>
 
     </div>

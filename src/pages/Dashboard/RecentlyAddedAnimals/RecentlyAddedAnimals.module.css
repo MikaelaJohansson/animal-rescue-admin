@@ -3,7 +3,7 @@
   padding: 1.5rem;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-M);
+  border-radius: var(--radius-S);
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
 }
 

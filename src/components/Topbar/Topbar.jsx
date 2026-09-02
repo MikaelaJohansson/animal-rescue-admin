@@ -3,6 +3,7 @@ import { LuChevronDown } from "react-icons/lu";
 import { useState } from "react";
 import {signOut} from "firebase/auth"
 import {auth} from "../../firebase"
+import sideBarPawLogo from "../../assets/sideBarPawLogo.png"
 import appLogo from "../../assets/appLogo.png"
 import styles from "./Topbar.module.css";
 import mikaelaAvatar from "../../assets/avatars/mikaelaAvatar.jpg";
@@ -51,11 +52,20 @@ export default function Topbar({ userProfile }) {
     <header className={styles.topbar}>
 
       {/* welcome message */}
-      <div >
-        <span className={styles.topBarMessage}>
-           <h1>{`Welcome back, ${userProfile ? userProfile.firstName : "Loading..."}`}</h1>
-        </span>
-        <h3 className={styles.topBarMessageTitle}>{userProfile ? userProfile.jobTitle : ""}</h3>
+      <div className={styles.topBarWelcome}>
+        
+        <img src={sideBarPawLogo} alt="Logo" />
+
+        <div className={styles.topBarWelcomeText}>
+          <h1>
+            Welcome back, {userProfile ? userProfile.firstName : "Loading..."}
+          </h1>
+
+          <h3>
+            {userProfile ? userProfile.jobTitle : ""}
+          </h3>
+        </div>
+
       </div>
 
 
