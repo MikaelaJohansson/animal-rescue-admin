@@ -95,12 +95,10 @@ export default function Calendar() {
             );
 
             const newCalendarEvent = {
-
                 id: newEventDocument.id,
                 title: eventTitle,
                 start: `${selectedDate}T${eventStartTime}`,
                 end: `${selectedDate}T${eventEndTime}`
-
             };
 
             setCalendarEvents((currentEvents) => [

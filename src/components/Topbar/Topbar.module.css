@@ -1,65 +1,165 @@
 .topbar {
   min-height: 64px;
   width: 100%;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  justify-content: space-between;
+
+  gap: clamp(0.5rem, 2vw, 2rem);
+  padding-inline: clamp(0.75rem, 2vw, 2rem);
+
   background-color: var(--color-background-topbar);
   border-bottom: 1px solid var(--color-border);
 }
 
-/* Welcome message */
+
+/* Welcome */
+
 .topBarWelcome {
   display: flex;
   align-items: center;
-  gap: 0;
-  white-space: nowrap;
+
+  min-width: 0;
 }
 
 .topBarWelcome img {
-  width: 90px;
+  width: clamp(55px, 6vw, 90px);
   height: 55px;
+
   object-fit: contain;
   flex-shrink: 0;
+
   margin-right: -12px;
-  margin-bottom: 10px;
 }
 
 .topBarWelcomeText {
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
 }
 
 .topBarWelcomeText h1 {
   margin: 0;
+
+  font-size: clamp(
+    var(--font-size-M),
+    2vw,
+    var(--font-size-XL)
+  );
+
   line-height: 1;
 }
 
 .topBarWelcomeText h3 {
   margin: 0.3rem 0 0;
+
   line-height: 1;
 }
 
-.topBarMessageName {
-  color: var(--color-sidebar);
-  line-height: var(--line-height-XS);
+
+/* Right side */
+
+.topBarRight {
+  display: flex;
+  align-items: center;
+
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+
+  flex-shrink: 0;
 }
 
-.topBarUserInfoCointainer {
+
+/* Notifications */
+
+.topBarNotification {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+}
+
+.notificationButton {
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.4rem;
+
+  border: none;
+  background: transparent;
+
+  color: var(--color-sidebar);
+  font-size: 1.4rem;
+
+  cursor: pointer;
+}
+
+.notificationButton:hover {
+  transform: scale(1.08);
+}
+
+.notificationBadge {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  min-width: 17px;
+  height: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-inline: 4px;
+
+  border-radius: 999px;
+
+  background-color: #d94c4c;
+  color: white;
+
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+
+/* User */
+
+.topBarUserInfoCointainer {
+  position: relative;
+}
+
+.topBarButton {
+  display: flex;
+  align-items: center;
+
+  gap: clamp(0.4rem, 1vw, 1rem);
+
+  border: none;
+  background: transparent;
+
+  line-height: var(--line-height-S);
+
+  cursor: pointer;
+}
+
+.topBarButton:hover {
+  transform: scale(1.02);
 }
 
 .topBarprofileAvatar {
-  height: 40px;
   width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
   border-radius: 50%;
-  box-shadow: 1px 2px 3px rgb(147, 147, 147);
+
   object-fit: cover;
-  position: relative;
-  top: 0.4rem;
+
+  box-shadow: 1px 2px 3px rgb(147, 147, 147);
 }
 
 .topbarUsername {
@@ -68,92 +168,123 @@
 }
 
 .topbarUserTitle {
-  font-weight: var(--font-weight-M);
   color: var(--color-sidebar);
+
+  font-weight: var(--font-weight-M);
   font-size: var(--font-size-S);
 }
 
-.topBarButton {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  border: none;
-  line-height: var(--line-height-S);
-  cursor: pointer;
-}
 
-.topBarButton:hover {
-  transform: scale(1.02);
-}
+/* Profile dropdown */
 
 .topBarProfileDropdown {
   position: absolute;
-  top: 100%;
-  right: 0%;
+
+  top: calc(100% + 0.5rem);
+  right: 0;
+
+  min-width: 150px;
+
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+
+  overflow: hidden;
+
+  background-color: var(--color-background-topbar);
+
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+
+  box-shadow: -2px 4px 8px rgb(207, 207, 207);
+
   z-index: 1000;
 }
 
 .topBarProfileDropdown button {
-  background-color: var(--color-background-topbar);
+  width: 100%;
+
+  padding: 0.7rem 1rem;
+
   border: none;
-  padding: 0.6rem;
-  padding-right: 3rem;
-  box-shadow: -2px 4px 4px rgb(207, 207, 207);
-  font-weight: var(--font-weight-M);
+  background: transparent;
+
+  text-align: left;
+
   color: var(--color-sidebar);
   font-size: var(--font-size-S);
+  font-weight: var(--font-weight-M);
+
+  cursor: pointer;
 }
 
 .topBarProfileDropdown button:hover {
   background-color: var(--color-sidebar-hover-light);
-  transform: scale(1.04);
+}
+
+.topBarNotification {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.notificationDropdown {
+  position: absolute;
+
+  top: calc(100% + 0.75rem);
+  right: 0;
+
+  width: min(320px, 85vw);
+
+  padding: 1rem;
+
+  background-color: var(--color-background-topbar);
+
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+
+  z-index: 1000;
+}
+
+.notificationDropdown h3 {
+  margin-top: 0;
+}
+
+.notificationItem {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.3rem;
+
+  padding: 0.75rem;
+
+  border: none;
+  background: transparent;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.notificationItem:hover {
+  background-color: var(--color-sidebar-hover-light);
 }
 
 
+/* Small screens */
+
 @media (max-width: 767px) {
-
-  .topbar {
-    min-height: 64px;
-    padding: 0 0.75rem;
-    gap: 0.5rem;
-  }
-
-  .topBarWelcome {
-    gap: 0.2rem;
-    margin-left: 10px;
-  }
-
-  .topBarWelcome img {
-    width: 55px;
-    height: 45px;
-    margin-right: -12px;
-    margin-top: 8px;
-  }
-
-  .topBarWelcomeText h1 {
-    font-size: var(--font-size-M);
-  }
 
   .topBarWelcomeText h3 {
     display: none;
-  }
-
-  .topBarNotification {
-    display: none;
-  }
-
-  .topBarButton {
-    gap: 0.4rem;
   }
 
   .topBarButton div {
     display: none;
   }
 
-  .topBarprofileAvatar {
-    top: 0;
-  }
 }
