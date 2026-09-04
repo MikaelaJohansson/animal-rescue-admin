@@ -485,9 +485,7 @@ export default function AdoptionDetails({ userPermissions }) {
               {applicationData.status === "In Review" && (
 
                 <button
-                  className={
-                    styles.adoptionDetailsStatusbutton
-                  }
+                  className={ styles.adoptionDetailsStatusbutton }
                   type="button"
                   onClick={handleApproveAdoption}
                 >

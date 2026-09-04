@@ -13,7 +13,6 @@ import stigAvatar from "../../assets/avatars/stigAvatar.jpg";
 import tommyAvatar from "../../assets/avatars/tommyAvatar.jpg";
 import styles from "./Topbar.module.css";
 
-
 const avatarImages = {
   mikaela: mikaelaAvatar,
   bella: bellaAvatar,
@@ -21,7 +20,6 @@ const avatarImages = {
   stig: stigAvatar,
   tommy: tommyAvatar,
 };
-
 
 export default function Topbar({ userProfile }) {
 
@@ -55,10 +53,7 @@ export default function Topbar({ userProfile }) {
 
         const notificationData = snapshot.docs.map((document) => {
 
-          return {
-            id: document.id,
-            ...document.data()
-          };
+          return { id: document.id, ...document.data() };
 
         });
 
@@ -110,17 +105,21 @@ export default function Topbar({ userProfile }) {
       const notificationDocumentReference = doc( db, "notifications", notification.id);
 
       // Mark notification as read in Firestore
-      await updateDoc(
-        notificationDocumentReference,
-        {
-          isRead: true
-        }
-      );
+      await updateDoc( notificationDocumentReference,{ isRead: true});
 
       setIsNotificationMenuOpen(false);
 
       // Navigate to the application connected to the notification
-      navigate( `/adoptionDetails/${notification.applicationId}`);
+      if(notification.type === "application_review"){
+
+        navigate( `/adoptionDetails/${notification.applicationId}`)
+
+      }else if(notification.type == "medical_attention"){
+
+        navigate(`/animals/${notification.animalId}`)
+
+      }
+     
 
     } catch (error) {
       console.error( "Failed to open notification:", error );
@@ -169,7 +168,6 @@ export default function Topbar({ userProfile }) {
       <div className={styles.topBarRight}>
 
         {/* Notifications */}
-
         <div className={styles.topBarNotification}>
 
           <button
@@ -178,8 +176,7 @@ export default function Topbar({ userProfile }) {
             aria-expanded={isNotificationMenuOpen}
             className={styles.notificationButton}
             onClick={handleNotificationMenu}
-          >
-            <LuBell />
+          > <LuBell />
 
             {unreadNotifications.length > 0 && (
 
@@ -193,9 +190,7 @@ export default function Topbar({ userProfile }) {
 
           </button>
 
-
           {/* Notification dropdown */}
-
           {isNotificationMenuOpen && (
 
             <div className={styles.notificationDropdown}>
@@ -250,8 +245,7 @@ export default function Topbar({ userProfile }) {
             aria-label="Open profile menu"
           >
 
-            <img
-              className={styles.topBarprofileAvatar}
+            <img className={styles.topBarprofileAvatar}
               src={profileAvatar}
               alt={
                 userProfile

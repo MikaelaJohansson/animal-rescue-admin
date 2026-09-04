@@ -2,7 +2,7 @@ import styles from "./EditAnimalModal.module.css"
 import animalImages from "../../../Data/animalImages";
 import appLogo from "../../../assets/appLogo.png"
 import sideBarPawLogo from "../../../assets/sideBarPawLogo.png"
-import { doc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDocs ,query, updateDoc, where, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { useState } from "react";
 
@@ -42,6 +42,9 @@ export default function EditAnimalModal({ animal, onClose, setAnimal, userPermis
 
         event.preventDefault();
 
+        // Check if the status changed from another status to Medical Hold
+        const shouldNotifyVeterinarian  = formData.status === "Medical Hold" && animal.status !== "Medical Hold"
+
         let updatedAnimal = {};
 
         if (userPermissions?.canEditAnimal) {
@@ -65,11 +68,9 @@ export default function EditAnimalModal({ animal, onClose, setAnimal, userPermis
 
         } else if (userPermissions?.canEditMedicalHistory) {
 
-            updatedAnimal = {
-                medicalNotes: formData.medicalNotes
-            };
-
+            updatedAnimal = { medicalNotes: formData.medicalNotes };
         }
+
 
         try {
 
@@ -77,17 +78,47 @@ export default function EditAnimalModal({ animal, onClose, setAnimal, userPermis
 
             await updateDoc(animalDocumentReference, updatedAnimal);
 
-            setAnimal({
-                ...animal,
-                ...updatedAnimal
-            });
+            // Only run this code if the animal status changed to "Medical Hold"
+            if(shouldNotifyVeterinarian){
+
+                // Point to the "users" collection in Firestore
+                const usersCollection  = collection(db, "users")
+
+                // Create a query that looks for a user with the veterinarian role
+                const veterinarianQuery = query(usersCollection, where("role", "==", "veterinarian"))
+
+                // Run the query and get the matching users from Firestore
+                const veterinarianSnapshot = await getDocs(veterinarianQuery);
+
+                // Get the first veterinarian document from the result
+                const veterinarianDocument = veterinarianSnapshot.docs[0]
+
+                // Point to the "notifications" collection in Firestore
+                const notificationsCollection = collection( db, "notifications")
+
+                // Create a new notification document in Firestore
+                await addDoc(notificationsCollection,
+                {
+                    userId: veterinarianDocument.id, // The user who should receive the notification
+                    animalId: animal.id,  // The animal this notification is about
+                    title: "Animal needs medical attention",
+                    message: `${animal.name} has been placed on Medical Hold.`,
+                    type: "medical_attention",
+                    isRead: false, // The notification has not been read yet
+                    createdAt: serverTimestamp()
+                })
+            }
+
+            setAnimal({ ...animal, ...updatedAnimal});
 
             onClose();
 
         } catch (error) {
             console.error("Failed to update animal:", error);
         }
+
     }
+
 
     return (
         <div className={styles.editAnimalMainContainer} onClick={onClose}>
