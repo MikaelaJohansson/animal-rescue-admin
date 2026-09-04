@@ -118,6 +118,10 @@ export default function Topbar({ userProfile }) {
 
         navigate(`/animals/${notification.animalId}`)
 
+      }else if(notification.type === "new_animal"){
+
+        navigate(`/animals/${notification.animalId}`);
+
       }
      
 

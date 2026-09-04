@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, query, where, serverTimestamp, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { LuSave } from "react-icons/lu";
 import animalImages from "../../../Data/animalImages";
@@ -60,20 +60,35 @@ export default function AddAnimalModal({ onClose, setAnimals }) {
 
     try {
 
-      const addedAnimal = await addDoc(
-        collection(db, "animals"),
-        newAnimal
-      );
+      const addedAnimal = await addDoc( collection(db, "animals"), newAnimal);
+
+      const usersCollection = collection(db, "users");
+
+      const notificationRecipientsQuery = query(usersCollection,where("role", "in", ["manager", "staff", "veterinarian", "volunteer"]))
+
+      const Snapshot = await getDocs(notificationRecipientsQuery);
+
+      const notificationsCollection = collection( db, "notifications")
+
+      for (const recipientDocument of Snapshot.docs) {
+
+        await addDoc(notificationsCollection,
+          {
+            userId: recipientDocument.id,
+            animalId: addedAnimal.id,
+            title: "New animal added",
+            message: `${newAnimal.name} has been added to the shelter.`,
+            type: "new_animal",
+            isRead: false,
+            createdAt: serverTimestamp()
+          }
+        );
+
+      }
 
       // Updates the local state so the table refreshes immediately.
       setAnimals((currentAnimals) => {
-        return [
-          ...currentAnimals,
-          {
-            id: addedAnimal.id,
-            ...newAnimal
-          }
-        ];
+        return [ ...currentAnimals,{ id: addedAnimal.id, ...newAnimal }];
       });
 
       onClose();

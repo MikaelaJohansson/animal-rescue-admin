@@ -216,7 +216,6 @@ export default function EditAnimalModal({ animal, onClose, setAnimal, userPermis
                     >
                         <option value="">Select status</option>
                         <option value="Available">Available</option>
-                        <option value="Adopted">Adopted</option>
                         <option value="Reserved">Reserved</option>
                         <option value="Medical Hold">Medical Hold</option>
                         <option value="In Foster Care">In Foster Care</option>
