@@ -1,71 +1,72 @@
-import DashboardStatCard from "../../components/DashboardStatCard/DashboardStatCard"
-import styles from "../Dashboard/Dashborad.module.css"
-import RecentlyAddedAnimals from "../Dashboard/RecentlyAddedAnimals/RecentlyAddedAnimals";
-import { Dog,Heart,ShieldCheck,Handshake,Stethoscope,Hourglass } from "lucide-react";
+import {Dog,Heart,ShieldCheck,Handshake,Stethoscope,Hourglass,} from "lucide-react";
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { auth, db } from "../../firebase";
+import DashboardStatCard from "../../components/DashboardStatCard/DashboardStatCard";
+import styles from "../Dashboard/Dashborad.module.css";
+import RecentlyAddedAnimals from "../Dashboard/RecentlyAddedAnimals/RecentlyAddedAnimals";
 import TodaysSchedule from "./TodaysSchedule/TodaysSchedule";
+import DashboardSkeleton from "../../components/Skeleton/DashboardSkeleton/DashboardSkeleton";
 
 export default function Dashboard() {
 
-  const [errorMessage, setErrorMessage] = useState("")
-  const [isLoading, setIsLoading] = useState(true)
-  const [animals, setAnimals] = useState([])
-  const [todayEvents,setTodayEvents] = useState([])
+  const [errorMessage, setErrorMessage] = useState("");
+  const [animals, setAnimals] = useState([]);
+  const [todayEvents, setTodayEvents] = useState([]);
+  const [isAnimalsLoading, setIsAnimalsLoading] = useState(true);
+  const [isEventsLoading, setIsEventsLoading] = useState(true);
 
+  useEffect(() => {
 
-  useEffect(()=>{
+    async function getAnimals() {
 
-    async function getAnimals(){
+      try {
 
-      try{
-
-        setIsLoading(true)
+        setIsAnimalsLoading(true)
 
         // Points to the "animals" collection.
-        const animalCollection = collection(db,"animals")
+        const animalCollection = collection(db, "animals");
 
         // Goes to the saved path and retrieves everything from it.
-        const snapshot = await getDocs(animalCollection)
+        const snapshot = await getDocs(animalCollection);
 
-        const savedAnimalStatuses = JSON.parse(sessionStorage.getItem("animalStatuses")) || {}
+        const savedAnimalStatuses = JSON.parse(sessionStorage.getItem("animalStatuses")) || {};
 
         const animalData = snapshot.docs.map((document) => {
 
-          const animal = document.data()
+          const animal = document.data();
 
-          const savedStatus = savedAnimalStatuses[document.id]
+          const savedStatus = savedAnimalStatuses[document.id];
 
           return {
             id: document.id,
             ...animal,
-            status: savedStatus || animal.status
-          }
+            status: savedStatus || animal.status,
+          };
 
-        })
+        });
 
-        setAnimals(animalData)
-        setErrorMessage("")
+        setAnimals(animalData);
+        setErrorMessage("");
 
-      }catch(error){
+      } catch (error) {
         console.error("Failed to load dashboard animals:", error);
         setErrorMessage("Failed to load dashboard data.");
-      }finally{
-        setIsLoading(false);
+
+      } finally {
+        setIsAnimalsLoading(false)
       }
+
     }
 
     getAnimals();
-
-  },[])
+  }, []);
 
   useEffect(() => {
 
     async function getTodayEvents() {
-
       // Gets the currently signed-in user from Firebase Authentication.
-      const currentUser = auth.currentUser
+      const currentUser = auth.currentUser;
 
       // Stops the function if no user is signed in.
       if (!currentUser) {
@@ -73,141 +74,144 @@ export default function Dashboard() {
       }
 
       // Gets today's date in YYYY-MM-DD format.
-      const today = new Date().toISOString().split("T")[0]
+      const today = new Date().toISOString().split("T")[0];
 
       try {
-
         // Points to the "calendarEvents" collection in Firestore.
-        const calendarEventsCollection = collection(db, "calendarEvents")
+        const calendarEventsCollection = collection(db, "calendarEvents");
 
         // Creates a query for the signed-in user's events for today.
-        const todayEventsQuery = query(
-          calendarEventsCollection,
+        const todayEventsQuery = query( calendarEventsCollection,
           where("userId", "==", currentUser.uid),
-          where("date", "==", today)
-        )
+          where("date", "==", today),
+        );
 
         // Gets the documents that match the query.
-        const snapshot = await getDocs(todayEventsQuery)
+        const snapshot = await getDocs(todayEventsQuery);
 
         // Converts the Firestore documents into a regular JavaScript array.
         const eventData = snapshot.docs.map((document) => {
 
-          const data = document.data()
+          const data = document.data();
 
           return {
             id: document.id,
             title: data.title,
             date: data.date,
-            time: data.time
-          }
+            time: data.time,
+          };
 
-        })
+        });
 
         // Saves today's events in React state.
-        setTodayEvents(eventData)
-
+        setTodayEvents(eventData);
       } catch (error) {
-        console.error("Could not load today's events:", error)
+        console.error("Could not load today's events:", error);
+
+      }finally {
+        setIsEventsLoading(false)
       }
 
     }
 
-    getTodayEvents()
+    getTodayEvents();
 
-  }, [])
+  }, []);
 
-  const availableAnimals = animals.filter((animal)=>{
-    return animal.status === "Available"
-  })
+  const availableAnimals = animals.filter((animal) => {
+    return animal.status === "Available";
+  });
 
   const adoptedAnimals = animals.filter((animal) => {
-    return animal.status === "Adopted"
-  })
+    return animal.status === "Adopted";
+  });
 
-  const medicalHoldAnimals = animals.filter((animal)=>{
-    return animal.status === "Medical Hold"
-  })
+  const medicalHoldAnimals = animals.filter((animal) => {
+    return animal.status === "Medical Hold";
+  });
 
-  const fosterCareAnimals = animals.filter((animal)=>{
-    return animal.status === "In Foster Care"
-  })
+  const fosterCareAnimals = animals.filter((animal) => {
+    return animal.status === "In Foster Care";
+  });
 
-  const reservedAnimals = animals.filter((animal)=>{
-    return animal.status === "Reserved"
-  })
+  const reservedAnimals = animals.filter((animal) => {
+    return animal.status === "Reserved";
+  });
+
+  const isLoading = isAnimalsLoading || isEventsLoading;
 
 
   return (
+
     <section className={styles.dashboardCointainer}>
+      {isLoading ? ( <DashboardSkeleton /> ) : (
+        <>
+    
+          {errorMessage && <p>{errorMessage}</p>}
 
-      {errorMessage && <p>{errorMessage}</p>}
+          <div className={styles.dashboardCards}>
+            <DashboardStatCard
+              title="Total animals"
+              value={animals.length}
+              statusText="Registered animals"
+              icon={Dog}
+              color="pink"
+              to={"/animals"}
+            />
 
-      <div className={styles.dashboardCards}>
-        <DashboardStatCard
-          title="Total animals"
-          value={isLoading ? "..." : animals.length}
-          statusText="Registered animals"
-          icon={Dog}
-          color="pink"
-          to={"/animals"}
-        />
+            <DashboardStatCard
+              title="Available Animals"
+              value={availableAnimals.length}
+              statusText="Ready for adoption"
+              icon={Heart}
+              color="green"
+              to={"/animals?status=Available"}
+            />
 
-        <DashboardStatCard
-          title="Available Animals"
-          value={isLoading ? "..." : availableAnimals.length}
-          statusText="Ready for adoption"
-          icon={Heart}
-          color="green"
-          to={"/animals?status=Available"}
-        />
+            <DashboardStatCard
+              title="Adopted Animals"
+              value={adoptedAnimals.length}
+              statusText="Found a new home"
+              icon={ShieldCheck}
+              color="purple"
+              to="/animals?status=Adopted"
+            />
 
-        <DashboardStatCard
-          title="Adopted Animals"
-          value={isLoading ? "..." : adoptedAnimals.length}
-          statusText="Found a new home"
-          icon={ShieldCheck}
-          color="purple"
-          to="/animals?status=Adopted"
-        />
+            <DashboardStatCard
+              title="Medical Hold"
+              value={medicalHoldAnimals.length}
+              statusText="Receiving medical care"
+              icon={Stethoscope}
+              color="red"
+              to={"/animals?status=Medical Hold"}
+            />
 
-        <DashboardStatCard
-          title="Medical Hold"
-          value={isLoading ? "..." : medicalHoldAnimals.length}
-          statusText="Receiving medical care"
-          icon={Stethoscope}
-          color="red"
-          to={"/animals?status=Medical Hold"}
-        />
+            <DashboardStatCard
+              title="In Foster Care"
+              value={fosterCareAnimals.length}
+              statusText="Living with foster families"
+              icon={Handshake}
+              color="blue"
+              to={"/animals?status=In Foster Care"}
+            />
 
-        <DashboardStatCard
-          title="In Foster Care"
-          value={isLoading ? "..." : fosterCareAnimals.length}
-          statusText="Living with foster families"
-          icon={Handshake}
-          color="blue"
-          to={"/animals?status=In Foster Care"}
-        />
+            <DashboardStatCard
+              title="Reserved Animals"
+              value={reservedAnimals.length}
+              statusText="Awaiting adoption"
+              icon={Hourglass}
+              color="orange"
+              to={"/animals?status=Reserved"}
+            />
+          </div>
 
-        <DashboardStatCard
-          title="Reserved Animals"
-          value={isLoading ? "..." : reservedAnimals.length}
-          statusText="Awaiting adoption"
-          icon={Hourglass}
-          color="orange"
-          to={"/animals?status=Reserved"}
-        />
-      </div> 
-
-      <div className={styles.dashboardCointainerUppdates}>
-        <RecentlyAddedAnimals animals={animals} />   
-
-        <TodaysSchedule todayEvents={todayEvents}/>
-
-      </div>
-
-      
+          <div className={styles.dashboardCointainerUppdates}>
+            <RecentlyAddedAnimals animals={animals} />
+            <TodaysSchedule todayEvents={todayEvents} />
+          </div>
+        </>
+      )}
 
     </section>
-  )
+  );
 }

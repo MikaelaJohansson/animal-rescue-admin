@@ -1,0 +1,53 @@
+.dashboardSkeleton {
+  width: 100%;
+}
+
+/* Area with the six summary cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.card {
+  height: 145px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Bottom area */
+.bottomSection {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.recentlyAdded {
+  height: 500px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+}
+
+.todayEvents {
+  height: 500px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
