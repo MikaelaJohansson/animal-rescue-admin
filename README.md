@@ -171,17 +171,19 @@ Firestore Security Rules restrict calendar data so authenticated users can only 
 
 ---
 
-## 📊 Dashboard
+### 📊 Dashboard
 
-The Dashboard provides an overview of shelter information and the user's daily activity.
+The Dashboard provides a quick overview of the shelter and the user's schedule for the day.
 
-It includes:
+Summary cards display key information such as the total number of animals and animals by status, including adopted animals. The cards also work as shortcuts, clicking a card opens the relevant view with the corresponding animal filter already applied.
 
-- Shelter statistics
-- Recently added animals
-- Today's scheduled events
+The Dashboard also includes:
 
-The available navigation and functionality throughout the application depend on the authenticated user's permissions.
+- **Recently added animals** — displays the latest animals added to the system. Clicking an animal opens its details page.
+- **Today's events** — displays the logged-in user's calendar events for the current day. Events can be opened directly from the Dashboard.
+- **Summary cards** — provide an at-a-glance overview while also acting as navigation to relevant filtered views.
+
+This makes the Dashboard a starting point for both getting an overview and quickly navigating to relevant information in the system.
 
 ---
 
@@ -370,7 +372,7 @@ The goal is to demonstrate how multiple frontend workflows, user roles and share
 
 ### add_Animal
 
-<img src="screenshots/add_animal.png" alt=" add Animal management view" width="800">
+<img src="screenshots/add_animal.png" alt="add Animal management view" width="800">
 
 ---
 
