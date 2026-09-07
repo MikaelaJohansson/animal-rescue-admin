@@ -68,7 +68,10 @@ export default function EditAnimalModal({ animal, onClose, setAnimal, userPermis
 
         } else if (userPermissions?.canEditMedicalHistory) {
 
-            updatedAnimal = { medicalNotes: formData.medicalNotes };
+            updatedAnimal = {
+                medicalNotes: formData.medicalNotes,
+                status: formData.status
+            };
         }
 
 
@@ -203,22 +206,34 @@ export default function EditAnimalModal({ animal, onClose, setAnimal, userPermis
 
                     <label htmlFor="status">Status</label>
                     <select
-                        id="status"
-                        value={formData.status}
-                        onChange={(event) => {
-                            setFormData({
-                                ...formData,
-                                status: event.target.value
-                            });
-                        }}
-                        disabled={!userPermissions?.canEditAnimal}
-                        required
+                    id="status"
+                    value={formData.status}
+                    onChange={(event) => {
+                        setFormData({
+                        ...formData,
+                        status: event.target.value
+                        });
+                    }}
+                    disabled={
+                        !userPermissions?.canEditAnimal &&
+                        !userPermissions?.canChangeMedicalStatus
+                    }
+                    required
                     >
+                    {userPermissions?.canEditAnimal ? (
+                        <>
                         <option value="">Select status</option>
                         <option value="Available">Available</option>
                         <option value="Reserved">Reserved</option>
                         <option value="Medical Hold">Medical Hold</option>
                         <option value="In Foster Care">In Foster Care</option>
+                        </>
+                    ) : (
+                        <>
+                        <option value="Medical Hold">Medical Hold</option>
+                        <option value="Available">Available</option>
+                        </>
+                    )}
                     </select>
 
                     <label htmlFor="weight">Weight (kg)</label>

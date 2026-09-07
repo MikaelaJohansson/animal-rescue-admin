@@ -11,7 +11,8 @@ export const permissions = {
     canManageApplications: true,
     canApproveAdoption: false,
     canViewCalendar: true,
-    canManageOwnCalendarEvents: true
+    canManageOwnCalendarEvents: true,
+    canChangeMedicalStatus: false,
   },
 
   manager: {
@@ -26,7 +27,8 @@ export const permissions = {
     canManageApplications: false,
     canApproveAdoption: true,
     canViewCalendar: true,
-    canManageOwnCalendarEvents: true
+    canManageOwnCalendarEvents: true,
+    canChangeMedicalStatus: false,
   },
 
   staff: {
@@ -41,7 +43,8 @@ export const permissions = {
     canManageApplications: false,
     canApproveAdoption: false,
     canViewCalendar: true,
-    canManageOwnCalendarEvents: true
+    canManageOwnCalendarEvents: true,
+    canChangeMedicalStatus: false,
   },
 
   veterinarian: {
@@ -56,7 +59,8 @@ export const permissions = {
     canManageApplications: false,
     canApproveAdoption: false,
     canViewCalendar: true,
-    canManageOwnCalendarEvents: true
+    canManageOwnCalendarEvents: true,
+    canChangeMedicalStatus: true,
   },
 
   volunteer: {
@@ -71,6 +75,7 @@ export const permissions = {
     canManageApplications: false,
     canApproveAdoption: false,
     canViewCalendar: true,
-    canManageOwnCalendarEvents: true
+    canManageOwnCalendarEvents: true,
+    canChangeMedicalStatus: false,
   }
 };
