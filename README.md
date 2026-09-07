@@ -364,13 +364,49 @@ The goal is to demonstrate how multiple frontend workflows, user roles and share
 
 ### Animals
 
-<img src="screenshots/animals.png" alt="Animal management view" width="800">
+<img src="screenshots/animals_page.png" alt="Animal management view" width="800">
+
+---
+
+### add_Animal
+
+<img src="screenshots/add_animal_page.png" alt=" add Animal management view" width="800">
 
 ---
 
 ### Animal Details
 
-<img src="screenshots/animal-details.png" alt="Animal details view" width="800">
+<img src="screenshots/animal_details.png" alt="Animal details view" width="800">
+
+---
+
+### Adoption application
+
+<img src="screenshots/application.png" alt="Adopteion application" width="800">
+
+---
+
+### Adoption details
+
+<img src="screenshots/application_details.png" alt="Adoption application details" width="800">
+
+---
+
+### Calendar
+
+<img src="screenshots/calendar.png" alt="Calendar" width="800">
+
+---
+
+### Calendar add
+
+<img src="screenshots/calendar_add.png" alt="Calendar add date" width="800">
+
+---
+
+### Calendar update
+
+<img src="screenshots/calendar_update.png" alt="Calendar update date" width="800">
 
 ---
 
