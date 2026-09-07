@@ -199,7 +199,7 @@ export default function Topbar({ userProfile }) {
 
             <div className={styles.notificationDropdown}>
 
-              <h3> Notifications</h3>
+              <h3><LuBell /> Notifications</h3>
 
               {unreadNotifications.length === 0 ? (
 
