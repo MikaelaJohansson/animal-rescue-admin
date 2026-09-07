@@ -364,13 +364,13 @@ The goal is to demonstrate how multiple frontend workflows, user roles and share
 
 ### Animals
 
-<img src="screenshots/animals_page.png" alt="Animal management view" width="800">
+<img src="screenshots/animals.png" alt="Animal management view" width="800">
 
 ---
 
 ### add_Animal
 
-<img src="screenshots/add_animal_page.png" alt=" add Animal management view" width="800">
+<img src="screenshots/add_animal.png" alt=" add Animal management view" width="800">
 
 ---
 
@@ -388,7 +388,7 @@ The goal is to demonstrate how multiple frontend workflows, user roles and share
 
 ### Adoption details
 
-<img src="screenshots/application_details.png" alt="Adoption application details" width="800">
+<img src="screenshots/application-details.png" alt="Adoption application details" width="800">
 
 ---
 
