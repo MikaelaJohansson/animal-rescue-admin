@@ -4,11 +4,12 @@ import { db } from '../../firebase'
 import styles from "./Adoptions.module.css"
 import AdoptionsFilters from '../../components/Filters/AdoptionsFilters/AdoptionsFilters'
 import AdoptionsTable from "../../components/Table/AdoptionsTable/AdoptionsTable";
+import ListPageSkeleton from "../../components/Skeleton/ListPageSkeleton/ListPageSkeleton"
 
 export default function Adoptions() {
 
     const [applications, setApplications] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
 
     // states for filters
@@ -26,13 +27,9 @@ export default function Adoptions() {
 
                 setIsLoading(true)
 
-                const applicationsCollection = collection(
-                    db,
-                    "adoptionApplications"
-                )
+                const applicationsCollection = collection(db, "adoptionApplications" )
 
                 const snapshot = await getDocs(applicationsCollection)
-
 
                 // Get saved demo statuses from sessionStorage
                 const savedStatuses = JSON.parse(sessionStorage.getItem("adoptionStatuses")) || {}
@@ -59,8 +56,7 @@ export default function Adoptions() {
             } catch (error) {
 
                 console.error(
-                    "Failed to load adoption applications:",
-                    error
+                    "Failed to load adoption applications:", error
                 )
 
                 setErrorMessage(
@@ -78,6 +74,7 @@ export default function Adoptions() {
         getApplications()
 
     }, [])
+
 
     // filter name,email,animal
     const filteredApplications  = applications.filter((application)=>{
@@ -100,6 +97,7 @@ export default function Adoptions() {
 
     // filter date
     let sortedApplications = filteredApplications
+
     if(selectedDateSort  === "Newest first"){
 
         sortedApplications = filteredApplications.toSorted((a,b)=>{
@@ -117,6 +115,9 @@ export default function Adoptions() {
 
 
     return (
+
+        isLoading ? <ListPageSkeleton/> : 
+
         <section className={styles.adoptionsContainer}>
 
             <div className={styles.adoptionsHeader}>

@@ -1,0 +1,27 @@
+.AnimalDetailsSkeletonMainContainer{
+  width: 99%;
+}
+
+.AnimalDetailsSkeletonHeader{
+  height: 100px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+  margin-top: 5rem;
+}
+
+.AnimalDetailsSkeletonOverview{
+  height: 400px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+  margin-top: 2rem;
+}
+
+.AnimalDetailsSkeletonSummary{
+  height: 200px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+  margin-top: 2rem;
+}

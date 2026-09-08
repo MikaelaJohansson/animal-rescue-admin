@@ -1,0 +1,24 @@
+.calendarSkeletonMainContainer {
+    width: 99%;
+    border: 1px solid rgb(200, 199, 199);
+    margin-top: 3rem;
+    border-radius: 6px;
+}
+
+.calendarSkeletonButtons {
+    height: 50px;
+    background-color: var(--skeleton-color);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite;
+
+    margin: 5rem 5rem 1rem 5rem;
+}
+
+.calendarSkeletonBody {
+    height: 550px;
+    background-color: var(--skeleton-color);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite;
+
+    margin: 0 5rem 5rem 5rem;
+}

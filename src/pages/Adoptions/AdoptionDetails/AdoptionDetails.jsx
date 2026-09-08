@@ -5,15 +5,17 @@ import { useParams, Link } from "react-router-dom";
 import styles from "./AdoptionDetails.module.css";
 import StatusBadge from "../../../components/StatusBadge/StatusBadge";
 import animalImages from "../../../Data/animalImages";
+import AdoptionDetailsSkeleton from "../../../components/Skeleton/AdoptionDetailsSkeleton/AdoptionDetailsSkeleton"
 
 
 export default function AdoptionDetails({ userPermissions }) {
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [applicationData, setApplicationData] = useState("");
   const [activeTab, setActiveTab] = useState("general");
   const [selectedStatus, setSelectedStatus] = useState("");
+  
   const { adoptionId } = useParams();
 
 
@@ -181,11 +183,7 @@ export default function AdoptionDetails({ userPermissions }) {
   }
 
   if (isLoading) {
-
-    return (
-      <p>Loading application...</p>
-    );
-
+    return <AdoptionDetailsSkeleton />;
   }
 
   if (errorMessage) {

@@ -1,0 +1,36 @@
+.animalsSkeleton{
+  width: 90%;
+  margin: auto;
+}
+
+.animalsSkeletonHeaderContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 6rem;
+}
+
+.animalsSkeletonHeader{
+  height: 100px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+ 
+}
+
+.animalsSkeletonBodyLabels{
+  height: 40px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+  margin-top: 2rem;
+  
+}
+
+.animalsSkeletonBodyContent{
+  height: 80px;
+  background-color: var(--skeleton-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+  margin-top: 0.5rem;
+}

@@ -7,6 +7,7 @@ import StatusBadge from "../../../components/StatusBadge/StatusBadge"
 import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalDetails.module.css"
 import EditAnimalModal from "../../../components/Modals/EditAnimalModal/EditAnimalModal";
+import AnimalDetailsSkeleton from "../../../components/Skeleton/AnimalDetailsSkeleton/AnimalDetailsSkeleton"
 
 
 export default function AnimalDetails({ userPermissions }) {
@@ -99,16 +100,15 @@ export default function AnimalDetails({ userPermissions }) {
 
   }
 
-  if(animal === null){
-    return(
-      <p>Loading animal..</p>
-    )
+  if (animal === null) {
+    return <AnimalDetailsSkeleton />;
   }
 
   const animalImage = animalImages[animal.image];
 
 
   return (
+
     <div className={styles.animalDetailsMainContainer}>
 
       <Link className={styles.animalDetailsLink} to={"/animals"}><LuArrowLeft />Back to animals</Link>

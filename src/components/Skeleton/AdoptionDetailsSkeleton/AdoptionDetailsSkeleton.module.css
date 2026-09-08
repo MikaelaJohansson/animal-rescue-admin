@@ -1,0 +1,33 @@
+.adoptionDetailsSkeletonMainContainer {
+    width: 99%;
+}
+
+.adoptionDetailsSkeletonheaderBody {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.adoptionDetailsSkeletonheaderBodyContent {
+    width: 50%;
+    height: 250px;
+    background-color: var(--skeleton-color);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite;
+}
+
+.adoptionDetailsSkeletonBody {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.adoptionDetailsSkeletonheaderBodyContentLower {
+    width: 50%;
+    height: 400px;
+    background-color: var(--skeleton-color);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite;
+}

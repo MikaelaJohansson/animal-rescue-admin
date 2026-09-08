@@ -6,6 +6,7 @@ import styles from "../Animals/Animals.module.css"
 import AnimalsTable from "../../components/Table/AnimalsTable/AnimalsTable"
 import AnimalsFilters from "../../components/Filters/AnimalsFilters/AnimalsFilters"
 import AddAnimalModal from "../../components/Modals/AddAnimalModal/AddAnimalModal"
+import ListPageSkeleton from "../../components/Skeleton/ListPageSkeleton/ListPageSkeleton";
 
 export default function Animals({ userPermissions }) {
 
@@ -14,7 +15,7 @@ export default function Animals({ userPermissions }) {
   const statusFromUrl = searchParams.get("status") || ""
 
   const [animals, setAnimals] = useState([])
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [searchText,setSearchText] = useState("");
   const [selectedStatus, setSelectedStatus] = useState(statusFromUrl)
@@ -96,7 +97,7 @@ export default function Animals({ userPermissions }) {
 
 
   return (
-    <div className={styles.animalsMainContainer}>
+    isLoading ? <ListPageSkeleton/> : <div className={styles.animalsMainContainer}>
 
       <div className={styles.animalsHeader}>
         <h1>Animals in Our Care</h1>
@@ -121,7 +122,8 @@ export default function Animals({ userPermissions }) {
       <AnimalsTable animals ={filteredAnimals}></AnimalsTable>
 
       
-    </div>
+    </div> 
+   
   )
   
 }

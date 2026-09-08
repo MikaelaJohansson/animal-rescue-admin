@@ -3,6 +3,7 @@ import styles from "./Calendar.module.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import CalendarSkeleton from "../../components/Skeleton/CalendarSkeleton/CalendarSkeleton"
 
 import {
     addDoc,
@@ -28,6 +29,7 @@ export default function Calendar() {
     const [calendarEvents, setCalendarEvents] = useState([]);
     const [selectedEventId, setSelectedEventId] = useState("");
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Opens the modal for a new event
     function openAddEventModal(info) {
@@ -210,12 +212,10 @@ export default function Calendar() {
 
                 const calendarEventsCollection = collection(db, "calendarEvents");
 
-                const calendarEventsQuery = query(
+                const calendarEventsQuery = query( calendarEventsCollection, where("userId", "==", currentUser.uid));
 
-                    calendarEventsCollection,
-                    where("userId", "==", currentUser.uid)
+                await new Promise((resolve) => setTimeout(resolve, 5000));
 
-                );
 
                 const snapshot = await getDocs(calendarEventsQuery);
 
@@ -237,6 +237,8 @@ export default function Calendar() {
 
             } catch (error) {
                 console.error("Could not load calendar events:", error);
+            }finally {
+                setIsLoading(false);
             }
         }
 
@@ -259,6 +261,10 @@ export default function Calendar() {
         };
 
     }, []);
+
+    if (isLoading) {
+        return <CalendarSkeleton />;
+    }
 
 
     return (
