@@ -214,9 +214,6 @@ export default function Calendar() {
 
                 const calendarEventsQuery = query( calendarEventsCollection, where("userId", "==", currentUser.uid));
 
-                await new Promise((resolve) => setTimeout(resolve, 5000));
-
-
                 const snapshot = await getDocs(calendarEventsQuery);
 
 
