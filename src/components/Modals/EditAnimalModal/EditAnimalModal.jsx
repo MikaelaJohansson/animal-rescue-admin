@@ -45,6 +45,9 @@ export default function EditAnimalModal({ animal, onClose, setAnimal, userPermis
         // Check if the status changed from another status to Medical Hold
         const shouldNotifyVeterinarian  = formData.status === "Medical Hold" && animal.status !== "Medical Hold"
 
+        // Check if the Veterinarian changed Medical Hold back to Available
+        const shouldNotifyAdmin = userPermissions?.canChangeMedicalStatus && animal.status === "Medical Hold" && formData.status === "Available";
+
         let updatedAnimal = {};
 
         if (userPermissions?.canEditAnimal) {
@@ -110,6 +113,34 @@ export default function EditAnimalModal({ animal, onClose, setAnimal, userPermis
                     isRead: false, // The notification has not been read yet
                     createdAt: serverTimestamp()
                 })
+            }
+
+            if (shouldNotifyAdmin) {
+
+                // Point to the "users" collection in Firestore
+                const usersCollection = collection(db, "users");
+
+                // Find the Admin user
+                const adminQuery = query( usersCollection, where("role", "==", "admin"));
+
+                const adminSnapshot = await getDocs(adminQuery);
+
+                const adminDocument = adminSnapshot.docs[0];
+
+                // Point to the "notifications" collection
+                const notificationsCollection = collection(db, "notifications");
+
+                // Create a notification for Admin
+                await addDoc(notificationsCollection, {
+                    userId: adminDocument.id,
+                    animalId: animal.id,
+                    title: "Animal available again",
+                    message: `${animal.name} has been removed from Medical Hold and is now Available.`,
+                    type: "medical_hold_completed",
+                    isRead: false,
+                    createdAt: serverTimestamp()
+                });
+
             }
 
             setAnimal({ ...animal, ...updatedAnimal});

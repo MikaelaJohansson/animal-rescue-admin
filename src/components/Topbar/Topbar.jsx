@@ -109,18 +109,21 @@ export default function Topbar({ userProfile }) {
 
       setIsNotificationMenuOpen(false);
 
-      // Navigate to the application connected to the notification
       if(notification.type === "application_review"){
 
-        navigate( `/adoptionDetails/${notification.applicationId}`)
+        navigate(`/adoptionDetails/${notification.applicationId}`)
 
-      }else if(notification.type == "medical_attention"){
+      }else if(notification.type === "medical_attention"){
+
+        navigate(`/animals/${notification.animalId}`)
+
+      }else if(notification.type === "medical_hold_completed"){
 
         navigate(`/animals/${notification.animalId}`)
 
       }else if(notification.type === "new_animal"){
 
-        navigate(`/animals/${notification.animalId}`);
+        navigate(`/animals/${notification.animalId}`)
 
       }
      
