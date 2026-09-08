@@ -4,15 +4,16 @@ A role-based administration system for animal rescue organizations, built with R
 
 Animal Rescue Admin simulates the internal workflows of an animal rescue organization. Administrators, managers, veterinarians, staff and volunteers have different responsibilities, permissions and available actions within the same application.
 
-The project goes beyond basic CRUD functionality by connecting features into workflows. Adoption applications move between different roles, medical status changes can notify veterinarians, new animals generate notifications for relevant users, and each user has access to their own calendar.
+The project goes beyond basic CRUD functionality by connecting features into workflows. Adoption applications move between different roles, medical status changes connect Administrators and Veterinarians through notifications, new animals generate notifications for relevant users, and each user has access to their own calendar.
 
-> ⚠️ This is an actively developed portfolio project. Core functionality is implemented, while automated testing, loading states and additional improvements are still in progress.
+> ⚠️ This is an actively developed portfolio project. Core functionality is implemented, while automated testing and additional improvements are still in progress.
 
 ---
 
 ## 🌐 Live Demo
 
 **Live application:**  
+
 https://animal-rescue-admin.web.app
 
 ---
@@ -97,20 +98,17 @@ Veterinarians can update medical notes without receiving access to edit the anim
 
 ---
 
-## 🩺 Medical Workflow
+### 🩺 Medical Hold Workflow
 
-Medical responsibilities are connected to the notification system.
+The application includes a role-based medical workflow between the Administrator and Veterinarian.
 
-When an Administrator changes an animal's status to **Medical Hold**:
+- When an Administrator changes an animal's status to **Medical Hold**, the Veterinarian receives a notification.
+- The notification links directly to the affected animal.
+- The Veterinarian can update the animal's medical notes while other animal information remains protected by role-based permissions.
+- After treatment is completed, the Veterinarian can change the animal's status from **Medical Hold** back to **Available**.
+- When the animal becomes available again, the Administrator receives a notification confirming that the medical hold has been completed.
 
-1. The animal is updated.
-2. The application identifies the Veterinarian user.
-3. A notification is created in Cloud Firestore.
-4. The Veterinarian receives the notification in real time.
-5. Clicking the notification opens the relevant animal profile.
-6. The notification is marked as read.
-
-This keeps administrative and medical responsibilities separate while allowing information to move between the roles.
+This creates a two-way workflow where status changes, permissions and notifications connect the Administrator and Veterinarian roles.
 
 ---
 
@@ -141,7 +139,8 @@ Notifications are created when important workflow events occur and are delivered
 
 Current notification workflows include:
 
-- **Medical Hold** → the Veterinarian is notified.
+- **Medical Hold** → the Veterinarian is notified when an Administrator places an animal on Medical Hold.
+- **Medical Hold completed** → the Administrator is notified when the Veterinarian returns the animal to Available after treatment.
 - **Adoption ready for review** → the Manager is notified.
 - **New animal added** → Manager, Staff, Veterinarian and Volunteer users are notified.
 
@@ -187,6 +186,16 @@ This makes the Dashboard a starting point for both getting an overview and quick
 
 ---
 
+## 💀 Skeleton Loading States
+
+The application uses skeleton loading states while data is being fetched asynchronously from Cloud Firestore.
+
+Instead of displaying empty content while data is loading, skeleton layouts reflect the structure of the page until the requested data is available.
+
+Skeleton loading is implemented across the main data-driven views, including the Dashboard, animal and adoption application views, detail pages and Calendar.
+
+---
+
 ## 🧪 Try the Role-Based Workflows
 
 The demo is designed to be explored with different user roles.
@@ -200,8 +209,13 @@ Switching between accounts is important because each role intentionally has diff
 3. Log out.
 4. Log in as **Veterinarian**.
 5. Open the notification menu.
-6. A notification about the animal will be available.
-7. Click the notification to navigate directly to the animal profile.
+6. Open the Medical Hold notification to navigate directly to the animal profile.
+7. Edit the animal and update the medical notes.
+8. When treatment is completed, change the animal's status from `Medical Hold` to `Available`.
+9. Log out.
+10. Log in as **Administrator**.
+11. Open the notification menu.
+12. A notification confirms that the animal has been returned to `Available`.
 
 ### Adoption Review Workflow
 
@@ -370,9 +384,9 @@ The goal is to demonstrate how multiple frontend workflows, user roles and share
 
 ---
 
-### add_Animal
+### Add Animal
 
-<img src="screenshots/add_animal.png" alt="add Animal management view" width="800">
+<img src="screenshots/add_animal.png" alt="Add animal view" width="800">
 
 ---
 
@@ -382,13 +396,13 @@ The goal is to demonstrate how multiple frontend workflows, user roles and share
 
 ---
 
-### Adoption application
+### Adoption Application
 
-<img src="screenshots/application.png" alt="Adopteion application" width="800">
+<img src="screenshots/application.png" alt="Adoption application" width="800">
 
 ---
 
-### Adoption details
+### Adoption Details
 
 <img src="screenshots/application-details.png" alt="Adoption application details" width="800">
 
@@ -400,15 +414,15 @@ The goal is to demonstrate how multiple frontend workflows, user roles and share
 
 ---
 
-### Calendar add
+### Calendar Add
 
-<img src="screenshots/calendar_add.png" alt="Calendar add date" width="800">
+<img src="screenshots/calendar_add.png" alt="Add calendar event" width="800">
 
 ---
 
-### Calendar update
+### Calendar Update
 
-<img src="screenshots/calendar_update.png" alt="Calendar update date" width="800">
+<img src="screenshots/calendar_update.png" alt="Update calendar event" width="800">
 
 ---
 
@@ -466,6 +480,7 @@ The project includes practical implementation of:
 - React state management with hooks
 - Component-based architecture
 - Conditional rendering
+- Asynchronous loading states and skeleton UI
 - Role-Based Access Control (RBAC)
 - Protected routing
 - Firebase Authentication
@@ -525,10 +540,10 @@ npm run dev
 - ✅ Personal calendar
 - ✅ Role-based real-time notifications
 - ✅ Responsive application layout
+- ✅ Skeleton loading states
 
 ### Currently Being Improved
 
-- 🔄 Loading states and skeleton UI
 - 🔄 Automated testing
 - 🔄 Additional UI and accessibility improvements
 
@@ -537,9 +552,6 @@ npm run dev
 - Public-facing animal rescue website
 - Public adoption application flow
 - Integration between the public application and admin system
-- Expanded reporting
-- Dashboard visualizations
-- Additional shelter-management workflows
 
 ---
 
