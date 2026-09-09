@@ -27,7 +27,7 @@
 
 /* Calendar event text */
 .calendarMainContainer :global(.fc-event) {
-    color: var(--color-text-white);
+    color: var(--color-font-black);
 }
 
 
