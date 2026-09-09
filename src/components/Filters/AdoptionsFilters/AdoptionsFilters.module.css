@@ -21,6 +21,8 @@
     font-size: var(--font-size-M);
     font-weight: var(--font-weight-L);
     outline: none;
+    background-color: var(--color-input-background);
+    color: var(--color-text);
 }
 .AdoptionsfilterContainer input:focus {
     border-color: var(--color-border-green) 
@@ -40,6 +42,8 @@
     font-size: var(--font-size-M);
     font-weight: var(--font-weight-L);
     outline: none;
+    background-color: var(--color-input-background);
+    color: var(--color-text);
 }
 .AdoptionsfilterContainer select:focus{
     border-color: var(--color-border-green);

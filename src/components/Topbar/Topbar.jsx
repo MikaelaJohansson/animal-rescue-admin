@@ -1,8 +1,15 @@
 import { LuBell, LuChevronDown } from "react-icons/lu";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import {collection,query,where, onSnapshot,doc,updateDoc} from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import sideBarPawLogo from "../../assets/sideBarPawLogo.png";
 import appLogo from "../../assets/appLogo.png";
@@ -27,9 +34,13 @@ export default function Topbar({ userProfile }) {
   const [isNotificationMenuOpen, setIsNotificationMenuOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
 
+  const topBarMenuRef = useRef(null);
+
   const navigate = useNavigate();
 
-  const profileAvatar = userProfile? avatarImages[userProfile.avatar]: appLogo;
+  const profileAvatar = userProfile
+    ? avatarImages[userProfile.avatar]
+    : appLogo;
 
 
   // Listen for notifications belonging to the signed-in user
@@ -41,9 +52,12 @@ export default function Topbar({ userProfile }) {
       return;
     }
 
-    const notificationsCollection = collection(db, "notifications" );
+    const notificationsCollection = collection(db, "notifications");
 
-    const notificationsQuery = query( notificationsCollection, where("userId", "==", currentUser.uid));
+    const notificationsQuery = query(
+      notificationsCollection,
+      where("userId", "==", currentUser.uid)
+    );
 
     const unsubscribe = onSnapshot(
 
@@ -62,7 +76,7 @@ export default function Topbar({ userProfile }) {
       },
 
       (error) => {
-        console.error( "Failed to load notifications:", error );
+        console.error("Failed to load notifications:", error);
       }
 
     );
@@ -75,12 +89,37 @@ export default function Topbar({ userProfile }) {
   }, []);
 
 
+  // Close dropdown menus when clicking outside
+  useEffect(() => {
+
+    function handleClickOutside(event) {
+
+      if (
+        topBarMenuRef.current &&
+        !topBarMenuRef.current.contains(event.target)
+      ) {
+        setIsProfileMenuOpen(false);
+        setIsNotificationMenuOpen(false);
+      }
+
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+
+  }, []);
+
+
   // Keep only unread notifications
   const unreadNotifications = notifications.filter((notification) => {
 
     return notification.isRead === false;
 
   });
+
 
   function handleTopBarProfileMeny() {
 
@@ -90,6 +129,7 @@ export default function Topbar({ userProfile }) {
 
   }
 
+
   function handleNotificationMenu() {
 
     setIsNotificationMenuOpen(!isNotificationMenuOpen);
@@ -98,38 +138,44 @@ export default function Topbar({ userProfile }) {
 
   }
 
+
   async function handleNotificationClick(notification) {
 
     try {
 
-      const notificationDocumentReference = doc( db, "notifications", notification.id);
+      const notificationDocumentReference = doc(
+        db,
+        "notifications",
+        notification.id
+      );
 
       // Mark notification as read in Firestore
-      await updateDoc( notificationDocumentReference,{ isRead: true});
+      await updateDoc(notificationDocumentReference, { isRead: true });
 
       setIsNotificationMenuOpen(false);
 
-      if(notification.type === "application_review"){
+      if (notification.type === "application_review") {
 
-        navigate(`/adoptionDetails/${notification.applicationId}`)
+        navigate(`/adoptionDetails/${notification.applicationId}`);
 
-      }else if(notification.type === "medical_attention"){
+      } else if (notification.type === "medical_attention") {
 
-        navigate(`/animals/${notification.animalId}`)
+        navigate(`/animals/${notification.animalId}`);
 
-      }else if(notification.type === "medical_hold_completed"){
+      } else if (notification.type === "medical_hold_completed") {
 
-        navigate(`/animals/${notification.animalId}`)
+        navigate(`/animals/${notification.animalId}`);
 
-      }else if(notification.type === "new_animal"){
+      } else if (notification.type === "new_animal") {
 
-        navigate(`/animals/${notification.animalId}`)
+        navigate(`/animals/${notification.animalId}`);
 
       }
-     
 
     } catch (error) {
-      console.error( "Failed to open notification:", error );
+
+      console.error("Failed to open notification:", error);
+
     }
 
   }
@@ -162,9 +208,14 @@ export default function Topbar({ userProfile }) {
 
         <div className={styles.topBarWelcomeText}>
 
-          <h1> Welcome back,{" "} {userProfile ? userProfile.firstName : "Loading..."} </h1>
+          <h1>
+            Welcome back,{" "}
+            {userProfile ? userProfile.firstName : "Loading..."}
+          </h1>
 
-          <h3> {userProfile ? userProfile.jobTitle : ""} </h3>
+          <h3>
+            {userProfile ? userProfile.jobTitle : ""}
+          </h3>
 
         </div>
 
@@ -172,7 +223,10 @@ export default function Topbar({ userProfile }) {
 
 
       {/* Right side */}
-      <div className={styles.topBarRight}>
+      <div
+        className={styles.topBarRight}
+        ref={topBarMenuRef}
+      >
 
         {/* Notifications */}
         <div className={styles.topBarNotification}>
@@ -183,7 +237,8 @@ export default function Topbar({ userProfile }) {
             aria-expanded={isNotificationMenuOpen}
             className={styles.notificationButton}
             onClick={handleNotificationMenu}
-          > <LuBell />
+          >
+            <LuBell />
 
             {unreadNotifications.length > 0 && (
 
@@ -206,7 +261,7 @@ export default function Topbar({ userProfile }) {
 
               {unreadNotifications.length === 0 ? (
 
-                <p> No new notifications. </p>
+                <p>No new notifications.</p>
 
               ) : (
 
@@ -222,9 +277,9 @@ export default function Topbar({ userProfile }) {
                         handleNotificationClick(notification)
                       }
                     >
-                      <strong> {notification.title} </strong>
+                      <strong>{notification.title}</strong>
 
-                      <span>{notification.message} </span>
+                      <span>{notification.message}</span>
 
                     </button>
 
@@ -252,7 +307,8 @@ export default function Topbar({ userProfile }) {
             aria-label="Open profile menu"
           >
 
-            <img className={styles.topBarprofileAvatar}
+            <img
+              className={styles.topBarprofileAvatar}
               src={profileAvatar}
               alt={
                 userProfile
@@ -266,7 +322,9 @@ export default function Topbar({ userProfile }) {
 
               <p className={styles.topbarUsername}>
 
-                {userProfile ? `${userProfile.firstName} ${userProfile.lastName}` : "Loading user..."}
+                {userProfile
+                  ? `${userProfile.firstName} ${userProfile.lastName}`
+                  : "Loading user..."}
 
               </p>
 
@@ -289,11 +347,10 @@ export default function Topbar({ userProfile }) {
 
             <div className={styles.topBarProfileDropdown}>
 
-              <button type="button">
-                Profile
-              </button>
-
-              <button type="button">
+              <button
+                type="button"
+                onClick={() => navigate("/settings")}
+              >
                 Settings
               </button>
 

@@ -14,6 +14,7 @@ import Adoptions from "./pages/Adoptions/Adoptions";
 import AdoptionDetails from "./pages/Adoptions/AdoptionDetails/AdoptionDetails";
 import PermissionRoute from "./components/PermissionRoute/PermissionRoute";
 import Calendar from "./pages/Calendar/Calendar";
+import Settings from "./pages/Settings/Settings"
 
 export default function App() {
 
@@ -83,6 +84,8 @@ export default function App() {
         <Route element={ <AppLayout userProfile={userProfile} userPermissions={userPermissions} /> } >
 
           <Route path="/dashboard" element={<Dashboard />} />
+
+          <Route path="/settings" element={<Settings userProfile={userProfile} />} />
 
           <Route path="/animals" element={<Animals userPermissions={userPermissions} />} />
           <Route path="/animals/:animalId" element={<AnimalDetails userPermissions={userPermissions}/>} />

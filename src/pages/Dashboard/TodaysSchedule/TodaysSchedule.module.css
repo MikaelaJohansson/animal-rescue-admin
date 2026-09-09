@@ -1,8 +1,8 @@
 .scheduleContainer {
   padding: 1rem;
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: var(--radius-S);
-  box-shadow: 0 0 5px rgb(232, 230, 230);
+  box-shadow: 0 0 5px var(--color-shadow);
 }
 
 .scheduleList {

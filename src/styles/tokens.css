@@ -44,6 +44,11 @@
   --color-font-light: rgb(245, 245, 245);
   --color-font-black: rgb(15, 15, 15);
 
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-shadow: rgb(232, 230, 230);
+  --color-shadow-dark: rgb(147, 147, 147);
+  --color-input-background: rgb(255, 255, 255);
+
   /* cards color */
 
   --color-cards-darkGreen: rgb(37, 56, 47);
@@ -144,4 +149,54 @@
   --logo-S: 140px;
   --logo-M: 250px;
   --logo-L: 300px;
+}
+[data-theme="dark"] {
+  --color-background: rgb(37, 45, 40);
+  --color-background-color: rgb(42, 50, 45);
+  --color-background-topbar: rgb(34, 42, 37);
+
+  --color-surface: rgb(49, 58, 52);
+  --color-surface-muted: rgb(55, 65, 58);
+
+  --color-text: rgb(242, 245, 243);
+  --color-text-muted: rgb(190, 200, 193);
+  --color-text-muted-dark: rgb(215, 221, 217);
+
+  --color-border: rgb(82, 96, 86);
+  --color-border-dark-gray: rgb(105, 120, 110);
+
+   --skeleton-color: rgb(67, 77, 70);
+
+   --color-overlay: rgba(0, 0, 0, 0.6);
+   --color-shadow: rgb(28, 34, 30);
+   --color-shadow-dark: rgb(20, 25, 22);
+   --color-input-background: rgb(55, 65, 58);
+
+   --color-primary: rgb(145, 190, 157);
+   --color-primary-hover: rgb(170, 207, 180);
+   --color-font-black: rgb(242, 245, 243);
+
+   --color-cards-darkGreen: rgb(170, 210, 181);
+   --color-cards-lightGreen: rgb(58, 78, 64);
+
+   --color-cards-darkRed: rgb(240, 157, 166);
+   --color-cards-lightRed: rgb(83, 54, 57);
+
+   --color-cards-darkBlue: rgb(150, 193, 235);
+   --color-cards-lightBlue: rgb(52, 68, 82);
+
+   --color-cards-darkOrange: rgb(235, 185, 105);
+   --color-cards-lightOrange: rgb(82, 68, 47);
+
+   --color-cards-darkYellow: rgb(224, 220, 125);
+   --color-cards-lightYellow: rgb(76, 75, 48);
+
+   --color-cards-darkPurple: rgb(205, 169, 224);
+   --color-cards-lightPurple: rgb(70, 57, 78);
+
+   --color-cards-darkPink: rgb(235, 160, 193);
+   --color-cards-lightPink: rgb(81, 55, 67);
+
+   --color-statusBadge-red-font: rgb(242, 166, 166);
+   --color-statusBadge-red-background: rgb(87, 52, 52);
 }

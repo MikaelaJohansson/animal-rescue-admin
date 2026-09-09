@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
 
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--color-overlay);
 }
 
 .modal {
@@ -49,6 +49,8 @@
   font-size: var(--font-size-M);
   font-weight: var(--font-weight-L);
   outline: none;
+  background-color: var(--color-input-background);
+  color: var(--color-text);
 }
 .calendarEventForm input:focus {
   border-color: var(--color-border-green) 

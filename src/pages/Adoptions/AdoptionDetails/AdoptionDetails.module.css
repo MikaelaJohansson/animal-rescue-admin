@@ -2,13 +2,13 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  
+  color: var(--color-text);
   margin-top: 1rem;
   margin-right: 1rem;
 }
 
 .adoptionDetailsContainer h2{
-  color: var(--color-font-black);
+  color: var(--color-text);
 }
 
 .adoptionDetailsApplicant,
@@ -20,7 +20,7 @@
   padding-bottom: 1rem;
   min-width: 0;
   border-radius: var(--radius-S);
-  background-color:var(--color-text-white);
+  background-color: var(--color-surface);
   font-size: var(--font-size-M);
 }
 
@@ -50,10 +50,10 @@
 }
 .adoptionDetailsRequest img{
   border-radius: var(--radius-S);
-  box-shadow: 0px 2px 3px rgb(191, 191, 191);
+  box-shadow: 0px 2px 3px var(--color-shadow);
 }
 .adoptionDetailsRequest{
-    padding-left: 1rem;
+  padding-left: 1rem;
 }
 .adoptionDetailsData{
   display: flex;
@@ -69,7 +69,7 @@
 }
 
 .adoptionDetailsTabs {
-  background-color: white;
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-S);
   margin-right: 1rem;
@@ -152,6 +152,11 @@
   max-width: 300px;
   margin-bottom: 1rem;
   padding: 0.3rem;
+}
+
+.adoptionDetailsStatus select {
+  background-color: var(--color-input-background);
+  color: var(--color-text);
 }
 
 .adoptionDetailsStatusbutton{
