@@ -1,18 +1,17 @@
 import { initializeApp } from "firebase/app";
-import {getAuth} from "firebase/auth"
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
-
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDUYf_du-ucTcgdVNayuhjVz57Z98dmGfM",
-  authDomain: "animal-rescue-admin.firebaseapp.com",
-  projectId: "animal-rescue-admin",
-  storageBucket: "animal-rescue-admin.firebasestorage.app",
-  messagingSenderId: "714030701861",
-  appId: "1:714030701861:web:3d8ce57452f40f8772cecc",
-  measurementId: "G-JC40KSY8PR"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
