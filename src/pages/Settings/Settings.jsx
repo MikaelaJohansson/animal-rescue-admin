@@ -1,50 +1,80 @@
-import { useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 import styles from "./Settings.module.css";
 
-export default function Settings() {
-  const [theme, setTheme] = useState("light");
+export default function Settings({ theme, setTheme }) {
 
-  function handleThemeChange(selectedTheme) {
-    setTheme(selectedTheme);
 
-    document.documentElement.setAttribute(
-      "data-theme",
-      selectedTheme
-    );
+  async function handleThemeChange(selectedTheme) {
+
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      return;
+    }
+
+    try {
+
+      setTheme(selectedTheme);
+
+      document.documentElement.setAttribute( "data-theme", selectedTheme );
+
+      const userDocumentReference = doc(db, "users", currentUser.uid);
+
+      await updateDoc(userDocumentReference, { theme: selectedTheme, });
+
+    } catch (error) {
+
+      console.error( "Failed to save theme:",  error);
+
+    }
+
   }
+
 
   return (
     <main className={styles.settingsPage}>
 
-      <div>
+      <div className={styles.settingsHeader}>
         <h1>Settings</h1>
         <p>Manage your application preferences.</p>
       </div>
 
-      <section>
-        <h2>Appearance</h2>
+      <section className={styles.settingsSection}>
 
-        <div>
-          <div>
-            <h3>Theme</h3>
+        <div className={styles.settingRow}>
+
+          <div className={styles.settingInfo}>
+            <h2>Theme</h2>
             <p>Choose how the application looks.</p>
           </div>
 
-          <div>
+          <div className={styles.themeButtons}>
+
             <button
               type="button"
-              onClick={() => handleThemeChange("light")}
+
+              className={ theme === "light" ? styles.activeThemeButton: styles.themeButton}
+
+              onClick={() => handleThemeChange("light") }
+
             >
               Light
             </button>
 
             <button
               type="button"
+
+              className={ theme === "dark" ? styles.activeThemeButton : styles.themeButton }
+
               onClick={() => handleThemeChange("dark")}
+
             >
               Dark
             </button>
+
           </div>
+
         </div>
 
       </section>

@@ -14,15 +14,16 @@ import Adoptions from "./pages/Adoptions/Adoptions";
 import AdoptionDetails from "./pages/Adoptions/AdoptionDetails/AdoptionDetails";
 import PermissionRoute from "./components/PermissionRoute/PermissionRoute";
 import Calendar from "./pages/Calendar/Calendar";
-import Settings from "./pages/Settings/Settings"
+import Settings from "./pages/Settings/Settings";
 
 export default function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [userProfile, setUserProfile] = useState(null);
+  const [theme, setTheme] = useState("light");
 
-  const userPermissions = userProfile ? permissions[userProfile.role] : null;
+  const userPermissions = userProfile? permissions[userProfile.role]: null;
 
   // Checks if a user is signed in and loads the user's profile
   useEffect(() => {
@@ -35,24 +36,51 @@ export default function App() {
 
         try {
 
-          const userDocumentReference = doc(db, "users", user.uid);
-          const userDocumentSnapshot = await getDoc(userDocumentReference);
+          const userDocumentReference = doc(db,"users", user.uid );
+
+          const userDocumentSnapshot = await getDoc( userDocumentReference);
 
           if (userDocumentSnapshot.exists()) {
-            setUserProfile(userDocumentSnapshot.data());
+
+            const userData = userDocumentSnapshot.data();
+
+            setUserProfile(userData);
+
+            const savedTheme = userData.theme || "light";
+
+            setTheme(savedTheme);
+
+            document.documentElement.setAttribute(
+              "data-theme",
+              savedTheme
+            );
+
           } else {
-            console.error("No user profile was found in Firestore");
+
+            console.error( "No user profile was found in Firestore" );
+
             setUserProfile(null);
+
           }
 
         } catch (error) {
-          console.error("Could not load the user profile:", error);
+
+          console.error( "Could not load the user profile:", error);
+
           setUserProfile(null);
         }
 
       } else {
+
         setIsLoggedIn(false);
         setUserProfile(null);
+
+        setTheme("light");
+
+        document.documentElement.setAttribute(
+          "data-theme",
+          "light"
+        );
       }
 
       setIsAuthLoading(false);
@@ -73,26 +101,29 @@ export default function App() {
 
     <Routes>
 
-      <Route path="/" element={ isLoggedIn ? 
-        ( <Navigate to="/dashboard" replace /> ) : ( <Login setIsLoggedIn={setIsLoggedIn} /> ) }
-      />
+      <Route path="/" element={ isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login setIsLoggedIn={setIsLoggedIn} />}/>
 
       {/* Protected routes */}
-      <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
+      <Route element={ <ProtectedRoute isLoggedIn={isLoggedIn} /> }>
 
         {/* AppLayout is responsible for the shared layout */}
-        <Route element={ <AppLayout userProfile={userProfile} userPermissions={userPermissions} /> } >
+        <Route
+          element={ <AppLayout userProfile={userProfile} userPermissions={userPermissions} /> } >
 
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard"element={<Dashboard />} />
 
-          <Route path="/settings" element={<Settings userProfile={userProfile} />} />
+          <Route path="/settings" element={<Settings theme={theme} setTheme={setTheme} /> }/>
 
-          <Route path="/animals" element={<Animals userPermissions={userPermissions} />} />
-          <Route path="/animals/:animalId" element={<AnimalDetails userPermissions={userPermissions}/>} />
+          <Route path="/animals" element={ <Animals userPermissions={userPermissions} /> } />
 
-          <Route element={ <PermissionRoute hasPermission={userPermissions?.canViewApplications} />}>
+          <Route path="/animals/:animalId" element={ <AnimalDetails userPermissions={userPermissions} /> } />
+
+          <Route element={ <PermissionRoute hasPermission={ userPermissions?.canViewApplications } /> } >
+
             <Route path="/adoptions" element={<Adoptions />} />
-            <Route path="/adoptionDetails/:adoptionId" element={<AdoptionDetails userPermissions={userPermissions} />} />
+
+            <Route path="/adoptionDetails/:adoptionId" element={ <AdoptionDetails   userPermissions={userPermissions}   />   } />
+
           </Route>
 
           <Route path="/calendar" element={<Calendar />} />

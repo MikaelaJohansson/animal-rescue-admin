@@ -1,0 +1,107 @@
+.settingsPage {
+  width: 100%;
+  padding: 3rem;
+  color: var(--color-text);
+}
+
+.settingsHeader {
+  margin-bottom: 2rem;
+}
+
+.settingsHeader h1 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+}
+
+.settingsHeader p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-M);
+}
+
+
+/* Settings card */
+
+.settingsSection {
+  max-width: 800px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-M);
+  overflow: hidden;
+}
+
+
+/* Setting */
+
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.5rem;
+}
+
+.settingInfo h2 {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.settingInfo p {
+  margin: 0.4rem 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-M);
+}
+
+
+/* Theme buttons */
+
+.themeButtons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.themeButton,
+.activeThemeButton {
+  min-width: 90px;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-S);
+  font-family: var(--font-family-Cormorant-Garamond);
+  font-size: var(--font-size-S);
+  font-weight: var(--font-weight-M);
+  cursor: pointer;
+}
+
+.themeButton {
+  background-color: var(--color-surface-muted);
+  border: 1px solid var(--color-border-dark-gray);
+  color: var(--color-text);
+}
+
+.themeButton:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.activeThemeButton {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  color: var(--color-text-white);
+}
+
+
+/* Small screens */
+
+@media (max-width: 767px) {
+
+  .settingsPage {
+    padding: 1rem;
+  }
+
+  .settingRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+}
