@@ -4,6 +4,7 @@
 ========================================================= */
 
 :root {
+
   /* ======================================
      COLORS
   ====================================== */
@@ -11,16 +12,18 @@
   --color-primary: rgb(63, 118, 82);
   --color-primary-hover: rgb(49, 74, 61);
   --color-primary-light: rgb(231, 241, 234);
-  
+
   --color-sidebar-hover: rgb(53, 102, 70);
   --color-sidebar-hover-light: rgb(126, 183, 122);
   --color-sidebar: rgb(37, 56, 47);
   --color-sidebar-active: rgb(66, 107, 81);
 
   --skeleton-color: rgb(229, 229, 229);
+
   --color-background: rgb(248, 247, 243);
   --color-background-color: rgb(241, 243, 239);
   --color-background-topbar: rgb(241, 243, 239);
+
   --color-surface: rgb(255, 255, 255);
   --color-surface-muted: rgb(241, 244, 239);
 
@@ -33,7 +36,6 @@
   --color-border-dark-gray: rgb(116, 144, 116);
   --color-border-green: rgb(99, 140, 96);
   --color-border-dark-green: rgb(27, 201, 15);
-  
 
   --color-success: rgb(63, 143, 92);
   --color-warning: rgb(201, 137, 43);
@@ -41,30 +43,36 @@
   --color-info: rgb(63, 127, 186);
 
   --color-button: rgb(71, 105, 81);
+
   --color-font-light: rgb(245, 245, 245);
   --color-font-black: rgb(15, 15, 15);
 
   --color-overlay: rgba(0, 0, 0, 0.5);
+
   --color-shadow: rgb(232, 230, 230);
   --color-shadow-dark: rgb(147, 147, 147);
+
   --color-input-background: rgb(255, 255, 255);
 
-  /* cards color */
+
+  /* ======================================
+     CARDS COLORS
+  ====================================== */
 
   --color-cards-darkGreen: rgb(37, 56, 47);
-  --color-cards-lightGreen:  rgb(231, 241, 234);
+  --color-cards-lightGreen: rgb(231, 241, 234);
 
   --color-cards-darkRed: #860f1f;
-  --color-cards-lightRed:  #f9e0e0;
+  --color-cards-lightRed: #f9e0e0;
 
   --color-cards-darkBlue: #2473ea;
-  --color-cards-lightBlue:   #eaf2fa;
+  --color-cards-lightBlue: #eaf2fa;
 
-  --color-cards-darkOrange:  #e2991b;
-  --color-cards-lightOrange:    #fde5c5;
+  --color-cards-darkOrange: #e2991b;
+  --color-cards-lightOrange: #fde5c5;
 
-  --color-cards-darkYellow:   #c3c010;
-  --color-cards-lightYellow:    #fdfdd6;
+  --color-cards-darkYellow: #c3c010;
+  --color-cards-lightYellow: #fdfdd6;
 
   --color-cards-darkPurple: #7b3fa1;
   --color-cards-lightPurple: #f1e5f7;
@@ -72,7 +80,10 @@
   --color-cards-darkPink: #e65292;
   --color-cards-lightPink: #fbe4ee;
 
-  /* statusBadge color */
+
+  /* ======================================
+     STATUS BADGE COLORS
+  ====================================== */
 
   --color-statusBadge-green-font: #2e7d32;
   --color-statusBadge-green-background: #dff6dd;
@@ -80,18 +91,19 @@
   --color-statusBadge-gray-font: #555;
   --color-statusBadge-gray-background: #ececec;
 
-   --color-statusBadge-brown-font: #b7791f;
-   --color-statusBadge-brown-background: #fff4d6;
+  --color-statusBadge-brown-font: #b7791f;
+  --color-statusBadge-brown-background: #fff4d6;
 
-   --color-statusBadge-red-font: #c62828;
-   --color-statusBadge-red-background: #fde2e2;
+  --color-statusBadge-red-font: #c62828;
+  --color-statusBadge-red-background: #fde2e2;
 
-   --color-statusBadge-blue-font: #1565c0;
-   --color-statusBadge-blue-background: #ddeeff;
-   
-   --color-statusBadge-purple-font: #6b3fa0;
-   --color-statusBadge-purple-background: #f0e6fa;
-   --color-statusBadge-purple-border: #9b72cf;
+  --color-statusBadge-blue-font: #1565c0;
+  --color-statusBadge-blue-background: #ddeeff;
+
+  --color-statusBadge-purple-font: #6b3fa0;
+  --color-statusBadge-purple-background: #f0e6fa;
+  --color-statusBadge-purple-border: #9b72cf;
+
 
   /* ======================================
      TYPOGRAPHY
@@ -116,10 +128,10 @@
   --line-height-XS: 0.1;
 
 
-
   /* ======================================
      BORDER RADIUS
   ====================================== */
+
   --radius-XS: 2px;
   --radius-S: 4px;
   --radius-M: 7px;
@@ -134,6 +146,7 @@
   --sidebar-width: 250px;
   --topbar-height: 64px;
 
+
   /* ======================================
      ICONS
   ====================================== */
@@ -141,6 +154,7 @@
   --icon-S: 14px;
   --icon-M: 18px;
   --icon-L: 25px;
+
 
   /* ======================================
      LOGO
@@ -150,7 +164,14 @@
   --logo-M: 250px;
   --logo-L: 300px;
 }
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
 [data-theme="dark"] {
+
   --color-background: rgb(37, 45, 40);
   --color-background-color: rgb(42, 50, 45);
   --color-background-topbar: rgb(34, 42, 37);
@@ -165,38 +186,73 @@
   --color-border: rgb(82, 96, 86);
   --color-border-dark-gray: rgb(105, 120, 110);
 
-   --skeleton-color: rgb(67, 77, 70);
+  --skeleton-color: rgb(67, 77, 70);
 
-   --color-overlay: rgba(0, 0, 0, 0.6);
-   --color-shadow: rgb(28, 34, 30);
-   --color-shadow-dark: rgb(20, 25, 22);
-   --color-input-background: rgb(55, 65, 58);
+  --color-overlay: rgba(0, 0, 0, 0.6);
 
-   --color-primary: rgb(145, 190, 157);
-   --color-primary-hover: rgb(170, 207, 180);
-   --color-font-black: rgb(242, 245, 243);
+  --color-shadow: rgb(28, 34, 30);
+  --color-shadow-dark: rgb(20, 25, 22);
 
-   --color-cards-darkGreen: rgb(170, 210, 181);
-   --color-cards-lightGreen: rgb(58, 78, 64);
+  --color-input-background: rgb(55, 65, 58);
 
-   --color-cards-darkRed: rgb(240, 157, 166);
-   --color-cards-lightRed: rgb(83, 54, 57);
+  --color-primary: rgb(145, 190, 157);
+  --color-primary-hover: rgb(170, 207, 180);
 
-   --color-cards-darkBlue: rgb(150, 193, 235);
-   --color-cards-lightBlue: rgb(52, 68, 82);
+  --color-font-black: rgb(242, 245, 243);
 
-   --color-cards-darkOrange: rgb(235, 185, 105);
-   --color-cards-lightOrange: rgb(82, 68, 47);
 
-   --color-cards-darkYellow: rgb(224, 220, 125);
-   --color-cards-lightYellow: rgb(76, 75, 48);
+  /* ======================================
+     DARK MODE CARD COLORS
+  ====================================== */
 
-   --color-cards-darkPurple: rgb(205, 169, 224);
-   --color-cards-lightPurple: rgb(70, 57, 78);
+  --color-cards-darkGreen: rgb(170, 210, 181);
+  --color-cards-lightGreen: rgb(58, 78, 64);
 
-   --color-cards-darkPink: rgb(235, 160, 193);
-   --color-cards-lightPink: rgb(81, 55, 67);
+  --color-cards-darkRed: rgb(240, 157, 166);
+  --color-cards-lightRed: rgb(83, 54, 57);
 
-   --color-statusBadge-red-font: rgb(242, 166, 166);
-   --color-statusBadge-red-background: rgb(87, 52, 52);
+  --color-cards-darkBlue: rgb(150, 193, 235);
+  --color-cards-lightBlue: rgb(52, 68, 82);
+
+  --color-cards-darkOrange: rgb(235, 185, 105);
+  --color-cards-lightOrange: rgb(82, 68, 47);
+
+  --color-cards-darkYellow: rgb(224, 220, 125);
+  --color-cards-lightYellow: rgb(76, 75, 48);
+
+  --color-cards-darkPurple: rgb(205, 169, 224);
+  --color-cards-lightPurple: rgb(70, 57, 78);
+
+  --color-cards-darkPink: rgb(235, 160, 193);
+  --color-cards-lightPink: rgb(81, 55, 67);
+
+
+  /* ======================================
+     DARK MODE STATUS BADGES
+  ====================================== */
+
+  /* Available */
+  --color-statusBadge-green-font: rgb(132, 204, 150);
+  --color-statusBadge-green-background: rgb(42, 70, 50);
+
+  /* In Review */
+  --color-statusBadge-gray-font: rgb(195, 202, 197);
+  --color-statusBadge-gray-background: rgb(60, 68, 63);
+
+  /* Reserved */
+  --color-statusBadge-brown-font: rgb(224, 171, 83);
+  --color-statusBadge-brown-background: rgb(75, 58, 36);
+
+  /* Medical Hold */
+  --color-statusBadge-red-font: rgb(235, 126, 126);
+  --color-statusBadge-red-background: rgb(78, 42, 42);
+
+  /* Foster Care */
+  --color-statusBadge-blue-font: rgb(117, 177, 230);
+  --color-statusBadge-blue-background: rgb(42, 61, 78);
+
+  /* Adopted */
+  --color-statusBadge-purple-font: rgb(188, 143, 218);
+  --color-statusBadge-purple-background: rgb(61, 45, 70);
+  --color-statusBadge-purple-border: rgb(159, 112, 190);
 }
