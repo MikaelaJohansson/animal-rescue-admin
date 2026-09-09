@@ -13,10 +13,14 @@ body,
 body {
     margin: 0;
     font-family: var(--font-family-Cormorant-Garamond);
+
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 #root {
     display: flex;
+    width: 100%;
 }
 
 img {
