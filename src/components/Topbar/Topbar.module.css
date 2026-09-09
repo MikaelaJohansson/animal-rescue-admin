@@ -219,6 +219,10 @@
   background-color: var(--color-sidebar-hover-light);
 }
 
+.notificationDropdown p {
+  color: var(--color-text);
+}
+
 
 /* Small screens */
 
