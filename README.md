@@ -478,7 +478,7 @@ The application is organized into reusable components, page-level views and cent
 The project includes practical implementation of:
 
 - React state management with hooks
-- Component-based architecture
+- Component-based architecture and reusable components
 - Conditional rendering
 - Asynchronous loading states and skeleton UI
 - Role-Based Access Control (RBAC)
@@ -492,8 +492,9 @@ The project includes practical implementation of:
 - Role-specific workflows
 - Event-driven notifications
 - Client-side session storage for reusable demo workflows
+- Firebase Analytics (Google Analytics)
+- CI/CD with GitHub Actions
 - Responsive layouts
-- Reusable React components
 
 ---
 
