@@ -17,8 +17,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Retrieve the Analytics service
-export const analytics = getAnalytics(app);
+// Retrieve the Analytics service only in production
+export const analytics = import.meta.env.PROD ? getAnalytics(app) : null;
 
 // Retrieve the Authentication service
 export const auth = getAuth(app);
