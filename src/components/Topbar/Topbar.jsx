@@ -28,6 +28,7 @@ const avatarImages = {
   tommy: tommyAvatar,
 };
 
+
 export default function Topbar({ userProfile }) {
 
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -43,7 +44,7 @@ export default function Topbar({ userProfile }) {
     : appLogo;
 
 
-  // Listen for notifications belonging to the signed-in user
+  // Listen for notifications belonging to the signed-in user.
   useEffect(() => {
 
     const currentUser = auth.currentUser;
@@ -52,7 +53,10 @@ export default function Topbar({ userProfile }) {
       return;
     }
 
-    const notificationsCollection = collection(db, "notifications");
+    const notificationsCollection = collection(
+      db,
+      "notifications"
+    );
 
     const notificationsQuery = query(
       notificationsCollection,
@@ -67,7 +71,10 @@ export default function Topbar({ userProfile }) {
 
         const notificationData = snapshot.docs.map((document) => {
 
-          return { id: document.id, ...document.data() };
+          return {
+            id: document.id,
+            ...document.data()
+          };
 
         });
 
@@ -76,7 +83,12 @@ export default function Topbar({ userProfile }) {
       },
 
       (error) => {
-        console.error("Failed to load notifications:", error);
+
+        console.error(
+          "Failed to load notifications:",
+          error
+        );
+
       }
 
     );
@@ -89,7 +101,7 @@ export default function Topbar({ userProfile }) {
   }, []);
 
 
-  // Close dropdown menus when clicking outside
+  // Close dropdown menus when clicking outside.
   useEffect(() => {
 
     function handleClickOutside(event) {
@@ -98,27 +110,41 @@ export default function Topbar({ userProfile }) {
         topBarMenuRef.current &&
         !topBarMenuRef.current.contains(event.target)
       ) {
+
         setIsProfileMenuOpen(false);
         setIsNotificationMenuOpen(false);
+
       }
 
     }
 
-    document.addEventListener("mousedown", handleClickOutside);
+
+    document.addEventListener(
+      "mousedown",
+      handleClickOutside
+    );
+
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+
     };
 
   }, []);
 
 
-  // Keep only unread notifications
-  const unreadNotifications = notifications.filter((notification) => {
+  // Keep only unread notifications.
+  const unreadNotifications = notifications.filter(
+    (notification) => {
 
-    return notification.isRead === false;
+      return notification.isRead === false;
 
-  });
+    }
+  );
 
 
   function handleTopBarProfileMeny() {
@@ -132,7 +158,9 @@ export default function Topbar({ userProfile }) {
 
   function handleNotificationMenu() {
 
-    setIsNotificationMenuOpen(!isNotificationMenuOpen);
+    setIsNotificationMenuOpen(
+      !isNotificationMenuOpen
+    );
 
     setIsProfileMenuOpen(false);
 
@@ -149,32 +177,67 @@ export default function Topbar({ userProfile }) {
         notification.id
       );
 
-      // Mark notification as read in Firestore
-      await updateDoc(notificationDocumentReference, { isRead: true });
+
+      // Mark notification as read in Firestore.
+      await updateDoc(
+        notificationDocumentReference,
+        {
+          isRead: true
+        }
+      );
+
 
       setIsNotificationMenuOpen(false);
 
-      if (notification.type === "application_review") {
 
-        navigate(`/adoptionDetails/${notification.applicationId}`);
+      if (
+        notification.type === "new_adoption_application"
+      ) {
 
-      } else if (notification.type === "medical_attention") {
+        navigate(
+          `/adoptionDetails/${notification.applicationId}`
+        );
 
-        navigate(`/animals/${notification.animalId}`);
+      } else if (
+        notification.type === "application_review"
+      ) {
 
-      } else if (notification.type === "medical_hold_completed") {
+        navigate(
+          `/adoptionDetails/${notification.applicationId}`
+        );
 
-        navigate(`/animals/${notification.animalId}`);
+      } else if (
+        notification.type === "medical_attention"
+      ) {
 
-      } else if (notification.type === "new_animal") {
+        navigate(
+          `/animals/${notification.animalId}`
+        );
 
-        navigate(`/animals/${notification.animalId}`);
+      } else if (
+        notification.type === "medical_hold_completed"
+      ) {
+
+        navigate(
+          `/animals/${notification.animalId}`
+        );
+
+      } else if (
+        notification.type === "new_animal"
+      ) {
+
+        navigate(
+          `/animals/${notification.animalId}`
+        );
 
       }
 
     } catch (error) {
 
-      console.error("Failed to open notification:", error);
+      console.error(
+        "Failed to open notification:",
+        error
+      );
 
     }
 
@@ -204,17 +267,27 @@ export default function Topbar({ userProfile }) {
       {/* Welcome */}
       <div className={styles.topBarWelcome}>
 
-        <img src={sideBarPawLogo} alt="Logo" />
+        <img
+          src={sideBarPawLogo}
+          alt="Logo"
+        />
+
 
         <div className={styles.topBarWelcomeText}>
 
           <h1>
             Welcome back,{" "}
-            {userProfile ? userProfile.firstName : "Loading..."}
+            {userProfile
+              ? userProfile.firstName
+              : "Loading..."
+            }
           </h1>
 
           <h3>
-            {userProfile ? userProfile.jobTitle : ""}
+            {userProfile
+              ? userProfile.jobTitle
+              : ""
+            }
           </h3>
 
         </div>
@@ -228,6 +301,7 @@ export default function Topbar({ userProfile }) {
         ref={topBarMenuRef}
       >
 
+
         {/* Notifications */}
         <div className={styles.topBarNotification}>
 
@@ -238,26 +312,34 @@ export default function Topbar({ userProfile }) {
             className={styles.notificationButton}
             onClick={handleNotificationMenu}
           >
+
             <LuBell />
+
 
             {unreadNotifications.length > 0 && (
 
-              <span className={styles.notificationBadge}>
-
+              <span
+                className={styles.notificationBadge}
+              >
                 {unreadNotifications.length}
-
               </span>
 
             )}
 
           </button>
 
+
           {/* Notification dropdown */}
           {isNotificationMenuOpen && (
 
-            <div className={styles.notificationDropdown}>
+            <div
+              className={styles.notificationDropdown}
+            >
 
-              <h3><LuBell /> Notifications</h3>
+              <h3>
+                <LuBell /> Notifications
+              </h3>
+
 
               {unreadNotifications.length === 0 ? (
 
@@ -265,27 +347,38 @@ export default function Topbar({ userProfile }) {
 
               ) : (
 
-                unreadNotifications.map((notification) => {
+                unreadNotifications.map(
+                  (notification) => {
 
-                  return (
+                    return (
 
-                    <button
-                      key={notification.id}
-                      type="button"
-                      className={styles.notificationItem}
-                      onClick={() =>
-                        handleNotificationClick(notification)
-                      }
-                    >
-                      <strong>{notification.title}</strong>
+                      <button
+                        key={notification.id}
+                        type="button"
+                        className={
+                          styles.notificationItem
+                        }
+                        onClick={() =>
+                          handleNotificationClick(
+                            notification
+                          )
+                        }
+                      >
 
-                      <span>{notification.message}</span>
+                        <strong>
+                          {notification.title}
+                        </strong>
 
-                    </button>
+                        <span>
+                          {notification.message}
+                        </span>
 
-                  );
+                      </button>
 
-                })
+                    );
+
+                  }
+                )
 
               )}
 
@@ -297,7 +390,11 @@ export default function Topbar({ userProfile }) {
 
 
         {/* User profile */}
-        <div className={styles.topBarUserInfoCointainer}>
+        <div
+          className={
+            styles.topBarUserInfoCointainer
+          }
+        >
 
           <button
             type="button"
@@ -308,7 +405,9 @@ export default function Topbar({ userProfile }) {
           >
 
             <img
-              className={styles.topBarprofileAvatar}
+              className={
+                styles.topBarprofileAvatar
+              }
               src={profileAvatar}
               alt={
                 userProfile
@@ -320,22 +419,35 @@ export default function Topbar({ userProfile }) {
 
             <div>
 
-              <p className={styles.topbarUsername}>
+              <p
+                className={
+                  styles.topbarUsername
+                }
+              >
 
                 {userProfile
                   ? `${userProfile.firstName} ${userProfile.lastName}`
-                  : "Loading user..."}
+                  : "Loading user..."
+                }
 
               </p>
 
 
-              <span className={styles.topbarUserTitle}>
+              <span
+                className={
+                  styles.topbarUserTitle
+                }
+              >
 
-                {userProfile ? userProfile.jobTitle : ""}
+                {userProfile
+                  ? userProfile.jobTitle
+                  : ""
+                }
 
               </span>
 
             </div>
+
 
             <LuChevronDown />
 
@@ -345,11 +457,17 @@ export default function Topbar({ userProfile }) {
           {/* Profile dropdown */}
           {isProfileMenuOpen && (
 
-            <div className={styles.topBarProfileDropdown}>
+            <div
+              className={
+                styles.topBarProfileDropdown
+              }
+            >
 
               <button
                 type="button"
-                onClick={() => navigate("/settings")}
+                onClick={() =>
+                  navigate("/settings")
+                }
               >
                 Settings
               </button>

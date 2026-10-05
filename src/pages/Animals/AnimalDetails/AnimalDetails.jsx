@@ -1,8 +1,8 @@
-import {useParams, useNavigate, Link} from 'react-router-dom'
-import {deleteDoc, doc, getDoc} from "firebase/firestore"
-import {db} from "../../../firebase"
+import { useParams, useNavigate, Link } from "react-router-dom"
+import { deleteDoc, doc, getDoc } from "firebase/firestore"
+import { db } from "../../../firebase"
 import { useEffect, useState } from "react";
-import {LuTrash2, LuPencilLine,LuArrowLeft, } from "react-icons/lu";
+import { LuTrash2, LuPencilLine, LuArrowLeft } from "react-icons/lu";
 import StatusBadge from "../../../components/StatusBadge/StatusBadge"
 import animalImages from "../../../Data/animalImages";
 import styles from "./AnimalDetails.module.css"
@@ -12,7 +12,7 @@ import AnimalDetailsSkeleton from "../../../components/Skeleton/AnimalDetailsSke
 
 export default function AnimalDetails({ userPermissions }) {
 
-  const {animalId} = useParams()
+  const { animalId } = useParams()
 
   const [animal, setAnimal] = useState(null)
   const [activeTab, setActiveTab] = useState("overview");
@@ -20,13 +20,17 @@ export default function AnimalDetails({ userPermissions }) {
 
   const navigate = useNavigate()
 
-  // open closes modal
-  function openEditModal(){
+
+  // Opens the edit modal.
+  function openEditModal() {
     setIsEditModalOpen(true)
   }
-  function closeEditModal(){
+
+  // Closes the edit modal.
+  function closeEditModal() {
     setIsEditModalOpen(false)
   }
+
 
   useEffect(() => {
 
@@ -36,9 +40,13 @@ export default function AnimalDetails({ userPermissions }) {
       try {
 
         // Builds the path to the selected animal.
-        const animalDocumentReference = doc(db, "animals", animalId);
+        const animalDocumentReference = doc(
+          db,
+          "animals",
+          animalId
+        );
 
-        // Loads the animal from the path above.
+        // Loads the animal from Firestore.
         const animalDocumentSnapshot = await getDoc(
           animalDocumentReference
         );
@@ -46,14 +54,9 @@ export default function AnimalDetails({ userPermissions }) {
         // Checks if the document exists before reading its data.
         if (animalDocumentSnapshot.exists()) {
 
-          const savedAnimalStatuses = JSON.parse(sessionStorage.getItem("animalStatuses")) || {}
-
-          const savedStatus = savedAnimalStatuses[animalId]
-
           const animalData = {
             id: animalDocumentSnapshot.id,
-            ...animalDocumentSnapshot.data(),
-            status: savedStatus || animalDocumentSnapshot.data().status
+            ...animalDocumentSnapshot.data()
           }
 
           setAnimal(animalData)
@@ -72,37 +75,45 @@ export default function AnimalDetails({ userPermissions }) {
 
   }, [animalId]);
 
-  // delete animal
-  async function deleteAnimal(){
+
+  // Deletes an animal.
+  async function deleteAnimal() {
 
     if (animal.isDemoProtected) {
       return;
     }
 
-    const userConfirmedDelete = window.confirm(`Are you sure you want to delete ${animal.name}?`)
+    const userConfirmedDelete = window.confirm(
+      `Are you sure you want to delete ${animal.name}?`
+    )
 
-    if(userConfirmedDelete === false){
+    if (userConfirmedDelete === false) {
       return;
     }
 
-    try{
+    try {
 
-      const animalDocumentReference = doc(db, "animals", animalId)
+      const animalDocumentReference = doc(
+        db,
+        "animals",
+        animalId
+      )
 
       await deleteDoc(animalDocumentReference)
 
       navigate("/animals")
 
-    }catch(error){
+    } catch (error) {
       console.error("Failed to delete animal:", error)
     }
 
-
   }
+
 
   if (animal === null) {
     return <AnimalDetailsSkeleton />;
   }
+
 
   const animalImage = animalImages[animal.image];
 
@@ -111,25 +122,35 @@ export default function AnimalDetails({ userPermissions }) {
 
     <div className={styles.animalDetailsMainContainer}>
 
-      <Link className={styles.animalDetailsLink} to={"/animals"}><LuArrowLeft />Back to animals</Link>
+      <Link
+        className={styles.animalDetailsLink}
+        to={"/animals"}
+      >
+        <LuArrowLeft />
+        Back to animals
+      </Link>
+
 
       <header className={styles.animalDetailsHeader}>
 
-        <div  className={styles.animalDetailsHeaderText}>
+        <div className={styles.animalDetailsHeaderText}>
           <h1>{animal.name}</h1>
-          <StatusBadge status={animal.status}/>
-          
+          <StatusBadge status={animal.status} />
         </div>
-       
+
+
         <div className={styles.animalDetailsbuttons}>
 
-          {userPermissions?.canEditAnimal || userPermissions?.canEditMedicalHistory ? 
-          (
-            <button className={styles.animalDetailsbuttonsEdit} onClick={openEditModal} >
+          {userPermissions?.canEditAnimal ||
+          userPermissions?.canEditMedicalHistory ? (
+            <button
+              className={styles.animalDetailsbuttonsEdit}
+              onClick={openEditModal}
+            >
               <LuPencilLine /> Edit
             </button>
-
           ) : null}
+
 
           {userPermissions?.canDeleteAnimal ? (
             <button
@@ -146,19 +167,26 @@ export default function AnimalDetails({ userPermissions }) {
             </button>
           ) : null}
 
-        </div>     
+        </div>
 
       </header>
 
+
       <section className={styles.animalDetailsData}>
+
         <div>
           <img src={animalImage} alt={animal.name} />
         </div>
+
+
         <div className={styles.animalDetailsOverview}>
+
           <h2>Overview</h2>
 
           <div className={styles.animalDetailsDb}>
-            <p>Status: <StatusBadge status={animal.status}/> </p>
+            <p>
+              Status: <StatusBadge status={animal.status} />
+            </p>
             <p>Breed: {animal.breed}</p>
             <p>Age: {animal.age} years</p>
             <p>Gender: {animal.gender}</p>
@@ -167,11 +195,13 @@ export default function AnimalDetails({ userPermissions }) {
             <p>Neutered: {animal.neutered ? "Yes" : "No"}</p>
             <p>Vaccinated: {animal.vaccinated ? "Yes" : "No"}</p>
           </div>
-       
+
         </div>
+
       </section>
 
-      {/* tabs */}
+
+      {/* Tabs */}
       <section className={styles.animalDetailsTabs}>
 
         <div className={styles.tabButtons}>
@@ -210,6 +240,7 @@ export default function AnimalDetails({ userPermissions }) {
 
         </div>
 
+
         <div className={styles.tabContent}>
 
           {activeTab === "overview" && (
@@ -244,16 +275,16 @@ export default function AnimalDetails({ userPermissions }) {
 
       </section>
 
-      
-      {/* modal */}
+
+      {/* Edit animal modal */}
       {isEditModalOpen && (
-          <EditAnimalModal
-            animal={animal}
-            setAnimal={setAnimal}
-            onClose={closeEditModal}
-            userPermissions={userPermissions}
-          />
-        )}
+        <EditAnimalModal
+          animal={animal}
+          setAnimal={setAnimal}
+          onClose={closeEditModal}
+          userPermissions={userPermissions}
+        />
+      )}
 
     </div>
   )

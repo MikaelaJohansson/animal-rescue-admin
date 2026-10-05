@@ -1,12 +1,25 @@
-import {Dog,Heart,ShieldCheck,Handshake,Stethoscope,Hourglass,} from "lucide-react";
+import {
+  Dog,
+  Heart,
+  ShieldCheck,
+  Handshake,
+  Stethoscope,
+  Hourglass,
+} from "lucide-react";
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where
+} from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import DashboardStatCard from "../../components/DashboardStatCard/DashboardStatCard";
 import styles from "../Dashboard/Dashborad.module.css";
 import RecentlyAddedAnimals from "../Dashboard/RecentlyAddedAnimals/RecentlyAddedAnimals";
 import TodaysSchedule from "./TodaysSchedule/TodaysSchedule";
 import DashboardSkeleton from "../../components/Skeleton/DashboardSkeleton/DashboardSkeleton";
+
 
 export default function Dashboard() {
 
@@ -16,6 +29,7 @@ export default function Dashboard() {
   const [isAnimalsLoading, setIsAnimalsLoading] = useState(true);
   const [isEventsLoading, setIsEventsLoading] = useState(true);
 
+
   useEffect(() => {
 
     async function getAnimals() {
@@ -24,24 +38,17 @@ export default function Dashboard() {
 
         setIsAnimalsLoading(true)
 
-        // Points to the "animals" collection.
+        // Points to the animals collection.
         const animalCollection = collection(db, "animals");
 
-        // Goes to the saved path and retrieves everything from it.
+        // Retrieves all animals from Firestore.
         const snapshot = await getDocs(animalCollection);
-
-        const savedAnimalStatuses = JSON.parse(sessionStorage.getItem("animalStatuses")) || {};
 
         const animalData = snapshot.docs.map((document) => {
 
-          const animal = document.data();
-
-          const savedStatus = savedAnimalStatuses[document.id];
-
           return {
             id: document.id,
-            ...animal,
-            status: savedStatus || animal.status,
+            ...document.data()
           };
 
         });
@@ -60,16 +67,20 @@ export default function Dashboard() {
     }
 
     getAnimals();
+
   }, []);
+
 
   useEffect(() => {
 
     async function getTodayEvents() {
+
       // Gets the currently signed-in user from Firebase Authentication.
       const currentUser = auth.currentUser;
 
       // Stops the function if no user is signed in.
       if (!currentUser) {
+        setIsEventsLoading(false)
         return;
       }
 
@@ -77,19 +88,24 @@ export default function Dashboard() {
       const today = new Date().toISOString().split("T")[0];
 
       try {
-        // Points to the "calendarEvents" collection in Firestore.
-        const calendarEventsCollection = collection(db, "calendarEvents");
+
+        // Points to the calendarEvents collection.
+        const calendarEventsCollection = collection(
+          db,
+          "calendarEvents"
+        );
 
         // Creates a query for the signed-in user's events for today.
-        const todayEventsQuery = query( calendarEventsCollection,
+        const todayEventsQuery = query(
+          calendarEventsCollection,
           where("userId", "==", currentUser.uid),
-          where("date", "==", today),
+          where("date", "==", today)
         );
 
         // Gets the documents that match the query.
         const snapshot = await getDocs(todayEventsQuery);
 
-        // Converts the Firestore documents into a regular JavaScript array.
+        // Converts the Firestore documents into a JavaScript array.
         const eventData = snapshot.docs.map((document) => {
 
           const data = document.data();
@@ -103,12 +119,12 @@ export default function Dashboard() {
 
         });
 
-        // Saves today's events in React state.
         setTodayEvents(eventData);
+
       } catch (error) {
         console.error("Could not load today's events:", error);
 
-      }finally {
+      } finally {
         setIsEventsLoading(false)
       }
 
@@ -118,25 +134,31 @@ export default function Dashboard() {
 
   }, []);
 
+
   const availableAnimals = animals.filter((animal) => {
     return animal.status === "Available";
   });
+
 
   const adoptedAnimals = animals.filter((animal) => {
     return animal.status === "Adopted";
   });
 
+
   const medicalHoldAnimals = animals.filter((animal) => {
     return animal.status === "Medical Hold";
   });
+
 
   const fosterCareAnimals = animals.filter((animal) => {
     return animal.status === "In Foster Care";
   });
 
+
   const reservedAnimals = animals.filter((animal) => {
     return animal.status === "Reserved";
   });
+
 
   const isLoading = isAnimalsLoading || isEventsLoading;
 
@@ -144,12 +166,16 @@ export default function Dashboard() {
   return (
 
     <section className={styles.dashboardCointainer}>
-      {isLoading ? ( <DashboardSkeleton /> ) : (
+
+      {isLoading ? (
+        <DashboardSkeleton />
+      ) : (
         <>
-    
+
           {errorMessage && <p>{errorMessage}</p>}
 
           <div className={styles.dashboardCards}>
+
             <DashboardStatCard
               title="Total animals"
               value={animals.length}
@@ -203,12 +229,15 @@ export default function Dashboard() {
               color="orange"
               to={"/animals?status=Reserved"}
             />
+
           </div>
+
 
           <div className={styles.dashboardCointainerUppdates}>
             <RecentlyAddedAnimals animals={animals} />
             <TodaysSchedule todayEvents={todayEvents} />
           </div>
+
         </>
       )}
 

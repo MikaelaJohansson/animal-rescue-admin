@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import {collection, getDocs} from "firebase/firestore"
-import {db} from "../../firebase"
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "../../firebase"
 import styles from "../Animals/Animals.module.css"
 import AnimalsTable from "../../components/Table/AnimalsTable/AnimalsTable"
 import AnimalsFilters from "../../components/Filters/AnimalsFilters/AnimalsFilters"
@@ -17,47 +17,40 @@ export default function Animals({ userPermissions }) {
   const [animals, setAnimals] = useState([])
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [searchText,setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [selectedStatus, setSelectedStatus] = useState(statusFromUrl)
   const [selectedGender, setSelectedGender] = useState("")
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 
 
   // Fetches animals and their IDs from the database.
-  useEffect(()=>{
+  useEffect(() => {
 
-    async function getAnimals(){
+    async function getAnimals() {
 
-      try{
+      try {
 
         setIsLoading(true)
 
-        const animalCollection = collection(db,"animals")
+        const animalCollection = collection(db, "animals")
 
         const snapshot = await getDocs(animalCollection)
 
-        const savedAnimalStatuses = JSON.parse(sessionStorage.getItem("animalStatuses")) || {}
-
         const animalData = snapshot.docs.map((document) => {
-
-          const animal = document.data()
-
-          const savedStatus = savedAnimalStatuses[document.id]
 
           return {
             id: document.id,
-            ...animal,
-            status: savedStatus || animal.status
+            ...document.data()
           }
 
         })
 
         setAnimals(animalData)
- 
-      }catch(error){
+
+      } catch (error) {
         console.error(error)
         setErrorMessage("Failed to load animals.");
-      }finally{
+      } finally {
         setIsLoading(false);
       }
 
@@ -65,65 +58,77 @@ export default function Animals({ userPermissions }) {
 
     getAnimals();
 
-  },[])
+  }, [])
 
 
-  // close/open modal
+  // Opens the modal.
   function handleOpenAddModal() {
     setIsAddModalOpen(true);
   }
+
+  // Closes the modal.
   function handleCloseAddModal() {
     setIsAddModalOpen(false);
   }
 
 
   // Filters animals based on the selected criteria.
-  const filteredAnimals = animals.filter((animal)=>{
+  const filteredAnimals = animals.filter((animal) => {
 
-    const searchValue  = searchText.toLowerCase();
+    const searchValue = searchText.toLowerCase();
 
-    const matchesName  = animal.name.toLowerCase().includes(searchValue)
+    const matchesName = animal.name.toLowerCase().includes(searchValue)
     const matchesBreed = animal.breed.toLowerCase().includes(searchValue)
 
-    const matchesStatus = selectedStatus === "" || animal.status === selectedStatus
+    const matchesStatus =
+      selectedStatus === "" || animal.status === selectedStatus
 
-    const matchesGender = selectedGender === "" || animal.gender === selectedGender
+    const matchesGender =
+      selectedGender === "" || animal.gender === selectedGender
 
-    return(
-     ( matchesName || matchesBreed) && matchesStatus && matchesGender
+    return (
+      (matchesName || matchesBreed) &&
+      matchesStatus &&
+      matchesGender
     )
 
   })
 
 
   return (
-    isLoading ? <ListPageSkeleton/> : <div className={styles.animalsMainContainer}>
+    isLoading ? <ListPageSkeleton /> : (
+      <div className={styles.animalsMainContainer}>
 
-      <div className={styles.animalsHeader}>
-        <h1>Animals in Our Care</h1>
-        <p>View and manage all animals currently in our care.</p>
+        <div className={styles.animalsHeader}>
+          <h1>Animals in Our Care</h1>
+          <p>View and manage all animals currently in our care.</p>
+        </div>
+
+        {errorMessage && <p>{errorMessage}</p>}
+
+        <AnimalsFilters
+          searchText={searchText}
+          setSearchText={setSearchText}
+          selectedStatus={selectedStatus}
+          setSelectedStatus={setSelectedStatus}
+          selectedGender={selectedGender}
+          setSelectedGender={setSelectedGender}
+          onOpenAddModal={handleOpenAddModal}
+          canAddAnimal={userPermissions?.canAddAnimal}
+        />
+
+        {/* Add animal modal */}
+        {isAddModalOpen && (
+          <AddAnimalModal
+            onClose={handleCloseAddModal}
+            setAnimals={setAnimals}
+          />
+        )}
+
+        <AnimalsTable animals={filteredAnimals} />
+
       </div>
-
-      <AnimalsFilters  
-        searchText={searchText}  
-        setSearchText={setSearchText}  
-        selectedStatus = {selectedStatus}  
-        setSelectedStatus = {setSelectedStatus}
-        selectedGender = {selectedGender}
-        setSelectedGender = {setSelectedGender}
-        onOpenAddModal={handleOpenAddModal}
-        canAddAnimal={userPermissions?.canAddAnimal}
-        >       
-      </AnimalsFilters>
-      
-      {/* modal add animal */}
-      {isAddModalOpen && (<AddAnimalModal onClose={handleCloseAddModal} setAnimals={setAnimals} />)}
-
-      <AnimalsTable animals ={filteredAnimals}></AnimalsTable>
-
-      
-    </div> 
-   
+    )
   )
-  
+
 }
