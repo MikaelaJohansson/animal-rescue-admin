@@ -322,10 +322,10 @@ It is a separate React application connected to the same Firebase project and Cl
 Visitors can:
 
 - Browse rescue dogs
-- Search dogs by name
-- Filter dogs by status
+- Search dogs by name or breed
+- Filter dogs by age
 - Filter dogs by gender
-- Filter dogs by breed
+- Filter dogs by status
 - View individual dog profiles
 - Read about the adoption process
 - Submit an adoption application for a specific dog
