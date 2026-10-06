@@ -24,9 +24,7 @@ https://animal-rescue-admin.web.app
 
 **Live application:**
 
-PUBLIC_APP_URL
-
-The public application is implemented and ready for deployment. The link above will be updated with the deployed application URL.
+href="https://animal-rescue-public.web.app"
 
 ---
 
@@ -867,7 +865,7 @@ npm run dev
 ### Deployment
 
 - ✅ Animal Rescue Admin deployed
-- 🔄 Animal Rescue Public ready for deployment
+- 🔄 Animal Rescue Public deployed
 
 ---
 

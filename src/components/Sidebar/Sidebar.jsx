@@ -193,7 +193,7 @@ export default function Sidebar({ userPermissions }) {
         <div className={styles.publicWebsiteContainer}>
 
           <a
-            href="https://din-public-app.web.app"
+            href="https://animal-rescue-public.web.app"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.publicWebsiteLink}
