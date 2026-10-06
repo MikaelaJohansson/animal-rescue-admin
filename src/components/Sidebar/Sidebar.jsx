@@ -1,15 +1,22 @@
-import { NavLink } from "react-router-dom"
-import { FaDog, FaHouse, FaFilePen, FaCalendarDays} from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
+import {
+  FaDog,
+  FaHouse,
+  FaFilePen,
+  FaCalendarDays,
+  FaArrowUpRightFromSquare
+} from "react-icons/fa6";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { useState } from "react";
-import styles from "../Sidebar/Sidebar.module.css"
-import sideBarAppLogoWhite from "../../assets/sideBarAppLogoWhite.png"
-import sideBarPawLogoWhite from "../../assets/sideBarPawLogoWhite.png"
+import styles from "../Sidebar/Sidebar.module.css";
+import sideBarAppLogoWhite from "../../assets/sideBarAppLogoWhite.png";
+import sideBarPawLogoWhite from "../../assets/sideBarPawLogoWhite.png";
 
 
 export default function Sidebar({ userPermissions }) {
 
-  const [isExpanded, setIsExpanded] = useState(() => {const isDesktopScreen = window.matchMedia("(min-width: 768px)").matches;
+  const [isExpanded, setIsExpanded] = useState(() => {
+    const isDesktopScreen = window.matchMedia("(min-width: 768px)").matches;
 
     if (isDesktopScreen) {
       return true;
@@ -18,55 +25,187 @@ export default function Sidebar({ userPermissions }) {
     }
   });
 
+
   // Sets the sidebar expanded state
-  function handleArrowChange(){
-    setIsExpanded(!isExpanded)
+  function handleArrowChange() {
+    setIsExpanded(!isExpanded);
   }
 
 
   return (
-    <div className={`${styles.sidebarMain} ${isExpanded ? styles.sidebarExpanded : styles.sidebarCollapsed}`} >
+    <div
+      className={`${styles.sidebarMain} ${
+        isExpanded
+          ? styles.sidebarExpanded
+          : styles.sidebarCollapsed
+      }`}
+    >
 
       <div className={styles.sidebarHeader}>
 
-        <img className={styles.sidebarLogo} src={isExpanded ? sideBarAppLogoWhite : sideBarPawLogoWhite} alt="logo"/>
+        <img
+          className={styles.sidebarLogo}
+          src={
+            isExpanded
+              ? sideBarAppLogoWhite
+              : sideBarPawLogoWhite
+          }
+          alt="logo"
+        />
 
-        <div className={isExpanded ? styles.sideBarLineBig : styles.sideBarLineSmall}></div>
+        <div
+          className={
+            isExpanded
+              ? styles.sideBarLineBig
+              : styles.sideBarLineSmall
+          }
+        ></div>
 
-        {/*  Toggles the sidebar expanded state */}
-        <button type="button" onClick={handleArrowChange} className={styles.sidebarButton} aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"} aria-expanded={isExpanded}>
-          {isExpanded ? <LuChevronLeft/> : <LuChevronRight/>}
+
+        {/* Toggles the sidebar expanded state */}
+        <button
+          type="button"
+          onClick={handleArrowChange}
+          className={styles.sidebarButton}
+          aria-label={
+            isExpanded
+              ? "Collapse sidebar"
+              : "Expand sidebar"
+          }
+          aria-expanded={isExpanded}
+        >
+          {isExpanded
+            ? <LuChevronLeft />
+            : <LuChevronRight />
+          }
         </button>
 
       </div>
-     
-      {/* sidebar Links to other pages */}
+
+
+      {/* Sidebar links */}
       <nav className={styles.sideBarNav}>
 
-        {userPermissions?.canViewDashboard ? 
-          (<NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/dashboard"><FaHouse />{isExpanded && <span>Dashboard</span>}</NavLink>) 
-          : null 
-        }
-        
+        {userPermissions?.canViewDashboard
+          ? (
+            <NavLink
+              className={({ isActive }) =>
+                `${styles.sidebarLink} ${
+                  isExpanded
+                    ? styles.sidebarLinkExpanded
+                    : styles.sidebarLinkCollapsed
+                } ${
+                  isActive
+                    ? styles.sidebarLinkActive
+                    : ""
+                }`
+              }
+              to="/dashboard"
+            >
+              <FaHouse />
 
-        {userPermissions?.canViewAnimals ? 
-          (<NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/animals"><FaDog/>{isExpanded && <span>Animals</span>}</NavLink>) 
-          : null 
-        }
-        
-       
-        {userPermissions?.canViewApplications ? 
-          ( <NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : "" } ` } to="/adoptions" ><FaFilePen />{isExpanded && <span>Applications</span>}</NavLink>) 
+              {isExpanded && <span>Dashboard</span>}
+            </NavLink>
+          )
           : null
         }
 
-        {userPermissions?.canViewCalendar ? 
-          (<NavLink className={({ isActive }) => `${styles.sidebarLink} ${isExpanded ? styles.sidebarLinkExpanded : styles.sidebarLinkCollapsed} ${isActive ? styles.sidebarLinkActive : ""}`} to="/calendar"><FaCalendarDays />{isExpanded && <span>Calendar</span>}</NavLink>) 
+
+        {userPermissions?.canViewAnimals
+          ? (
+            <NavLink
+              className={({ isActive }) =>
+                `${styles.sidebarLink} ${
+                  isExpanded
+                    ? styles.sidebarLinkExpanded
+                    : styles.sidebarLinkCollapsed
+                } ${
+                  isActive
+                    ? styles.sidebarLinkActive
+                    : ""
+                }`
+              }
+              to="/animals"
+            >
+              <FaDog />
+
+              {isExpanded && <span>Animals</span>}
+            </NavLink>
+          )
           : null
         }
-        
+
+
+        {userPermissions?.canViewApplications
+          ? (
+            <NavLink
+              className={({ isActive }) =>
+                `${styles.sidebarLink} ${
+                  isExpanded
+                    ? styles.sidebarLinkExpanded
+                    : styles.sidebarLinkCollapsed
+                } ${
+                  isActive
+                    ? styles.sidebarLinkActive
+                    : ""
+                }`
+              }
+              to="/adoptions"
+            >
+              <FaFilePen />
+
+              {isExpanded && <span>Applications</span>}
+            </NavLink>
+          )
+          : null
+        }
+
+
+        {userPermissions?.canViewCalendar
+          ? (
+            <NavLink
+              className={({ isActive }) =>
+                `${styles.sidebarLink} ${
+                  isExpanded
+                    ? styles.sidebarLinkExpanded
+                    : styles.sidebarLinkCollapsed
+                } ${
+                  isActive
+                    ? styles.sidebarLinkActive
+                    : ""
+                }`
+              }
+              to="/calendar"
+            >
+              <FaCalendarDays />
+
+              {isExpanded && <span>Calendar</span>}
+            </NavLink>
+          )
+          : null
+        }
+
       </nav>
 
+
+      {/* Public website */}
+      {isExpanded && (
+        <div className={styles.publicWebsiteContainer}>
+
+          <a
+            href="https://din-public-app.web.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.publicWebsiteLink}
+          >
+            <FaArrowUpRightFromSquare />
+
+            <span>Public Website</span>
+          </a>
+
+        </div>
+      )}
+
     </div>
-  )
+  );
 }

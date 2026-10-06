@@ -1,4 +1,5 @@
 /* Sidebar header */
+
 .sidebarMain {
     display: flex;
     flex-direction: column;
@@ -7,75 +8,100 @@
     font-weight: var(--font-weight-L);
     transition: width 0.3s ease;
 }
-.sidebarLogo{
-   width: 100%;
-   max-width: 220px;
-   height: auto;
-   align-self: center;
+
+.sidebarLogo {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    align-self: center;
 }
-.sideBarLineBig{
-    border-bottom: 1px solid var(--color-text-white);
+
+.sideBarLineBig {
     width: 210px;
     margin-left: 10px;
-}
-.sideBarLineSmall{
     border-bottom: 1px solid var(--color-text-white);
+}
+
+.sideBarLineSmall {
     width: 50px;
     margin-left: 8px;
+    border-bottom: 1px solid var(--color-text-white);
 }
 
 
-/* sidebar button */
+/* Sidebar button */
+
 .sidebarButton {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+    position: relative;
+    top: -15px;
+    left: 15px;
 
-  width: 2.0rem;
-  height: 2.0rem;
-  padding: 0;
-  border: 2px solid var(--color-border-dark-gray);
-  border-radius: 50%;
-  color: var(--color-button);
-  background-color: var(--color-text-white);
-  top: -15px;
-  left: 15px;
-  transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    margin-left: auto;
+    padding: 0;
+
+    border: 2px solid var(--color-border-dark-gray);
+    border-radius: 50%;
+
+    color: var(--color-button);
+    background-color: var(--color-text-white);
+
+    transition: transform 0.2s ease;
 }
-.sidebarButton:hover{
+
+.sidebarButton:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
 
-/* sidebar Links */
+/* Sidebar links */
+
 .sideBarNav {
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
+
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
+
     font-size: var(--font-size-M);
+
     overflow-y: auto;
     overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-sidebar-hover) transparent;
 }
 
 .sidebarLink {
     display: flex;
     align-items: center;
-    color: var(--color-text-white);
+
     gap: 1rem;
+
+    color: var(--color-text-white);
     text-decoration: none;
+
     transition:
         background-color 0.2s ease,
         transform 0.2s ease;
 }
+
 .sidebarLink svg {
     width: 1.25rem;
     height: 1.25rem;
     flex-shrink: 0;
+}
+
+.sidebarLink span {
+    white-space: nowrap;
 }
 
 .sidebarLink:focus {
@@ -87,57 +113,107 @@
     outline-offset: 3px;
 }
 
-.sidebarLinkExpanded:hover {
-    background-color: var(--color-sidebar-hover);
-    transform: translateX(3px);
-}
 .sidebarLinkActive {
     background-color: var(--color-primary);
 }
 
 
 /* Expanded sidebar */
-.sidebarLinkExpanded {
-    justify-content: flex-start;
-    margin-left: 40px;
-    margin-right: 30px;
-    padding: 9px;
-    border-radius: var(--radius-Sidebar-expand);
-}
-.sidebarLinkExpanded:hover {
-    background-color: var(--color-sidebar-hover);
-    transform: scale(1.05);
-}
+
 .sidebarExpanded {
     width: clamp(200px, 15vw, 240px);
 }
 
+.sidebarLinkExpanded {
+    justify-content: flex-start;
 
-/* Collapsed sidebar  */
-.sidebarLinkCollapsed {
-    width: 2.75rem;
-    height: 2.75rem;
-    justify-content: center;
-    align-self: center;
-    border-radius: 50%;
-    transition: transform 0.2s ease;
-   
+    margin-left: clamp(15px, 2vw, 40px);
+    margin-right: clamp(10px, 1.5vw, 30px);
+
+    padding: 9px;
+
+    border-radius: var(--radius-Sidebar-expand);
+
+    white-space: nowrap;
 }
-.sidebarLinkCollapsed:hover {
+
+.sidebarLinkExpanded:hover {
     background-color: var(--color-sidebar-hover);
-    transform: scale(1.05);
+    transform: translateX(3px);
 }
+
+
+/* Collapsed sidebar */
+
 .sidebarCollapsed {
     width: clamp(60px, 5vw, 80px);
 }
 
-.sideBarNav {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-sidebar-hover) transparent;
+.sidebarLinkCollapsed {
+    width: 2.75rem;
+    height: 2.75rem;
+
+    justify-content: center;
+    align-self: center;
+
+    border-radius: 50%;
+
+    transition: transform 0.2s ease;
+}
+
+.sidebarLinkCollapsed:hover {
+    background-color: var(--color-sidebar-hover);
+    transform: scale(1.05);
 }
 
 
-/* scrollbar style */
+/* Public website */
+
+.publicWebsiteContainer {
+    margin-top: auto;
+    padding: 1rem;
+}
+
+.publicWebsiteLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.6rem;
+
+    padding: 0.7rem;
+
+    color: var(--color-text-white);
+
+    border-top: 1px solid var(--color-border-dark-gray);
+
+    font-size: var(--font-size-S);
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.publicWebsiteLink svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+}
+
+.publicWebsiteLink:hover {
+    color: var(--color-primary);
+    transform: translateX(3px);
+}
+
+.publicWebsiteLink:focus-visible {
+    outline: 2px solid var(--color-text-white);
+    outline-offset: 3px;
+}
+
+
+/* Scrollbar style */
+
 .sideBarNav::-webkit-scrollbar {
     width: 8px;
 }
@@ -148,32 +224,34 @@
 
 .sideBarNav::-webkit-scrollbar-thumb {
     background: var(--color-sidebar-hover);
-    border-radius: var( --radius-S);
+    border-radius: var(--radius-S);
 }
 
 .sideBarNav::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    background-color: var(--color-primary);
 }
 
 
+/* On mobile, the sidebar overlays the content */
 
-/* On mobile, the sidebar overlays the content. */
 @media (max-width: 767px) {
-  .sidebarMain {
-    position: relative;
-    z-index: 10;
-  }
 
-  .sidebarExpanded {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100dvh;
-    width: 240px;
-  }
+    .sidebarMain {
+        position: relative;
+        z-index: 10;
+    }
 
-  .sidebarCollapsed {
-    width: 80px;
-    margin-right: -1.5rem;
-  }
+    .sidebarExpanded {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 240px;
+        height: 100dvh;
+    }
+
+    .sidebarCollapsed {
+        width: 80px;
+        margin-right: -1.5rem;
+    }
 }
