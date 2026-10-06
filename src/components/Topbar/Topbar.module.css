@@ -185,15 +185,20 @@
 }
 
 .notificationDropdown {
-  position: absolute;
-  top: calc(100% + 0.75rem);
-  right: 0;
-  width: min(320px, 85vw);
+  position: fixed;
+
+  top: 80px;
+  left: 72%;
+  transform: translateX(-50%);
+
+  width: min(320px, calc(100vw - 20px));
   padding: 1rem;
+
   background-color: var(--color-background-topbar);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+
   z-index: 1000;
 }
 
@@ -226,6 +231,8 @@
 
 /* Small screens */
 
+/* Small screens */
+
 @media (max-width: 767px) {
 
   .topBarWelcomeText h3 {
@@ -234,5 +241,14 @@
 
   .topBarButton div {
     display: none;
+  }
+
+  .notificationDropdown {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    width: min(320px, calc(100vw - 20px));
   }
 }

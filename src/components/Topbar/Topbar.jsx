@@ -457,11 +457,7 @@ export default function Topbar({ userProfile }) {
           {/* Profile dropdown */}
           {isProfileMenuOpen && (
 
-            <div
-              className={
-                styles.topBarProfileDropdown
-              }
-            >
+            <div className={ styles.topBarProfileDropdown   } >
 
               <button
                 type="button"
