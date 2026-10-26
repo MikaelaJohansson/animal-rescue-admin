@@ -90,6 +90,13 @@
 }
 
 
+/* Cookie settings */
+
+.settingRow + .settingRow {
+  border-top: 1px solid var(--color-border);
+}
+
+
 /* Small screens */
 
 @media (max-width: 767px) {

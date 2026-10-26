@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
@@ -15,6 +16,7 @@ import AdoptionDetails from "./pages/Adoptions/AdoptionDetails/AdoptionDetails";
 import PermissionRoute from "./components/PermissionRoute/PermissionRoute";
 import Calendar from "./pages/Calendar/Calendar";
 import Settings from "./pages/Settings/Settings";
+import CookieConsent from "./components/CookieConsent/CookieConsent";
 
 export default function App() {
 
@@ -98,40 +100,43 @@ export default function App() {
 
 
   return (
+    <>
+      <CookieConsent />
 
-    <Routes>
+      <Routes>
 
-      <Route path="/" element={ isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login setIsLoggedIn={setIsLoggedIn} />}/>
+        <Route path="/" element={ isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login setIsLoggedIn={setIsLoggedIn} />}/>
 
-      {/* Protected routes */}
-      <Route element={ <ProtectedRoute isLoggedIn={isLoggedIn} /> }>
+        {/* Protected routes */}
+        <Route element={ <ProtectedRoute isLoggedIn={isLoggedIn} /> }>
 
-        {/* AppLayout is responsible for the shared layout */}
-        <Route
-          element={ <AppLayout userProfile={userProfile} userPermissions={userPermissions} /> } >
+          {/* AppLayout is responsible for the shared layout */}
+          <Route
+            element={ <AppLayout userProfile={userProfile} userPermissions={userPermissions} /> } >
 
-          <Route path="/dashboard"element={<Dashboard />} />
+            <Route path="/dashboard"element={<Dashboard />} />
 
-          <Route path="/settings" element={<Settings theme={theme} setTheme={setTheme} /> }/>
+            <Route path="/settings" element={<Settings theme={theme} setTheme={setTheme} /> }/>
 
-          <Route path="/animals" element={ <Animals userPermissions={userPermissions} /> } />
+            <Route path="/animals" element={ <Animals userPermissions={userPermissions} /> } />
 
-          <Route path="/animals/:animalId" element={ <AnimalDetails userPermissions={userPermissions} /> } />
+            <Route path="/animals/:animalId" element={ <AnimalDetails userPermissions={userPermissions} /> } />
 
-          <Route element={ <PermissionRoute hasPermission={ userPermissions?.canViewApplications } /> } >
+            <Route element={ <PermissionRoute hasPermission={ userPermissions?.canViewApplications } /> } >
 
-            <Route path="/adoptions" element={<Adoptions />} />
+              <Route path="/adoptions" element={<Adoptions />} />
 
-            <Route path="/adoptionDetails/:adoptionId" element={ <AdoptionDetails   userPermissions={userPermissions}   />   } />
+              <Route path="/adoptionDetails/:adoptionId" element={ <AdoptionDetails   userPermissions={userPermissions}   />   } />
+
+            </Route>
+
+            <Route path="/calendar" element={<Calendar />} />
 
           </Route>
 
-          <Route path="/calendar" element={<Calendar />} />
-
         </Route>
 
-      </Route>
-
-    </Routes>
+      </Routes>
+    </>
   );
 }

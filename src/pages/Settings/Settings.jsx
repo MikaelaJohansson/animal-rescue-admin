@@ -1,5 +1,5 @@
 import { doc, updateDoc } from "firebase/firestore";
-import { auth, db } from "../../firebase";
+import { auth, db, disableAnalytics } from "../../firebase";
 import styles from "./Settings.module.css";
 
 export default function Settings({ theme, setTheme }) {
@@ -29,6 +29,14 @@ export default function Settings({ theme, setTheme }) {
 
     }
 
+  }
+
+
+  // Reopen the cookie consent banner
+  function handleCookieSettings() {
+    disableAnalytics();
+    localStorage.removeItem("analytics-consent");
+    window.dispatchEvent(new Event("analytics-consent-change"));
   }
 
 
@@ -74,6 +82,24 @@ export default function Settings({ theme, setTheme }) {
             </button>
 
           </div>
+
+        </div>
+
+        {/* Analytics cookies */}
+        <div className={styles.settingRow}>
+
+          <div className={styles.settingInfo}>
+            <h2>Analytics Cookies</h2>
+            <p>Manage your Google Analytics consent preferences.</p>
+          </div>
+
+          <button
+            type="button"
+            className={styles.themeButton}
+            onClick={handleCookieSettings}
+          >
+            Cookie Settings
+          </button>
 
         </div>
 

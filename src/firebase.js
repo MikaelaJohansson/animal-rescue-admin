@@ -1,7 +1,8 @@
+
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, setAnalyticsCollectionEnabled } from "firebase/analytics";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -17,8 +18,23 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Retrieve the Analytics service only in production
-export const analytics = import.meta.env.PROD ? getAnalytics(app) : null;
+// Initialize Analytics only after consent
+export const initializeAnalytics = () => {
+  if (!import.meta.env.PROD) return null;
+
+  const analytics = getAnalytics(app);
+  setAnalyticsCollectionEnabled(analytics, true);
+
+  return analytics;
+};
+
+// Disable Analytics collection when consent is withdrawn
+export const disableAnalytics = () => {
+  if (!import.meta.env.PROD) return;
+
+  const analytics = getAnalytics(app);
+  setAnalyticsCollectionEnabled(analytics, false);
+};
 
 // Retrieve the Authentication service
 export const auth = getAuth(app);
