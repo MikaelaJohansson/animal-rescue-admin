@@ -131,6 +131,13 @@ export default function Login({ setIsLoggedIn}) {
                     <button type="submit" className={styles.loginButton} disabled={isLoading}>{isLoading ? "Logging in..." : "Log in"}</button>
                 </form>
 
+                {/* Privacy information */}
+                <p className={styles.privacyNotice}>
+                    This application uses Google Analytics only with your consent.
+                    You can accept or reject analytics cookies and change your
+                    preference at any time in Settings after logging in.
+                </p>
+
             </section>
 
         </div>

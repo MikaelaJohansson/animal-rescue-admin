@@ -154,3 +154,20 @@
   cursor: pointer;
   font-size: var(--font-size-S);
 }
+
+/* Privacy notice */
+
+.privacyNotice {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 420px);
+  margin: 0;
+
+  color: var(--color-text-muted);
+  font-family: var(--font-family);
+  font-size: var(--font-size-S);
+  line-height: var(--line-height);
+  text-align: center;
+}
